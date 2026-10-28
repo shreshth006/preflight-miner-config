@@ -1,0 +1,325 @@
+version: '1'
+kind: miner
+id: 20260828
+slug: preflight-ssl-verification
+protocol: generic
+name: PREFLIGHT Infrastructure Signals
+description: >
+  Deterministic infrastructure and on-chain signals for autonomous systems.
+  Live TLS verification performs DNS resolution, a TLS 1.2/1.3 handshake with
+  SNI, native chain verification, hostname verification and certificate time
+  validation. URL scanning reuses the same transport engine and adds redirect,
+  security-header and risk analysis. Gas price, wallet balance and transaction
+  lookup read directly from public JSON-RPC across Ethereum, Base, Arbitrum,
+  OP Mainnet and Polygon, with EIP-7702 delegated accounts reported correctly.
+  Total value locked and cryptocurrency spot prices are mirrored from
+  DefiLlama. Academic paper searches use OpenAlex and preserve requested
+  publication windows, result counts and ordering. CVE lookups combine
+  canonical CVE.org records with NVD severity and exploitation metadata.
+base_url: https://preflight-ssl-verification.vercel.app
+
+docs:
+  repository: https://github.com/shreshth006/Preflight
+  documentation: https://github.com/shreshth006/Preflight/blob/main/docs/TELEGRAPH-INTEGRATION.md
+
+auth:
+  type: none
+
+# The example value of 5/s sits below the node's own 10/s default backstop and
+# would cap traffic this miner can comfortably serve; the endpoints are
+# stateless and scale horizontally.
+rate_limit_per_sec: 25
+cache_ttl_sec: 0
+# Upstream public RPC and DefiLlama blips should not sideline the miner on a
+# short burst, and when the breaker does open it should reclose quickly.
+circuit_threshold: 8
+circuit_cooldown_seconds: 15
+
+endpoints:
+  - path: /ssl-check
+    external_path: /ssl-check
+    method: GET
+    description: Live TLS certificate verification for a hostname, HTTPS URL, or host:port.
+  - path: /url-scan
+    external_path: /url-scan
+    method: GET
+    description: >
+      Safety scan of a URL. Follows redirects, verifies TLS, inspects security
+      headers and reports a risk score with explicit findings. Questions about
+      a bounded set of documented malware-domain incidents can be answered
+      from attributed historical reference facts when no live URL is supplied.
+  - path: /gas-price
+    external_path: /gas-price
+    method: GET
+    description: >
+      Current gas price for an EVM chain, with EIP-1559 base fee, suggested
+      priority fee and the cost of a standard native transfer.
+  - path: /wallet-balance
+    external_path: /wallet-balance
+    method: GET
+    description: >
+      Native token balance for an EVM address, with nonce and account type
+      including EIP-7702 delegated accounts.
+  - path: /tx-lookup
+    external_path: /tx-lookup
+    method: GET
+    description: >
+      Status and effect of a transaction hash, with block, confirmations,
+      value, gas used and fee paid.
+  - path: /crypto-price
+    external_path: /crypto-price
+    method: GET
+    description: >
+      Current USD spot price for a cryptocurrency, by ticker or name,
+      aggregated by DefiLlama with the observation timestamp.
+  - path: /tvl
+    external_path: /tvl
+    method: GET
+    description: Total value locked for a DeFi protocol or chain, mirrored from DefiLlama.
+  - path: /fx-rate
+    external_path: /fx-rate
+    method: GET
+    description: >
+      Mid-market foreign exchange rate between two currencies, named as ISO
+      4217 codes or common names, with the inverse rate and an optional
+      converted amount.
+  - path: /ip-geolocation
+    external_path: /ip-geolocation
+    method: GET
+    description: >
+      Geolocation of an IPv4 or IPv6 address, with city, region, country,
+      coordinates, timezone, ISP and autonomous system. Private and reserved
+      ranges are reported as such rather than as a lookup failure.
+  - path: /stock-price
+    external_path: /stock-price
+    method: GET
+    description: >
+      Current equity quote by ticker or company name, with the previous close,
+      the day's change and the listing venue.
+  - path: /papers
+    external_path: /papers
+    method: GET
+    description: >
+      Peer-reviewed papers for a research question, optionally constrained by
+      publication dates, result count and citation or recency ordering, from
+      OpenAlex.
+  - path: /cve
+    external_path: /cve
+    method: GET
+    description: >
+      Vulnerability details for a CVE identifier, including severity, CVSS
+      scores, affected versions and known-exploitation status, from CVE.org
+      and NVD.
+
+input_schema:
+  type: object
+  description: >
+    Each endpoint reads the one parameter it needs. Parameters are matched
+    tolerantly: a hostname, URL, address or transaction hash is also recovered
+    from a free-text question, so router-supplied phrasing still resolves.
+  properties:
+    domain:
+      type: string
+      description: Hostname, HTTPS URL, or host:port to verify. Used by /ssl-check.
+    url:
+      type: string
+      description: >
+        Absolute URL to scan. Used by /url-scan; a free-text URL_SCAN question
+        may instead name one of the documented historical incidents.
+    chain:
+      type: string
+      description: >
+        EVM chain name or alias — ethereum, base, arbitrum, optimism, polygon,
+        sepolia, base-sepolia. Defaults to ethereum. Used by the on-chain endpoints.
+    address:
+      type: string
+      description: 0x-prefixed EVM address. Used by /wallet-balance.
+    hash:
+      type: string
+      description: 0x-prefixed transaction hash. Used by /tx-lookup.
+    protocol:
+      type: string
+      description: DeFi protocol or chain name. Used by /tvl.
+    asset:
+      type: string
+      description: Cryptocurrency ticker or name. Used by /crypto-price.
+    pair:
+      type: string
+      description: >
+        Currency pair or a question naming two currencies, as ISO 4217 codes or
+        common names. Used by /fx-rate.
+    ip:
+      type: string
+      description: IPv4 or IPv6 address to locate. Used by /ip-geolocation.
+    symbol:
+      type: string
+      description: Equity ticker or company name. Used by /stock-price.
+    topic:
+      type: string
+      description: >
+        The complete ACADEMIC_SEARCH question for /papers, including the
+        research subject and any publication dates, result count, field
+        constraints or requested ordering. Preserve the question verbatim
+        rather than reducing it to keywords.
+    cve_query:
+      type: string
+      description: >
+        The complete CVE_LOOKUP question for /cve, including the CVE identifier
+        and every requested fact. Preserve the question verbatim rather than
+        reducing it to the identifier.
+
+output_schema:
+  type: object
+  description: >
+    Every endpoint returns verdict, confidence and reason, so one signal
+    mapping covers all intents. The remaining fields are those of the endpoint
+    that was called.
+  properties:
+    chain_length: { type: [integer, 'null'] }
+    domain: { type: string }
+    verdict:
+      type: string
+      description: >
+        Primary decision. /ssl-check returns a certificate verdict, /url-scan a
+        safety verdict, /gas-price a congestion level, /wallet-balance funded
+        or empty, /tx-lookup a transaction status, /tvl the kind of subject
+        resolved, /crypto-price whether a quote was found. "unavailable" means
+        an upstream source did not answer, which is distinct from the subject
+        not existing.
+      enum:
+        [
+          valid,
+          expired,
+          not_yet_valid,
+          hostname_mismatch,
+          self_signed,
+          untrusted,
+          unreachable,
+          safe,
+          suspicious,
+          malicious,
+          low,
+          normal,
+          elevated,
+          high,
+          funded,
+          empty,
+          success,
+          failed,
+          pending,
+          not_found,
+          found,
+          unavailable,
+          protocol,
+          chain,
+        ]
+    valid: { type: boolean }
+    chain_complete: { type: [boolean, 'null'] }
+    trusted: { type: boolean }
+    expired: { type: boolean }
+    hostname_match: { type: boolean }
+    issuer: { type: [string, 'null'] }
+    subject: { type: [string, 'null'] }
+    subject_alt_names: { type: [array, 'null'] }
+    valid_from: { type: [string, 'null'] }
+    valid_to: { type: [string, 'null'] }
+    days_remaining: { type: [integer, 'null'] }
+    tls_protocol: { type: [string, 'null'] }
+    cipher: { type: [string, 'null'] }
+    key_bits: { type: [integer, 'null'] }
+    confidence: { type: number, minimum: 0, maximum: 1 }
+    reason: { type: string }
+    unreachable_reason: { type: string }
+    checked_at: { type: string }
+    # /url-scan
+    url: { type: string }
+    final_url: { type: [string, 'null'] }
+    hostname: { type: [string, 'null'] }
+    risk_score: { type: integer, minimum: 0, maximum: 100 }
+    reachable: { type: [boolean, 'null'] }
+    http_status: { type: [integer, 'null'] }
+    redirect_count: { type: integer }
+    redirect_chain: { type: array }
+    findings: { type: array }
+    security_headers: { type: object }
+    tls_valid: { type: [boolean, 'null'] }
+    documented_incident: { type: [string, 'null'] }
+    documented_facts: { type: [array, 'null'] }
+    # on-chain endpoints
+    chain: { type: string }
+    chain_id: { type: integer }
+    block_number: { type: [integer, 'null'] }
+    # /gas-price
+    gas_price_wei: { type: string }
+    gas_price_gwei: { type: string }
+    base_fee_gwei: { type: [string, 'null'] }
+    priority_fee_gwei: { type: [string, 'null'] }
+    transfer_cost_native: { type: string }
+    level: { type: string }
+    # /wallet-balance
+    address: { type: string }
+    balance: { type: string }
+    balance_wei: { type: string }
+    symbol: { type: string }
+    transaction_count: { type: [integer, 'null'] }
+    account_type: { type: [string, 'null'] }
+    delegate_address: { type: [string, 'null'] }
+    funded: { type: boolean }
+    explorer_url: { type: string }
+    # /tx-lookup
+    hash: { type: string }
+    found: { type: boolean }
+    status: { type: string }
+    confirmations: { type: [integer, 'null'] }
+    from: { type: [string, 'null'] }
+    to: { type: [string, 'null'] }
+    value: { type: [string, 'null'] }
+    gas_used: { type: [string, 'null'] }
+    fee_native: { type: [string, 'null'] }
+    # /tvl
+    query: { type: string }
+    resolved_name: { type: [string, 'null'] }
+    kind: { type: string }
+    tvl_usd: { type: [number, 'null'] }
+    tvl_formatted: { type: [string, 'null'] }
+    source: { type: string }
+    # /crypto-price
+    asset: { type: [string, 'null'] }
+    price_usd: { type: [number, 'null'] }
+    price_formatted: { type: [string, 'null'] }
+    observed_at: { type: [string, 'null'] }
+    source_confidence: { type: [number, 'null'] }
+    # /papers
+    topic: { type: string }
+    papers: { type: array }
+    result_count: { type: integer }
+    from_date: { type: [string, 'null'] }
+    to_date: { type: [string, 'null'] }
+    sort: { type: [string, 'null'] }
+    # /cve
+    cve_id: { type: string }
+    severity: { type: [string, 'null'] }
+    cvss_score: { type: [number, 'null'] }
+    cvss_version: { type: [string, 'null'] }
+    cvss_scores: { type: array }
+    affected_versions: { type: array }
+    known_exploitation:
+      type: string
+      enum: [active, proof_of_concept, not_reported]
+
+semantics:
+  signal_mapping:
+    confidence_field: confidence
+    label_field: verdict
+    reason_field: reason
+  supported_intents:
+    - SSL_VERIFICATION
+    - URL_SCAN
+    - WALLET_BALANCE_CHECK
+    - ONCHAIN_TX_LOOKUP
+    - TVL_LOOKUP
+    - CRYPTO_PRICE
+    - CURRENCY_EXCHANGE
+    - IP_GEOLOCATION
+    - ACADEMIC_SEARCH
+    - CVE_LOOKUP
