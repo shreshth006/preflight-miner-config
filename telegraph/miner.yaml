@@ -5,22 +5,19 @@ slug: preflight-ssl-verification
 protocol: generic
 name: PREFLIGHT Infrastructure Signals
 description: >
-  Deterministic infrastructure and on-chain signals for autonomous systems.
-  Live TLS verification performs DNS resolution, a TLS 1.2/1.3 handshake with
-  SNI, native chain verification, hostname verification and certificate time
-  validation. URL scanning reuses the same transport engine and adds redirect,
-  security-header and risk analysis. Gas price, wallet balance and transaction
-  lookup read directly from public JSON-RPC across Ethereum, Base, Arbitrum,
-  OP Mainnet and Polygon, with EIP-7702 delegated accounts reported correctly.
-  Total value locked and cryptocurrency spot prices are mirrored from
-  DefiLlama. Academic paper searches use OpenAlex and preserve requested
-  publication windows, result counts and ordering. CVE lookups combine
-  canonical CVE.org records with NVD severity and exploitation metadata.
+  Deterministic infrastructure and on-chain signals for autonomous systems,
+  each read live at question time. TLS verification performs a real handshake
+  with chain, hostname and validity checks; URL safety combines redirects,
+  headers and threat feeds; DNS records come from two independent DoH
+  resolvers; uptime and API health are probed with per-phase timings. Gas,
+  balances, transactions, token supply and pinned-block reads come straight
+  from public JSON-RPC on Ethereum, Base, Arbitrum, OP Mainnet and Polygon.
+  Prices, TVL, FX, geolocation, papers and CVEs come from named public
+  sources, cited in each answer.
 base_url: https://preflight-ssl-verification.vercel.app
 
 docs:
-  repository: https://github.com/shreshth006/Preflight
-  documentation: https://github.com/shreshth006/Preflight/blob/main/docs/TELEGRAPH-INTEGRATION.md
+  repository: https://github.com/shreshth006/preflight-miner-config
 
 auth:
   type: none
@@ -35,81 +32,439 @@ cache_ttl_sec: 0
 circuit_threshold: 8
 circuit_cooldown_seconds: 15
 
+# Every endpoint takes the question verbatim as `query` and recovers what it
+# needs from it; the optional params let the request builder pass a field
+# directly when the question has one.
 endpoints:
   - path: /ssl-check
     external_path: /ssl-check
     method: GET
-    description: Live TLS certificate verification for a hostname, HTTPS URL, or host:port.
+    description: >
+      Live TLS certificate verification for a hostname, HTTPS URL or host:port:
+      chain trust, hostname match and validity dates from a real handshake.
+    intents:
+      - SSL_VERIFICATION_CERT
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "Is the TLS certificate of github.com currently valid and trusted?".
+        optional:
+          - name: domain
+            type: string
+            intents: ['*']
+            description: Hostname, HTTPS URL or host:port to verify.
   - path: /url-scan
     external_path: /url-scan
     method: GET
     description: >
-      Safety scan of a URL. Follows redirects, verifies TLS, inspects security
-      headers and reports a risk score with explicit findings. Questions about
-      a bounded set of documented malware-domain incidents can be answered
-      from attributed historical reference facts when no live URL is supplied.
+      Safety verdict for one URL. Follows redirects, verifies TLS, inspects
+      security headers and checks live threat feeds, with a risk score and findings.
+    intents:
+      - URL_SCAN_VERDICT
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "Is the URL https://example.com/ safe to visit, with no phishing or malware?".
+        optional:
+          - name: url
+            type: string
+            intents: ['*']
+            description: Absolute URL to assess.
   - path: /gas-price
     external_path: /gas-price
     method: GET
     description: >
       Current gas price for an EVM chain, with EIP-1559 base fee, suggested
       priority fee and the cost of a standard native transfer.
+    intents:
+      - GAS_PRICE_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "What is the gas price on Base right now?".
+        optional:
+          - name: chain
+            type: string
+            intents: ['*']
+            description: EVM chain name - ethereum, base, arbitrum, optimism or polygon. Defaults to ethereum.
   - path: /wallet-balance
     external_path: /wallet-balance
     method: GET
     description: >
-      Native token balance for an EVM address, with nonce and account type
+      Native token balance of an EVM address, with nonce and account type
       including EIP-7702 delegated accounts.
+    intents:
+      - WALLET_BALANCE_CHECK_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "How much ETH does 0x00000000219ab540356cBB839Cbe05303d7705Fa hold?".
+        optional:
+          - name: address
+            type: string
+            intents: ['*']
+            description: 0x-prefixed EVM address.
+          - name: chain
+            type: string
+            intents: ['*']
+            description: EVM chain name - ethereum, base, arbitrum, optimism or polygon. Defaults to ethereum.
   - path: /tx-lookup
     external_path: /tx-lookup
     method: GET
     description: >
       Status and effect of a transaction hash, with block, confirmations,
       value, gas used and fee paid.
+    intents:
+      - ONCHAIN_TX_LOOKUP_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "Did transaction 0x... on Ethereum succeed, and what fee did it pay?".
+        optional:
+          - name: hash
+            type: string
+            intents: ['*']
+            description: 0x-prefixed 32-byte transaction hash.
+          - name: chain
+            type: string
+            intents: ['*']
+            description: EVM chain name - ethereum, base, arbitrum, optimism or polygon. Defaults to ethereum.
   - path: /crypto-price
     external_path: /crypto-price
     method: GET
     description: >
-      Current USD spot price for a cryptocurrency, by ticker or name,
-      aggregated by DefiLlama with the observation timestamp.
+      Current US dollar spot price of a cryptocurrency, by ticker or name,
+      aggregated by DefiLlama with the observation timestamp (field price_usd).
+    intents:
+      - CRYPTO_PRICE_USD
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "What is the current price of BTC in US dollars?".
+        optional:
+          - name: asset
+            type: string
+            intents: ['*']
+            description: Cryptocurrency ticker or name, for example BTC or ethereum.
   - path: /tvl
     external_path: /tvl
     method: GET
-    description: Total value locked for a DeFi protocol or chain, mirrored from DefiLlama.
+    description: >
+      Total value locked of a DeFi protocol or chain, mirrored from DefiLlama.
+    intents:
+      - TVL_LOOKUP_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "What is the TVL of Aave right now?".
+        optional:
+          - name: protocol
+            type: string
+            intents: ['*']
+            description: DeFi protocol or chain name.
   - path: /fx-rate
     external_path: /fx-rate
     method: GET
     description: >
-      Mid-market foreign exchange rate between two currencies, named as ISO
-      4217 codes or common names, with the inverse rate and an optional
-      converted amount.
+      Mid-market exchange rate between two currencies, named as ISO 4217 codes
+      or common names, with the inverse rate and, when an amount is asked, the converted amount.
+    intents:
+      - CURRENCY_EXCHANGE_CONVERT
+      - FX_NOW_EUR
+      - FX_NOW_CAD
+      - FX_NOW_SEK
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "How much is 100 US dollars in EUR right now?".
+        optional:
+          - name: from
+            type: string
+            intents: ['*']
+            description: Source currency, ISO 4217 code such as USD.
+          - name: to
+            type: string
+            intents: ['*']
+            description: Target currency, ISO 4217 code such as EUR.
+          - name: amount
+            type: number
+            intents: ['*']
+            description: Amount of the source currency to convert, when the question names one.
   - path: /ip-geolocation
     external_path: /ip-geolocation
     method: GET
     description: >
       Geolocation of an IPv4 or IPv6 address, with city, region, country,
-      coordinates, timezone, ISP and autonomous system. Private and reserved
-      ranges are reported as such rather than as a lookup failure.
+      coordinates, timezone, ISP and autonomous system.
+    intents:
+      - IP_GEOLOCATION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "Where is the IP address 8.8.8.8 located?".
+        optional:
+          - name: ip
+            type: string
+            intents: ['*']
+            description: IPv4 or IPv6 address to locate.
   - path: /stock-price
     external_path: /stock-price
     method: GET
     description: >
-      Current equity quote by ticker or company name, with the previous close,
-      the day's change and the listing venue.
+      Current share price of a listed equity by ticker or company name, with
+      the previous close, the day's change and the listing venue.
+    intents:
+      - STOCK_PRICE_US_EQUITY
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "What is the current share price of AAPL in US dollars?".
+        optional:
+          - name: symbol
+            type: string
+            intents: ['*']
+            description: Equity ticker or company name, for example AAPL.
   - path: /papers
     external_path: /papers
     method: GET
     description: >
       Peer-reviewed papers for a research question, optionally constrained by
-      publication dates, result count and citation or recency ordering, from
-      OpenAlex.
+      publication dates, result count and citation or recency ordering, from OpenAlex.
+    intents:
+      - ACADEMIC_SEARCH_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "Find the five most cited papers on transformer models published since 2020.".
   - path: /cve
     external_path: /cve
     method: GET
     description: >
-      Vulnerability details for a CVE identifier, including severity, CVSS
-      scores, affected versions and known-exploitation status, from CVE.org
-      and NVD.
+      Vulnerability details for a CVE identifier: severity, CVSS v3 base score,
+      affected versions and known-exploitation status, from CVE.org and NVD.
+    intents:
+      - CVE_LOOKUP_CVSS
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "What is the CVSS v3 base score of CVE-2021-44228?".
+        optional:
+          - name: cve_id
+            type: string
+            intents: ['*']
+            description: CVE identifier such as CVE-2021-44228.
+  - path: /dns
+    external_path: /dns
+    method: GET
+    description: >
+      DNS records of a name (A, AAAA, CNAME, MX, TXT, NS, SOA, CAA), resolved
+      independently by Cloudflare and Google DNS-over-HTTPS, with whether they agree.
+    intents:
+      - DNS_RECORD_LOOKUP_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "What are the MX records for gmail.com?".
+        optional:
+          - name: domain
+            type: string
+            intents: ['*']
+            description: Domain or hostname to resolve.
+          - name: type
+            type: string
+            intents: ['*']
+            description: Record type, for example MX, TXT or AAAA. Several types may be comma-separated.
+  - path: /token-supply
+    external_path: /token-supply
+    method: GET
+    description: >
+      ERC-20 total supply read from totalSupply() at the latest or a pinned block,
+      with burn-address holdings and, when asked, the circulating figure.
+    intents:
+      - TOKEN_TOTAL_SUPPLY_VERIFY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "What is the total supply of USDC on Base right now?".
+        optional:
+          - name: token
+            type: string
+            intents: ['*']
+            description: Token symbol or 0x contract address.
+          - name: chain
+            type: string
+            intents: ['*']
+            description: EVM chain name - ethereum, base, arbitrum, optimism or polygon. Defaults to ethereum.
+          - name: block
+            type: integer
+            intents: ['*']
+            description: Block number to read at, when the question pins one.
+  - path: /onchain-metric
+    external_path: /onchain-metric
+    method: GET
+    description: >
+      Verifiable on-chain read: native or ERC-20 balance, token metadata, a storage
+      slot or transfer activity, at the latest or a pinned block.
+    intents:
+      - ONCHAIN_METRIC_VERIFY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "What was the USDC balance of 0x... on Ethereum at block 21,000,000?".
+        optional:
+          - name: address
+            type: string
+            intents: ['*']
+            description: 0x-prefixed account or contract address.
+          - name: chain
+            type: string
+            intents: ['*']
+            description: EVM chain name - ethereum, base, arbitrum, optimism or polygon. Defaults to ethereum.
+          - name: block
+            type: integer
+            intents: ['*']
+            description: Block number to read at, when the question pins one.
+  - path: /url-safe
+    external_path: /url-safe
+    method: GET
+    description: >
+      Whether a URL or domain is listed in live threat feeds (URLhaus, OpenPhish)
+      and blocked by Cloudflare's security resolver, naming every source that flags it.
+    intents:
+      - URL_SAFE_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "Is https://login-secure-update.example.com listed for phishing in threat feeds?".
+        optional:
+          - name: url
+            type: string
+            intents: ['*']
+            description: URL or domain to check.
+  - path: /uptime
+    external_path: /uptime
+    method: GET
+    description: >
+      Availability of an HTTP(S) endpoint from two probes, with DNS, TCP, TLS and
+      server-response timings, measured from one location (stated in the answer).
+    intents:
+      - SERVER_UPTIME_MONITOR_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "Is https://github.com up right now? Give me the response time breakdown.".
+        optional:
+          - name: url
+            type: string
+            intents: ['*']
+            description: Absolute URL or hostname to probe.
+  - path: /api-health
+    external_path: /api-health
+    method: GET
+    description: >
+      Health of a REST or GraphQL endpoint: status code, latency, content type and
+      the structure of the JSON payload; GraphQL endpoints get a {__typename} query.
+    intents:
+      - API_HEALTH_CHECK_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "Is the API at https://api.github.com/ healthy?".
+        optional:
+          - name: url
+            type: string
+            intents: ['*']
+            description: Absolute URL of the API endpoint.
 
 input_schema:
   type: object
@@ -118,9 +473,12 @@ input_schema:
     tolerantly: a hostname, URL, address or transaction hash is also recovered
     from a free-text question, so router-supplied phrasing still resolves.
   properties:
+    query:
+      type: string
+      description: The full question, verbatim. Accepted by every endpoint.
     domain:
       type: string
-      description: Hostname, HTTPS URL, or host:port to verify. Used by /ssl-check.
+      description: Hostname, HTTPS URL, or host:port. Used by /ssl-check and /dns.
     url:
       type: string
       description: >
@@ -161,6 +519,18 @@ input_schema:
         research subject and any publication dates, result count, field
         constraints or requested ordering. Preserve the question verbatim
         rather than reducing it to keywords.
+    type:
+      type: string
+      description: DNS record type or types, comma-separated. Used by /dns.
+    token:
+      type: string
+      description: Token symbol or 0x contract address. Used by /token-supply.
+    block:
+      type: integer
+      description: Block number to read at. Used by /token-supply and /onchain-metric.
+    cve_id:
+      type: string
+      description: CVE identifier. Used by /cve.
     cve_query:
       type: string
       description: >
@@ -212,6 +582,13 @@ output_schema:
           unavailable,
           protocol,
           chain,
+          not_listed,
+          up,
+          degraded,
+          down,
+          blocked,
+          healthy,
+          unhealthy,
         ]
     valid: { type: boolean }
     chain_complete: { type: [boolean, 'null'] }
@@ -313,13 +690,24 @@ semantics:
     label_field: verdict
     reason_field: reason
   supported_intents:
-    - SSL_VERIFICATION
-    - URL_SCAN
-    - WALLET_BALANCE_CHECK
-    - ONCHAIN_TX_LOOKUP
-    - TVL_LOOKUP
-    - CRYPTO_PRICE
-    - CURRENCY_EXCHANGE
-    - IP_GEOLOCATION
-    - ACADEMIC_SEARCH
-    - CVE_LOOKUP
+    - SSL_VERIFICATION_CERT
+    - URL_SCAN_VERDICT
+    - GAS_PRICE_GENERAL
+    - WALLET_BALANCE_CHECK_GENERAL
+    - ONCHAIN_TX_LOOKUP_GENERAL
+    - CRYPTO_PRICE_USD
+    - TVL_LOOKUP_GENERAL
+    - CURRENCY_EXCHANGE_CONVERT
+    - FX_NOW_EUR
+    - FX_NOW_CAD
+    - FX_NOW_SEK
+    - IP_GEOLOCATION_GENERAL
+    - STOCK_PRICE_US_EQUITY
+    - ACADEMIC_SEARCH_GENERAL
+    - CVE_LOOKUP_CVSS
+    - DNS_RECORD_LOOKUP_GENERAL
+    - TOKEN_TOTAL_SUPPLY_VERIFY_GENERAL
+    - ONCHAIN_METRIC_VERIFY_GENERAL
+    - URL_SAFE_GENERAL
+    - SERVER_UPTIME_MONITOR_GENERAL
+    - API_HEALTH_CHECK_GENERAL
