@@ -132,10 +132,12 @@ endpoints:
     external_path: /tx-lookup
     method: GET
     description: >
-      Status and effect of a transaction hash, with block, confirmations,
-      value, gas used and fee paid.
+      Status and effect of a transaction hash: decoded token transfers, sender
+      and recipient, confirmations, gas and full fee, and whether amounts or
+      addresses the question claims match the receipt.
     intents:
       - ONCHAIN_TX_LOOKUP_GENERAL
+      - CRYPTO_TRANSFER_VERIFY_GENERAL
     params:
       query:
         required:
@@ -466,6 +468,64 @@ endpoints:
             intents: ['*']
             description: Absolute URL of the API endpoint.
 
+  - path: /liquidity
+    external_path: /liquidity
+    method: GET
+    description: >
+      Order-book depth for a trading pair on Coinbase Exchange or Kraken: best
+      bid and ask, spread, depth within 1% and 2% of mid, and the average fill
+      and slippage of a stated market order size.
+    intents:
+      - LIQUIDITY_DEPTH_VERIFY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "What slippage would a 50 ETH market sell take on Coinbase ETH-USD?".
+  - path: /yield
+    external_path: /yield
+    method: GET
+    description: >
+      APY of a DeFi pool named by protocol, asset and chain from DefiLlama's
+      yields index, split into base and reward yield, with the 30-day mean.
+    intents:
+      - CRYPTO_YIELD_RATE_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "What APY does the USDC pool on aave-v3 on Arbitrum pay?".
+  - path: /holders
+    external_path: /holders
+    method: GET
+    description: >
+      Number of distinct addresses holding an ERC-20 token, by contract address
+      or symbol, from the chain's Blockscout index.
+    intents:
+      - TOKEN_HOLDER_COUNT_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "How many addresses hold USDC (0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48) on Ethereum?".
+        optional:
+          - name: chain
+            type: string
+            intents: ['*']
+            description: EVM chain name - ethereum, base, arbitrum, optimism or polygon. Defaults to ethereum.
+
 input_schema:
   type: object
   description: >
@@ -711,3 +771,7 @@ semantics:
     - URL_SAFE_GENERAL
     - SERVER_UPTIME_MONITOR_GENERAL
     - API_HEALTH_CHECK_GENERAL
+    - CRYPTO_TRANSFER_VERIFY_GENERAL
+    - LIQUIDITY_DEPTH_VERIFY_GENERAL
+    - CRYPTO_YIELD_RATE_GENERAL
+    - TOKEN_HOLDER_COUNT_GENERAL
