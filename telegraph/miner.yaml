@@ -333,6 +333,7 @@ endpoints:
       affected versions and known-exploitation status, from CVE.org and NVD.
     intents:
       - CVE_LOOKUP_CVSS
+      - VULNERABILITY_TRIAGE_GENERAL
     params:
       query:
         required:
@@ -789,6 +790,82 @@ endpoints:
             type: string
             intents: ['*']
             description: The person, entity or wallet address to screen.
+  - path: /loan-rate
+    external_path: /loan-rate
+    method: GET
+    description: >
+      A published benchmark or lending rate in percent, read from its publisher: SOFR and the
+      effective fed funds rate (New York Fed), US prime, 30- and 15-year mortgage averages and
+      personal, auto and credit-card loan rates (FRED), ECB main refinancing, deposit and €STR,
+      Bank of England Bank Rate and SONIA, Bank of Canada policy and prime rates, the Riksbank
+      policy rate and Brazil's Selic.
+    intents:
+      - LOAN_INTEREST_RATE_QUOTE_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "What is the current US prime rate?".
+        optional:
+          - name: rate
+            type: string
+            intents: ['*']
+            description: The rate asked for, for example SOFR, prime rate or 30-year mortgage.
+  - path: /payment-method
+    external_path: /payment-method
+    method: GET
+    description: >
+      Whether a card BIN, card number, IBAN or US ABA routing number is structurally valid:
+      Luhn for card numbers, ISO 13616 mod-97 and country length for IBANs, the ABA checksum
+      for routing numbers, and for a BIN its card network range and issuer from public BIN
+      indexes. Full card numbers are never echoed back.
+    intents:
+      - PAYMENT_METHOD_VERIFY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "Is BIN 411111 a valid Visa BIN?".
+        optional:
+          - name: bin
+            type: string
+            intents: ['*']
+            description: Card BIN or number, IBAN, or routing number to check.
+  - path: /grid-price
+    external_path: /grid-price
+    method: GET
+    description: >
+      CAISO day-ahead locational marginal price in US dollars per MWh for a pricing node or
+      trading hub (TH_NP15_GEN-APND, SP15, ZP26, DLAP_PGAE and others) and an hourly settlement
+      interval, with its energy, congestion and loss components, from CAISO OASIS.
+    intents:
+      - GRID_POWER_PRICE_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "What was the CAISO day-ahead LMP at TH_NP15_GEN-APND for 2026-11-03 09:00 UTC?".
+        optional:
+          - name: node_or_zone
+            type: string
+            intents: ['*']
+            description: CAISO pricing node or hub, for example TH_NP15_GEN-APND.
+          - name: interval_start
+            type: string
+            intents: ['*']
+            description: Start of the hourly settlement interval, ISO 8601. Defaults to the current hour.
 
 input_schema:
   type: object
@@ -916,8 +993,11 @@ output_schema:
           Safe,
           Malicious,
           Unknown,
+          invalid,
+          match,
+          no_match,
         ]
-    valid: { type: boolean }
+    valid: { type: [boolean, 'null'] }
     chain_complete: { type: [boolean, 'null'] }
     trusted: { type: boolean }
     expired: { type: boolean }
@@ -1004,6 +1084,7 @@ output_schema:
     cve_id: { type: string }
     severity: { type: [string, 'null'] }
     cvss_score: { type: [number, 'null'] }
+    cvss_base_score: { type: number, minimum: 0, maximum: 10 }
     cvss_version: { type: [string, 'null'] }
     cvss_scores: { type: array }
     affected_versions: { type: array }
@@ -1049,6 +1130,13 @@ output_schema:
     condition: { type: [string, 'null'] }
     risk_level: { type: [string, 'null'], enum: [LOW, MODERATE, HIGH, SEVERE, null] }
     rate_pct: { type: [number, 'null'] }
+    rate_name: { type: [string, 'null'] }
+    lmp_usd_per_mwh: { type: [number, 'null'] }
+    interval_start: { type: [string, 'null'] }
+    publisher: { type: [string, 'null'] }
+    scheme: { type: [string, 'null'] }
+    card_type: { type: [string, 'null'] }
+    luhn: { type: [boolean, 'null'] }
     effective_balance: { type: [number, 'null'] }
     attested_reserve: { type: [number, 'null'] }
     hashprice_sats_per_ph_day: { type: [number, 'null'] }
@@ -1081,6 +1169,7 @@ semantics:
     - STOCK_PRICE_US_EQUITY
     - ACADEMIC_SEARCH_GENERAL
     - CVE_LOOKUP_CVSS
+    - VULNERABILITY_TRIAGE_GENERAL
     - DNS_RECORD_LOOKUP_GENERAL
     - TOKEN_TOTAL_SUPPLY_VERIFY_GENERAL
     - ONCHAIN_METRIC_VERIFY_GENERAL
@@ -1095,6 +1184,9 @@ semantics:
     - WEATHER_FORECAST_GENERAL
     - STORM_ALERT_GENERAL
     - MACRO_ECONOMIC_INDICATOR_GENERAL
+    - LOAN_INTEREST_RATE_QUOTE_GENERAL
+    - PAYMENT_METHOD_VERIFY_GENERAL
+    - GRID_POWER_PRICE_GENERAL
     - VALIDATOR_PERFORMANCE_VERIFY_GENERAL
     - ASSET_RESERVE_ATTESTATION_GENERAL
     - MINING_HASHPRICE_VERIFY_GENERAL
