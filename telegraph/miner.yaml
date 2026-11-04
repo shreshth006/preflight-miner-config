@@ -766,6 +766,29 @@ endpoints:
             type: string
             intents: ['*']
             description: The IPv4 address, domain or URL to check.
+  - path: /sanctions
+    external_path: /sanctions
+    method: GET
+    description: >
+      Screens a person, entity or wallet address against the OFAC SDN list, the OFAC consolidated
+      (non-SDN) list and the UN Security Council consolidated list: exact matches for listed
+      digital-currency addresses, fuzzy name matching with aliases, the best score and the lists checked.
+    intents:
+      - SANCTIONS_SCREENING_MATCH_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "Is Garantex on any sanctions list?".
+        optional:
+          - name: name
+            type: string
+            intents: ['*']
+            description: The person, entity or wallet address to screen.
 
 input_schema:
   type: object
@@ -1012,6 +1035,10 @@ output_schema:
     total_matches: { type: integer }
     lookup_ok: { type: boolean }
     malicious: { type: [boolean, 'null'] }
+    matched: { type: [boolean, 'null'] }
+    match_score: { type: [number, 'null'] }
+    matches: { type: array }
+    lists: { type: array }
     tor_exit: { type: [boolean, 'null'] }
     temperature_c: { type: [number, 'null'] }
     temp_max_c: { type: [number, 'null'] }
@@ -1075,3 +1102,4 @@ semantics:
     - EMAIL_SECURITY_GENERAL
     - THREAT_INTELLIGENCE_INDICATOR
     - THREAT_IP_REPUTATION_GENERAL
+    - SANCTIONS_SCREENING_MATCH_GENERAL
