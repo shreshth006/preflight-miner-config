@@ -355,6 +355,7 @@ endpoints:
       independently by Cloudflare and Google DNS-over-HTTPS, with whether they agree.
     intents:
       - DNS_RECORD_LOOKUP_GENERAL
+      - EMAIL_SECURITY_GENERAL
     params:
       query:
         required:
@@ -591,6 +592,180 @@ endpoints:
             type: string
             intents: ['*']
             description: Token contract address or name.
+  - path: /weather
+    external_path: /weather
+    method: GET
+    description: >
+      Current air temperature for a named place, plus the forecast high, low, rain chance,
+      gusts, precipitation and a graded storm risk over the asked window, from Open-Meteo.
+    intents:
+      - WEATHER_CHECK_TEMPERATURE
+      - WEATHER_FORECAST_GENERAL
+      - STORM_ALERT_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "What is the current air temperature in Karachi, in degrees Celsius?".
+        optional:
+          - name: location
+            type: string
+            intents: ['*']
+            description: City or place name, optionally with its country.
+          - name: window_hours
+            type: integer
+            intents: [WEATHER_FORECAST_GENERAL, STORM_ALERT_GENERAL]
+            description: Forecast window in hours, 1 to 240. Defaults to 24.
+  - path: /macro
+    external_path: /macro
+    method: GET
+    description: >
+      A World Bank development indicator for a country and year: unemployment (% of labour
+      force) by default, also inflation, GDP growth and labour-force participation.
+    intents:
+      - MACRO_ECONOMIC_INDICATOR_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "What was the unemployment rate in Germany in 2023?".
+        optional:
+          - name: indicator
+            type: string
+            intents: ['*']
+            description: The indicator, for example unemployment rate.
+          - name: country
+            type: string
+            intents: ['*']
+            description: Country name or ISO code.
+          - name: year
+            type: integer
+            intents: ['*']
+            description: Year, 1960 onwards. Defaults to the latest reported.
+  - path: /validator
+    external_path: /validator
+    method: GET
+    description: >
+      Status, balance and effective balance (gwei) of an Ethereum beacon-chain validator at
+      the head state, from public beacon APIs.
+    intents:
+      - VALIDATOR_PERFORMANCE_VERIFY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "What is the effective balance of beacon-chain validator 500000?".
+        optional:
+          - name: validator_index
+            type: integer
+            intents: ['*']
+            description: Ethereum beacon-chain validator index.
+  - path: /reserve
+    external_path: /reserve
+    method: GET
+    description: >
+      Reserve attested by a Chainlink proof-of-reserve feed for a tokenized asset (WBTC, cbBTC,
+      stETH, TUSD, LBTC, eETH, FBTC, SolvBTC, uniBTC), beside its total supply at the same block.
+    intents:
+      - ASSET_RESERVE_ATTESTATION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "What reserve does Chainlink proof of reserve attest for WBTC?".
+        optional:
+          - name: asset
+            type: string
+            intents: ['*']
+            description: The tokenized asset, by symbol or Ethereum contract address.
+  - path: /hashprice
+    external_path: /hashprice
+    method: GET
+    description: >
+      Bitcoin hashprice at a block height in sats and USD per PH/s per day, from that block's
+      difficulty and miner reward (subsidy plus fees) on mempool.space.
+    intents:
+      - MINING_HASHPRICE_VERIFY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "What was the Bitcoin hashprice at block height 850000?".
+        optional:
+          - name: block_height
+            type: integer
+            intents: ['*']
+            description: Bitcoin block height. Defaults to the chain tip.
+  - path: /company
+    external_path: /company
+    method: GET
+    description: >
+      Legal-entity registration from GLEIF's global LEI index: legal name, LEI, jurisdiction,
+      registered address, creation date and whether the entity is active.
+    intents:
+      - CORPORATE_REGISTRY_LOOKUP_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "Is Siemens AG an active company in Germany?".
+        optional:
+          - name: company
+            type: string
+            intents: ['*']
+            description: Company name or LEI.
+          - name: jurisdiction
+            type: string
+            intents: ['*']
+            description: Country or jurisdiction of registration.
+  - path: /threat-intel
+    external_path: /threat-intel
+    method: GET
+    description: >
+      Whether an IPv4 address, domain or URL is reported in public threat feeds: Spamhaus DROP,
+      FireHOL level 1, abuse.ch Feodo, blocklist.de, Emerging Threats, CINS and the Tor exit list
+      for IPs; OpenPhish and Cloudflare security DNS for domains and URLs.
+    intents:
+      - THREAT_INTELLIGENCE_INDICATOR
+      - THREAT_IP_REPUTATION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "Is 185.220.101.4 reported as malicious in public threat-intelligence feeds?".
+        optional:
+          - name: indicator
+            type: string
+            intents: ['*']
+            description: The IPv4 address, domain or URL to check.
 
 input_schema:
   type: object
@@ -741,7 +916,7 @@ output_schema:
     url: { type: string }
     final_url: { type: [string, 'null'] }
     hostname: { type: [string, 'null'] }
-    risk_score: { type: integer, minimum: 0, maximum: 100 }
+    risk_score: { type: number, minimum: 0, maximum: 100 } # /url-scan 0-100; /weather storm risk 0-1
     reachable: { type: [boolean, 'null'] }
     http_status: { type: [integer, 'null'] }
     redirect_count: { type: integer }
@@ -835,6 +1010,28 @@ output_schema:
     paper_titles: { type: array }
     dois: { type: array }
     total_matches: { type: integer }
+    lookup_ok: { type: boolean }
+    malicious: { type: [boolean, 'null'] }
+    tor_exit: { type: [boolean, 'null'] }
+    temperature_c: { type: [number, 'null'] }
+    temp_max_c: { type: [number, 'null'] }
+    temp_min_c: { type: [number, 'null'] }
+    precipitation_probability_pct: { type: [number, 'null'] }
+    precipitation_mm: { type: [number, 'null'] }
+    peak_gust_kmh: { type: [number, 'null'] }
+    condition: { type: [string, 'null'] }
+    risk_level: { type: [string, 'null'], enum: [LOW, MODERATE, HIGH, SEVERE, null] }
+    rate_pct: { type: [number, 'null'] }
+    effective_balance: { type: [number, 'null'] }
+    attested_reserve: { type: [number, 'null'] }
+    hashprice_sats_per_ph_day: { type: [number, 'null'] }
+    hashprice_usd_per_ph_day: { type: [number, 'null'] }
+    hashrate_eh_s: { type: [number, 'null'] }
+    legal_name: { type: [string, 'null'] }
+    registration_id: { type: [string, 'null'] }
+    active: { type: [boolean, 'null'] }
+    registered_address: { type: [string, 'null'] }
+    incorporated: { type: [string, 'null'] }
 
 semantics:
   signal_mapping:
@@ -867,3 +1064,14 @@ semantics:
     - LIQUIDITY_DEPTH_VERIFY_GENERAL
     - CRYPTO_YIELD_RATE_GENERAL
     - TOKEN_HOLDER_COUNT_GENERAL
+    - WEATHER_CHECK_TEMPERATURE
+    - WEATHER_FORECAST_GENERAL
+    - STORM_ALERT_GENERAL
+    - MACRO_ECONOMIC_INDICATOR_GENERAL
+    - VALIDATOR_PERFORMANCE_VERIFY_GENERAL
+    - ASSET_RESERVE_ATTESTATION_GENERAL
+    - MINING_HASHPRICE_VERIFY_GENERAL
+    - CORPORATE_REGISTRY_LOOKUP_GENERAL
+    - EMAIL_SECURITY_GENERAL
+    - THREAT_INTELLIGENCE_INDICATOR
+    - THREAT_IP_REPUTATION_GENERAL
