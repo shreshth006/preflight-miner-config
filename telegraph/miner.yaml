@@ -58,6 +58,10 @@ endpoints:
             type: string
             intents: ['*']
             description: Hostname, HTTPS URL or host:port to verify.
+          - name: host
+            type: string
+            intents: ['*']
+            description: Hostname.
   - path: /url-scan
     external_path: /url-scan
     method: GET
@@ -128,6 +132,10 @@ endpoints:
             type: string
             intents: ['*']
             description: EVM chain name - ethereum, base, arbitrum, optimism or polygon. Defaults to ethereum.
+          - name: token
+            type: string
+            intents: ['*']
+            description: Token symbol or contract address; empty for the chain's native coin.
   - path: /tx-lookup
     external_path: /tx-lookup
     method: GET
@@ -156,6 +164,10 @@ endpoints:
             type: string
             intents: ['*']
             description: EVM chain name - ethereum, base, arbitrum, optimism or polygon. Defaults to ethereum.
+          - name: tx_hash
+            type: string
+            intents: [ONCHAIN_TX_LOOKUP_GENERAL]
+            description: Transaction hash.
   - path: /crypto-price
     external_path: /crypto-price
     method: GET
@@ -178,6 +190,10 @@ endpoints:
             type: string
             intents: ['*']
             description: Cryptocurrency ticker or name, for example BTC or ethereum.
+          - name: symbol
+            type: string
+            intents: ['*']
+            description: Asset symbol, e.g. BTC.
   - path: /tvl
     external_path: /tvl
     method: GET
@@ -232,6 +248,18 @@ endpoints:
             type: number
             intents: ['*']
             description: Amount of the source currency to convert, when the question names one.
+          - name: from_currency
+            type: string
+            intents: [CURRENCY_EXCHANGE_CONVERT]
+            description: Currency code to convert from, e.g. USD.
+          - name: to_currency
+            type: string
+            intents: [CURRENCY_EXCHANGE_CONVERT]
+            description: Currency code to convert into, e.g. EUR.
+          - name: currency
+            type: string
+            intents: [FX_NOW_EUR, FX_NOW_CAD, FX_NOW_SEK]
+            description: Currency code priced against the US dollar, e.g. EUR.
   - path: /ip-geolocation
     external_path: /ip-geolocation
     method: GET
@@ -276,6 +304,10 @@ endpoints:
             type: string
             intents: ['*']
             description: Equity ticker or company name, for example AAPL.
+          - name: ticker
+            type: string
+            intents: ['*']
+            description: Stock ticker, e.g. AAPL.
   - path: /papers
     external_path: /papers
     method: GET
@@ -341,6 +373,14 @@ endpoints:
             type: string
             intents: ['*']
             description: Record type, for example MX, TXT or AAAA. Several types may be comma-separated.
+          - name: name
+            type: string
+            intents: ['*']
+            description: Domain name.
+          - name: record_type
+            type: string
+            intents: ['*']
+            description: DNS record type. One of A, AAAA, CNAME, MX, NS, TXT, SOA, CAA, SRV, PTR.
   - path: /token-supply
     external_path: /token-supply
     method: GET
@@ -486,6 +526,15 @@ endpoints:
             description: >
               The full question in plain language, kept verbatim, for example
               "What slippage would a 50 ETH market sell take on Coinbase ETH-USD?".
+        optional:
+          - name: pool
+            type: string
+            intents: ['*']
+            description: DEX pool address or name.
+          - name: chain
+            type: string
+            intents: ['*']
+            description: Chain of the pool.
   - path: /yield
     external_path: /yield
     method: GET
@@ -503,6 +552,19 @@ endpoints:
             description: >
               The full question in plain language, kept verbatim, for example
               "What APY does the USDC pool on aave-v3 on Arbitrum pay?".
+        optional:
+          - name: project
+            type: string
+            intents: ['*']
+            description: Lending protocol, e.g. aave-v3.
+          - name: symbol
+            type: string
+            intents: ['*']
+            description: Asset of the pool, e.g. USDC.
+          - name: chain
+            type: string
+            intents: ['*']
+            description: Chain of the pool, e.g. Ethereum.
   - path: /holders
     external_path: /holders
     method: GET
@@ -525,6 +587,10 @@ endpoints:
             type: string
             intents: ['*']
             description: EVM chain name - ethereum, base, arbitrum, optimism or polygon. Defaults to ethereum.
+          - name: token
+            type: string
+            intents: ['*']
+            description: Token contract address or name.
 
 input_schema:
   type: object
@@ -649,6 +715,9 @@ output_schema:
           blocked,
           healthy,
           unhealthy,
+          Safe,
+          Malicious,
+          Unknown,
         ]
     valid: { type: boolean }
     chain_complete: { type: [boolean, 'null'] }
@@ -688,7 +757,7 @@ output_schema:
     block_number: { type: [integer, 'null'] }
     # /gas-price
     gas_price_wei: { type: string }
-    gas_price_gwei: { type: string }
+    gas_price_gwei: { type: number }
     base_fee_gwei: { type: [string, 'null'] }
     priority_fee_gwei: { type: [string, 'null'] }
     transfer_cost_native: { type: string }
@@ -743,6 +812,29 @@ output_schema:
     known_exploitation:
       type: string
       enum: [active, proof_of_concept, not_reported]
+    # Telegraph V2 answer fields, named as each intent's response format names them
+    certificate_valid: { type: boolean }
+    safe: { type: boolean }
+    rate: { type: [number, 'null'] }
+    converted_amount: { type: number }
+    has_record: { type: boolean }
+    transfer_fee_usd: { type: number }
+    as_of: { type: string }
+    liquidity_usd: { type: number }
+    balance_gwei: { type: number }
+    tx_hash: { type: string }
+    value_eth: { type: number }
+    holders_count: { type: number }
+    token_symbol: { type: string }
+    supply_apy: { type: number }
+    protocol_or_chain: { type: string }
+    detections: { type: integer }
+    summary: { type: string }
+    answer: { type: string }
+    brief: { type: string, maxLength: 80 }
+    paper_titles: { type: array }
+    dois: { type: array }
+    total_matches: { type: integer }
 
 semantics:
   signal_mapping:
