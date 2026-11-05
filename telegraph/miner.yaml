@@ -1478,6 +1478,80 @@ endpoints:
             intents: ['*']
             description: 'The swap pair; ETH/USDC.'
 
+  - path: /transaction-risk
+    external_path: /transaction-risk
+    method: GET
+    description: 'Risk rating for a transaction (0 to 1 with a level): its on-chain counterparties screened against OFAC and UN sanctions lists, card checksum and BIN checks, threat and phishing feeds for IPs and domains, and fraud-typology red flags in a described transfer, each signal named with its source.'
+    intents:
+      - TRANSACTION_RISK_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: How risky is transaction 0x5c50... ?'
+        optional:
+          - name: transaction
+            type: string
+            intents: ['*']
+            description: 'Transaction hash or description.'
+  - path: /fraud-risk
+    external_path: /fraud-risk
+    method: GET
+    description: 'Fraud risk score from 0 to 1 for a wallet, card, IP, email, domain or described scenario, from sanctions lists, threat and phishing feeds, card checks, disposable-email detection and documented fraud red flags (FTC, FBI IC3), with every signal and check listed.'
+    intents:
+      - FRAUD_DETECTION_GENERAL
+      - FRAUD_RISK_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: Is a request to change bank details and pay urgently by wire a fraud risk?'
+        optional:
+          - name: subject
+            type: string
+            intents: ['*']
+            description: 'Entity, payment, account or scenario.'
+  - path: /moderate
+    external_path: /moderate
+    method: GET
+    description: 'Content moderation by policy pattern checks (threats, self-harm, harassment, sexual content, scams, prompt injection, personal data, profanity, illegal goods), with severity and an allow, review or block action.'
+    intents:
+      - CONTENT_MODERATION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: Moderate this message: ...'
+        optional:
+          - name: text
+            type: string
+            intents: ['*']
+            description: 'The content to moderate.'
+  - path: /code-review
+    external_path: /code-review
+    method: GET
+    description: 'Static review of code for security and reliability smells (code execution, SQL and shell injection, hard-coded secrets, weak crypto, disabled TLS, unsafe deserialisation, swallowed errors, XSS sinks) with line numbers and fixes; a pattern review, not a semantic one.'
+    intents:
+      - CODE_REVIEW_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: Review this code: ...'
+        optional:
+          - name: code
+            type: string
+            intents: ['*']
+            description: 'The code or diff to review.'
+
 input_schema:
   type: object
   description: >
@@ -1849,3 +1923,8 @@ semantics:
     - EVENT_OUTCOME_RESOLUTION_GENERAL
     - CROSS_CHAIN_STATE_VERIFY_GENERAL
     - OPTIMAL_EXECUTION_ROUTE_GENERAL
+    - TRANSACTION_RISK_GENERAL
+    - FRAUD_DETECTION_GENERAL
+    - FRAUD_RISK_GENERAL
+    - CONTENT_MODERATION_GENERAL
+    - CODE_REVIEW_GENERAL
