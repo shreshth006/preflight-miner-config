@@ -1066,6 +1066,418 @@ endpoints:
             intents: ['*']
             description: File hash, domain or IPv4 address.
 
+  - path: /sentiment
+    external_path: /sentiment
+    method: GET
+    description: 'Sentiment of a text (positive, negative or neutral) with a -1 to 1 score, from a lexicon with negation, intensifier and contrast handling; the opinion words behind the score are listed.'
+    intents:
+      - SENTIMENT_ANALYSIS_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: What is the sentiment of: "The battery life is great but the screen scratches easily"?'
+        optional:
+          - name: text
+            type: string
+            intents: ['*']
+            description: 'The text to analyse.'
+  - path: /keywords
+    external_path: /keywords
+    method: GET
+    description: 'Key phrases of a text, ranked by RAKE (word degree over frequency between stopwords).'
+    intents:
+      - KEYWORD_EXTRACTION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: Extract the keywords from this paragraph: ...'
+        optional:
+          - name: text
+            type: string
+            intents: ['*']
+            description: 'The text to extract keywords from.'
+  - path: /grammar
+    external_path: /grammar
+    method: GET
+    description: 'Grammar and spelling issues in a text, with suggestions and a corrected version, from the LanguageTool public API (language detected automatically).'
+    intents:
+      - GRAMMAR_SPELL_CHECK_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: Check the grammar of: "This are a sentense."'
+        optional:
+          - name: text
+            type: string
+            intents: ['*']
+            description: 'The text to check.'
+  - path: /translate
+    external_path: /translate
+    method: GET
+    description: 'Translation of a text into a target language (name or ISO code) via MyMemory, with the detected source language.'
+    intents:
+      - LANGUAGE_TRANSLATION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: Translate "Where is the train station?" into French.'
+        optional:
+          - name: text
+            type: string
+            intents: ['*']
+            description: 'The text to translate.'
+          - name: target_language
+            type: string
+            intents: ['*']
+            description: 'Target language name or ISO 639-1 code.'
+  - path: /summarize
+    external_path: /summarize
+    method: GET
+    description: 'Extractive summary of a text (its highest-ranked sentences in original order), or of a topic''s Wikipedia entry when only a short subject is given.'
+    intents:
+      - TEXT_SUMMARIZATION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: Summarize this article: ...'
+        optional:
+          - name: text
+            type: string
+            intents: ['*']
+            description: 'The text or topic to summarise.'
+  - path: /answer
+    external_path: /answer
+    method: GET
+    description: 'Answer to a factual question from Wikipedia and DuckDuckGo instant answers, with the source cited; no answer is given when neither covers it.'
+    intents:
+      - QUESTION_ANSWERING_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: What is the capital of Australia?'
+        optional:
+          - name: question
+            type: string
+            intents: ['*']
+            description: 'The question.'
+  - path: /news-headlines
+    external_path: /news-headlines
+    method: GET
+    description: 'Latest headlines on a topic from the GDELT news index and Hacker News, newest first, with source and date.'
+    intents:
+      - NEWS_HEADLINES_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: What are the latest headlines about semiconductors?'
+        optional:
+          - name: topic
+            type: string
+            intents: ['*']
+            description: 'News topic.'
+  - path: /news-search
+    external_path: /news-search
+    method: GET
+    description: 'Recent news stories matching a query from the GDELT news index and Hacker News, with source and date.'
+    intents:
+      - NEWS_SEARCH_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: Find news about the Marvell acquisition.'
+        optional:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'Search query.'
+  - path: /research
+    external_path: /research
+    method: GET
+    description: 'Scholarly findings on a research question from OpenAlex: the most relevant works with authors, years and citation counts, and recurring themes.'
+    intents:
+      - RESEARCH_QUERY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: What does research say about intermittent fasting?'
+        optional:
+          - name: question
+            type: string
+            intents: ['*']
+            description: 'Research question or topic.'
+  - path: /research-synthesis
+    external_path: /research-synthesis
+    method: GET
+    description: 'Synthesis across the most relevant scholarly works on a question (OpenAlex): recurring themes and an extractive digest of their abstracts, with sources.'
+    intents:
+      - RESEARCH_SYNTHESIS_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: Synthesize the evidence on microplastics and human health.'
+        optional:
+          - name: question
+            type: string
+            intents: ['*']
+            description: 'Research question or topic.'
+  - path: /telegraph-knowledge
+    external_path: /telegraph-knowledge
+    method: GET
+    description: 'Answers about the Telegraph protocol (miners, validators, intents, scoring, payments) retrieved from the Telegraph documentation with BM25, citing the section.'
+    intents:
+      - TELEGRAPH_KNOWLEDGE_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: How do I register a miner on Telegraph?'
+        optional:
+          - name: question
+            type: string
+            intents: ['*']
+            description: 'Question about Telegraph.'
+  - path: /web-search
+    external_path: /web-search
+    method: GET
+    description: 'Web results for a query from Wikipedia search, DuckDuckGo instant answers and Hacker News, with titles, URLs and snippets.'
+    intents:
+      - WEB_SEARCH_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: Search the web for rust programming language.'
+        optional:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'Search query.'
+  - path: /similarity
+    external_path: /similarity
+    method: GET
+    description: 'Lexical similarity of two texts (cosine over content words and character trigrams, 0 to 1) with the terms they share; it measures wording overlap, not paraphrase meaning.'
+    intents:
+      - SEMANTIC_SIMILARITY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: How similar are "The cat sat on the mat" and "A cat was sitting on a mat"?'
+        optional:
+          - name: text_a
+            type: string
+            intents: ['*']
+            description: 'First text.'
+          - name: text_b
+            type: string
+            intents: ['*']
+            description: 'Second text.'
+  - path: /entities
+    external_path: /entities
+    method: GET
+    description: 'Named entities in a text (people, organisations, places, products, amounts, dates), each linked to and typed by its Wikipedia entry where one exists.'
+    intents:
+      - ENTITY_EXTRACTION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: Extract the entities from: "Tim Cook said Apple will open a campus in Austin."'
+        optional:
+          - name: text
+            type: string
+            intents: ['*']
+            description: 'The text.'
+  - path: /classify
+    external_path: /classify
+    method: GET
+    description: 'Classification of a text into one of the given categories by keyword-lexicon evidence, with a score per category; left unclassified when nothing supports any.'
+    intents:
+      - TEXT_CLASSIFICATION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: Classify "The striker scored twice" into sports, politics or business.'
+        optional:
+          - name: text
+            type: string
+            intents: ['*']
+            description: 'The text.'
+          - name: categories
+            type: string
+            intents: ['*']
+            description: 'Comma-separated candidate categories.'
+  - path: /extract
+    external_path: /extract
+    method: GET
+    description: 'Requested fields extracted from content: labelled field-value text first, then patterns for emails, phones, URLs, dates, amounts and order numbers.'
+    intents:
+      - CONTENT_EXTRACTION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: Extract the invoice number, email and total from: ...'
+        optional:
+          - name: content
+            type: string
+            intents: ['*']
+            description: 'The content.'
+          - name: fields
+            type: string
+            intents: ['*']
+            description: 'Comma-separated field names.'
+  - path: /air-quality
+    external_path: /air-quality
+    method: GET
+    description: 'Current US and European AQI with PM2.5, PM10, ozone and NO2 for a place, from the Open-Meteo air-quality model (CAMS), with the health category.'
+    intents:
+      - AIR_QUALITY_INDEX_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: What is the air quality in Delhi right now?'
+        optional:
+          - name: location
+            type: string
+            intents: ['*']
+            description: 'City, place or latitude,longitude.'
+
+  - path: /game-result
+    external_path: /game-result
+    method: GET
+    description: 'Final or latest score of a game between two named teams, optionally on a date: NHL and MLB from the leagues own APIs, NBA, NFL, soccer and other competitions from TheSportsDB, with home and away teams, scores and the winner.'
+    intents:
+      - GAME_RESULT_GENERAL
+      - SPORTS_SCORE_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: What was the score of Lakers vs Heat on 2026-11-03?'
+        optional:
+          - name: game
+            type: string
+            intents: ['*']
+            description: 'The game: two teams, optionally with a date.'
+
+  - path: /event-outcome
+    external_path: /event-outcome
+    method: GET
+    description: 'Whether an event resolved YES, NO or is unresolved: Formula 1 race winners from Jolpica (Ergast), games between named teams from the NHL and MLB APIs and TheSportsDB, and otherwise the matching resolved prediction market on Manifold; unsettled or uncovered events are reported as unresolved.'
+    intents:
+      - EVENT_OUTCOME_RESOLUTION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: Did Max Verstappen win the 2026 Mexico City Grand Prix?'
+        optional:
+          - name: event
+            type: string
+            intents: ['*']
+            description: 'The event or question to resolve.'
+
+  - path: /cross-chain
+    external_path: /cross-chain
+    method: GET
+    description: 'Whether a cross-chain transfer executed on its destination (Across deposits via the Across API, other bridge transactions via LI.FI status and Wormholescan), or a token totalSupply read live on every chain where its canonical contract is known, with per-chain figures and their sum.'
+    intents:
+      - CROSS_CHAIN_STATE_VERIFY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: Did bridge transfer 0x... execute on the destination chain?'
+        optional:
+          - name: tx_hash
+            type: string
+            intents: ['*']
+            description: 'Source-chain transaction hash of the transfer.'
+          - name: deposit_id
+            type: string
+            intents: ['*']
+            description: 'Across deposit id (with origin_chain_id).'
+          - name: origin_chain_id
+            type: string
+            intents: ['*']
+            description: 'Origin chain id of an Across deposit.'
+          - name: token
+            type: string
+            intents: ['*']
+            description: 'Token symbol to compare across chains.'
+
+  - path: /execution-route
+    external_path: /execution-route
+    method: GET
+    description: 'USDC received for selling exactly 1 ETH on Ethereum mainnet, in USDC base units: the median of the KyberSwap and ParaSwap aggregator quotes and Uniswap V3 QuoterV2 across WETH/USDC fee tiers, with the best single route named.'
+    intents:
+      - OPTIMAL_EXECUTION_ROUTE_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full question in plain language, kept verbatim, for example: How much USDC does selling 1 ETH on Ethereum return via the best route?'
+        optional:
+          - name: pair
+            type: string
+            intents: ['*']
+            description: 'The swap pair; ETH/USDC.'
+
 input_schema:
   type: object
   description: >
@@ -1349,6 +1761,13 @@ output_schema:
     market_cap_usd: { type: [number, 'null'] }
     vulnerability_count: { type: [integer, 'null'] }
     filing_count: { type: [integer, 'null'] }
+    home_score: { type: [number, 'null'] }
+    outcome: { type: [string, 'null'], enum: ['yes', 'no', 'unresolved', null] }
+    resolved_yes: { type: [boolean, 'null'] }
+    executed: { type: [boolean, 'null'] }
+    execution_ok: { type: [integer, 'null'] }
+    amount_out: { type: [number, 'null'] }
+    away_score: { type: [number, 'null'] }
     duration: { type: [number, 'null'] }
     distance_km: { type: [number, 'null'] }
     employee_count: { type: [integer, 'null'] }
@@ -1408,3 +1827,25 @@ semantics:
     - VENDOR_VERIFY_GENERAL
     - B2B_IDENTITY_ENRICHMENT_GENERAL
     - MALWARE_DETECTION_HASH
+    - SENTIMENT_ANALYSIS_GENERAL
+    - KEYWORD_EXTRACTION_GENERAL
+    - GRAMMAR_SPELL_CHECK_GENERAL
+    - LANGUAGE_TRANSLATION_GENERAL
+    - TEXT_SUMMARIZATION_GENERAL
+    - QUESTION_ANSWERING_GENERAL
+    - NEWS_HEADLINES_GENERAL
+    - NEWS_SEARCH_GENERAL
+    - RESEARCH_QUERY_GENERAL
+    - RESEARCH_SYNTHESIS_GENERAL
+    - TELEGRAPH_KNOWLEDGE_GENERAL
+    - WEB_SEARCH_GENERAL
+    - SEMANTIC_SIMILARITY_GENERAL
+    - ENTITY_EXTRACTION_GENERAL
+    - TEXT_CLASSIFICATION_GENERAL
+    - CONTENT_EXTRACTION_GENERAL
+    - AIR_QUALITY_INDEX_GENERAL
+    - GAME_RESULT_GENERAL
+    - SPORTS_SCORE_GENERAL
+    - EVENT_OUTCOME_RESOLUTION_GENERAL
+    - CROSS_CHAIN_STATE_VERIFY_GENERAL
+    - OPTIMAL_EXECUTION_ROUTE_GENERAL
