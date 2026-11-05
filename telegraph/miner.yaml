@@ -11,7 +11,7 @@ description: >
   headers and threat feeds; DNS records come from two independent DoH
   resolvers; uptime and API health are probed with per-phase timings. Gas,
   balances, transactions, token supply and pinned-block reads come straight
-  from public JSON-RPC on Ethereum, Base, Arbitrum, OP Mainnet and Polygon.
+  from public JSON-RPC on Ethereum, Base, Arbitrum, OP Mainnet, Polygon, BNB Chain, Avalanche, Linea, Scroll, Gnosis, zkSync Era, Blast, Mantle, Celo, Sonic and Unichain.
   Prices, TVL, FX, geolocation, papers and CVEs come from named public
   sources, cited in each answer.
 base_url: https://preflight-ssl-verification.vercel.app
@@ -105,7 +105,7 @@ endpoints:
           - name: chain
             type: string
             intents: ['*']
-            description: EVM chain name - ethereum, base, arbitrum, optimism or polygon. Defaults to ethereum.
+            description: EVM chain name or chain ID - ethereum, base, arbitrum, optimism, polygon, bsc, avalanche, linea, scroll, gnosis, zksync, blast, mantle, celo, sonic or unichain. Defaults to ethereum.
   - path: /wallet-balance
     external_path: /wallet-balance
     method: GET
@@ -131,7 +131,7 @@ endpoints:
           - name: chain
             type: string
             intents: ['*']
-            description: EVM chain name - ethereum, base, arbitrum, optimism or polygon. Defaults to ethereum.
+            description: EVM chain name or chain ID - ethereum, base, arbitrum, optimism, polygon, bsc, avalanche, linea, scroll, gnosis, zksync, blast, mantle, celo, sonic or unichain. Defaults to ethereum.
           - name: token
             type: string
             intents: ['*']
@@ -163,7 +163,7 @@ endpoints:
           - name: chain
             type: string
             intents: ['*']
-            description: EVM chain name - ethereum, base, arbitrum, optimism or polygon. Defaults to ethereum.
+            description: EVM chain name or chain ID - ethereum, base, arbitrum, optimism, polygon, bsc, avalanche, linea, scroll, gnosis, zksync, blast, mantle, celo, sonic or unichain. Defaults to ethereum.
           - name: tx_hash
             type: string
             intents: [ONCHAIN_TX_LOOKUP_GENERAL]
@@ -408,7 +408,7 @@ endpoints:
           - name: chain
             type: string
             intents: ['*']
-            description: EVM chain name - ethereum, base, arbitrum, optimism or polygon. Defaults to ethereum.
+            description: EVM chain name or chain ID - ethereum, base, arbitrum, optimism, polygon, bsc, avalanche, linea, scroll, gnosis, zksync, blast, mantle, celo, sonic or unichain. Defaults to ethereum.
           - name: block
             type: integer
             intents: ['*']
@@ -438,7 +438,7 @@ endpoints:
           - name: chain
             type: string
             intents: ['*']
-            description: EVM chain name - ethereum, base, arbitrum, optimism or polygon. Defaults to ethereum.
+            description: EVM chain name or chain ID - ethereum, base, arbitrum, optimism, polygon, bsc, avalanche, linea, scroll, gnosis, zksync, blast, mantle, celo, sonic or unichain. Defaults to ethereum.
           - name: block
             type: integer
             intents: ['*']
@@ -588,7 +588,7 @@ endpoints:
           - name: chain
             type: string
             intents: ['*']
-            description: EVM chain name - ethereum, base, arbitrum, optimism or polygon. Defaults to ethereum.
+            description: EVM chain name or chain ID - ethereum, base, arbitrum, optimism, polygon, bsc, avalanche, linea, scroll, gnosis, zksync, blast, mantle, celo, sonic or unichain. Defaults to ethereum.
           - name: token
             type: string
             intents: ['*']
