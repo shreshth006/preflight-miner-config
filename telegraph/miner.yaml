@@ -969,6 +969,103 @@ endpoints:
             intents: ['*']
             description: Period such as "last 12 months", "2025", "Q3 2026" or "since 2026-01-01".
 
+  - path: /route-eta
+    external_path: /route-eta
+    method: GET
+    description: >
+      Driving time in seconds and distance between two places, from the public OSRM router on
+      OpenStreetMap roads (free-flow, without live traffic), with both points geocoded and reported.
+    intents:
+      - ROUTE_ETA_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "How long does it take to drive from Berlin to Munich?".
+        optional:
+          - name: origin
+            type: string
+            intents: ['*']
+            description: 'Start point: place name or latitude,longitude.'
+          - name: destination
+            type: string
+            intents: ['*']
+            description: 'End point: place name or latitude,longitude.'
+  - path: /vendor-verify
+    external_path: /vendor-verify
+    method: GET
+    description: >
+      Whether a VAT number is a valid, active registration in the EU VIES system, with the
+      registered name and address and whether they match the vendor named.
+    intents:
+      - VENDOR_VERIFY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "Is VAT number IE6388047V for Google Ireland valid?".
+        optional:
+          - name: vendor
+            type: string
+            intents: ['*']
+            description: Vendor or company name.
+          - name: vat_number
+            type: string
+            intents: ['*']
+            description: 'VAT number with its country prefix, for example DE811907980.'
+  - path: /employees
+    external_path: /employees
+    method: GET
+    description: >
+      A company's headcount from Wikidata (the latest dated employees statement), with its
+      description and official website; a web domain is matched against the website first.
+    intents:
+      - B2B_IDENTITY_ENRICHMENT_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "How many employees does Stripe have?".
+        optional:
+          - name: company
+            type: string
+            intents: ['*']
+            description: Company name or web domain.
+  - path: /malware-check
+    external_path: /malware-check
+    method: GET
+    description: >
+      Whether a file hash (MD5, SHA-1, SHA-256) is a known-malicious sample or known-good software
+      in CIRCL hashlookup; domains and IPv4 addresses are checked against public threat feeds.
+    intents:
+      - MALWARE_DETECTION_HASH
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: >
+              The full question in plain language, kept verbatim, for example
+              "Is the file with SHA-256 094fd325... malicious?".
+        optional:
+          - name: indicator
+            type: string
+            intents: ['*']
+            description: File hash, domain or IPv4 address.
+
 input_schema:
   type: object
   description: >
@@ -1252,6 +1349,9 @@ output_schema:
     market_cap_usd: { type: [number, 'null'] }
     vulnerability_count: { type: [integer, 'null'] }
     filing_count: { type: [integer, 'null'] }
+    duration: { type: [number, 'null'] }
+    distance_km: { type: [number, 'null'] }
+    employee_count: { type: [integer, 'null'] }
 
 semantics:
   signal_mapping:
@@ -1304,3 +1404,7 @@ semantics:
     - FINANCIAL_DATA_GENERAL
     - SECURITY_REVIEW_GENERAL
     - REGULATORY_FILING_MONITOR_GENERAL
+    - ROUTE_ETA_GENERAL
+    - VENDOR_VERIFY_GENERAL
+    - B2B_IDENTITY_ENRICHMENT_GENERAL
+    - MALWARE_DETECTION_HASH
