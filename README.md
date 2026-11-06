@@ -8,3 +8,8 @@ byte for byte.
 
 The current file is the manifest of registration 377
 (SHA-256 `4d96099c1f52cb3d2a31733b75f5a5040946038fa8109cb2cd08c622a2a04f02`).
+
+## Tutorial
+
+[Your first paid agent on Telegraph, in 90 lines](examples/first-paid-agent/README.md): pay per request,
+check the answer, ask for a second opinion, or hold. Runs on Sepolia test USDC.
