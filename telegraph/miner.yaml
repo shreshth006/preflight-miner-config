@@ -1552,6 +1552,357 @@ endpoints:
             intents: ['*']
             description: 'The code or diff to review.'
 
+  - path: /chat
+    external_path: /chat
+    method: GET
+    description: 'Chat reply written by a language model. Any answer that judges something the model did not measure says so, and sources are only those retrieved for the request.'
+    intents:
+      - CHAT_COMPLETION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: What is a good way to learn to swim as an adult?'
+        optional:
+          - name: message
+            type: string
+            intents: ['*']
+            description: 'The message this chat reply works from.'
+          - name: prompt
+            type: string
+            intents: ['*']
+            description: 'The prompt this chat reply works from.'
+  - path: /chatbot
+    external_path: /chatbot
+    method: GET
+    description: 'Conversation reply written by a language model. Any answer that judges something the model did not measure says so, and sources are only those retrieved for the request.'
+    intents:
+      - CHATBOT_CONVERSATION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Hi, can you help me plan a weekend in Lisbon?'
+        optional:
+          - name: message
+            type: string
+            intents: ['*']
+            description: 'The message this conversation reply works from.'
+          - name: prompt
+            type: string
+            intents: ['*']
+            description: 'The prompt this conversation reply works from.'
+          - name: history
+            type: string
+            intents: ['*']
+            description: 'The history this conversation reply works from.'
+  - path: /text-generation
+    external_path: /text-generation
+    method: GET
+    description: 'Generated text written by a language model. Any answer that judges something the model did not measure says so, and sources are only those retrieved for the request.'
+    intents:
+      - TEXT_GENERATION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Write a short product announcement for a reusable water bottle.'
+        optional:
+          - name: prompt
+            type: string
+            intents: ['*']
+            description: 'The prompt this generated text works from.'
+          - name: message
+            type: string
+            intents: ['*']
+            description: 'The message this generated text works from.'
+  - path: /language-generation
+    external_path: /language-generation
+    method: GET
+    description: 'Generated text in a language written by a language model. Any answer that judges something the model did not measure says so, and sources are only those retrieved for the request.'
+    intents:
+      - LANGUAGE_GENERATION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Write a two-line welcome message, target: Spanish'
+        optional:
+          - name: prompt
+            type: string
+            intents: ['*']
+            description: 'The prompt this generated text in a language works from.'
+          - name: target
+            type: string
+            intents: ['*']
+            description: 'The target this generated text in a language works from.'
+  - path: /code-generation
+    external_path: /code-generation
+    method: GET
+    description: 'Generated code written by a language model. Any answer that judges something the model did not measure says so, and sources are only those retrieved for the request.'
+    intents:
+      - CODE_GENERATION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Write a Python function that checks whether a string is a palindrome.'
+        optional:
+          - name: prompt
+            type: string
+            intents: ['*']
+            description: 'The prompt this generated code works from.'
+          - name: task
+            type: string
+            intents: ['*']
+            description: 'The task this generated code works from.'
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The query this generated code works from.'
+  - path: /agent-task
+    external_path: /agent-task
+    method: GET
+    description: 'Task result written by a language model. Any answer that judges something the model did not measure says so, and sources are only those retrieved for the request.'
+    intents:
+      - AGENT_TASK_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Find the three largest moons of Saturn and list their diameters.'
+        optional:
+          - name: task
+            type: string
+            intents: ['*']
+            description: 'The task this task result works from.'
+  - path: /task-completion
+    external_path: /task-completion
+    method: GET
+    description: 'Task result written by a language model. Any answer that judges something the model did not measure says so, and sources are only those retrieved for the request.'
+    intents:
+      - TASK_COMPLETION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Turn these notes into three bullet points: met Ana, budget approved, launch in May.'
+        optional:
+          - name: task
+            type: string
+            intents: ['*']
+            description: 'The task this task result works from.'
+  - path: /llm-evaluation
+    external_path: /llm-evaluation
+    method: GET
+    description: 'Output evaluation written by a language model. Any answer that judges something the model did not measure says so, and sources are only those retrieved for the request.'
+    intents:
+      - LLM_OUTPUT_EVALUATION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: task: Name the capital of Australia. output: Sydney'
+        optional:
+          - name: task
+            type: string
+            intents: ['*']
+            description: 'The task this output evaluation works from.'
+          - name: output
+            type: string
+            intents: ['*']
+            description: 'The output this output evaluation works from.'
+  - path: /task-quality
+    external_path: /task-quality
+    method: GET
+    description: 'Task quality check written by a language model. Any answer that judges something the model did not measure says so, and sources are only those retrieved for the request.'
+    intents:
+      - TASK_EXECUTION_QUALITY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: task: Sort 3,1,2 ascending. result: 1,2,3'
+        optional:
+          - name: task
+            type: string
+            intents: ['*']
+            description: 'The task this task quality check works from.'
+          - name: result
+            type: string
+            intents: ['*']
+            description: 'The result this task quality check works from.'
+  - path: /ticket
+    external_path: /ticket
+    method: GET
+    description: 'Ticket resolution written by a language model. Any answer that judges something the model did not measure says so, and sources are only those retrieved for the request.'
+    intents:
+      - CUSTOMER_TICKET_RESOLUTION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: My invoice shows two charges for the same month. What should I do?'
+        optional:
+          - name: ticket
+            type: string
+            intents: ['*']
+            description: 'The ticket this ticket resolution works from.'
+  - path: /contract-audit
+    external_path: /contract-audit
+    method: GET
+    description: 'Contract review written by a language model. Any answer that judges something the model did not measure says so, and sources are only those retrieved for the request.'
+    intents:
+      - CONTRACT_OBLIGATION_AUDIT_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Supplier shall deliver within 10 days. Buyer shall pay within 30 days of delivery.'
+        optional:
+          - name: contract
+            type: string
+            intents: ['*']
+            description: 'The contract this contract review works from.'
+  - path: /patch-verify
+    external_path: /patch-verify
+    method: GET
+    description: 'Patch review written by a language model. Any answer that judges something the model did not measure says so, and sources are only those retrieved for the request.'
+    intents:
+      - CODE_PATCH_VERIFY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: def add(a, b): -    return a - b +    return a + b'
+        optional:
+          - name: patch
+            type: string
+            intents: ['*']
+            description: 'The patch this patch review works from.'
+          - name: diff
+            type: string
+            intents: ['*']
+            description: 'The diff this patch review works from.'
+  - path: /regression-verify
+    external_path: /regression-verify
+    method: GET
+    description: 'Regression review written by a language model. Any answer that judges something the model did not measure says so, and sources are only those retrieved for the request.'
+    intents:
+      - REGRESSION_VERIFY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Changed timeout default from 30s to 3s in the HTTP client.'
+        optional:
+          - name: change
+            type: string
+            intents: ['*']
+            description: 'The change this regression review works from.'
+          - name: diff
+            type: string
+            intents: ['*']
+            description: 'The diff this regression review works from.'
+  - path: /fact-check
+    external_path: /fact-check
+    method: GET
+    description: 'Fact check written by a language model. Any answer that judges something the model did not measure says so, and sources are only those retrieved for the request.'
+    intents:
+      - FACT_CHECK_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: The Great Wall of China is visible from the Moon with the naked eye.'
+        optional:
+          - name: claim
+            type: string
+            intents: ['*']
+            description: 'The claim this fact check works from.'
+  - path: /content-verify
+    external_path: /content-verify
+    method: GET
+    description: 'Content verification written by a language model. Any answer that judges something the model did not measure says so, and sources are only those retrieved for the request.'
+    intents:
+      - CONTENT_VERIFICATION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: NASA announced in 2024 that it found liquid water on Mars.'
+        optional:
+          - name: content
+            type: string
+            intents: ['*']
+            description: 'The content this content verification works from.'
+  - path: /text-authenticity
+    external_path: /text-authenticity
+    method: GET
+    description: 'Text authenticity review written by a language model. Any answer that judges something the model did not measure says so, and sources are only those retrieved for the request.'
+    intents:
+      - TEXT_AUTHENTICITY_CHECK_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: A quote attributed to Einstein: "Insanity is doing the same thing over and over."'
+        optional:
+          - name: text
+            type: string
+            intents: ['*']
+            description: 'The text this text authenticity review works from.'
+  - path: /ai-text
+    external_path: /ai-text
+    method: GET
+    description: 'Ai text assessment written by a language model. Any answer that judges something the model did not measure says so, and sources are only those retrieved for the request.'
+    intents:
+      - AI_TEXT_DETECTION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: In today''s fast-paced world, it is important to note that synergy matters.'
+        optional:
+          - name: text
+            type: string
+            intents: ['*']
+            description: 'The text this AI text assessment works from.'
+
 input_schema:
   type: object
   description: >
@@ -1713,6 +2064,37 @@ output_schema:
           'similar',
           'loosely related',
           'dissimilar',
+          'Likely',
+          'Unlikely',
+          'Uncertain',
+          'satisfies',
+          'partially_satisfies',
+          'fails',
+          'Compliant',
+          'Partially compliant',
+          'Non-compliant',
+          'Unclear',
+          'pass',
+          'fail',
+          'inconclusive',
+          'True',
+          'Mostly True',
+          'Mixed',
+          'Misleading',
+          'Mostly False',
+          'False',
+          'Unverified',
+          'Verified',
+          'Inconclusive',
+          'Authentic',
+          'Likely authentic',
+          'Likely fabricated',
+          'Fabricated',
+          'Unverifiable',
+          'AI-generated',
+          'Likely AI-generated',
+          'Likely human',
+          'Human',
         ]
     valid: { type: [boolean, 'null'] }
     chain_complete: { type: [boolean, 'null'] }
@@ -1960,3 +2342,20 @@ semantics:
     - FRAUD_RISK_GENERAL
     - CONTENT_MODERATION_GENERAL
     - CODE_REVIEW_GENERAL
+    - CHAT_COMPLETION_GENERAL
+    - CHATBOT_CONVERSATION_GENERAL
+    - TEXT_GENERATION_GENERAL
+    - LANGUAGE_GENERATION_GENERAL
+    - CODE_GENERATION_GENERAL
+    - AGENT_TASK_GENERAL
+    - TASK_COMPLETION_GENERAL
+    - LLM_OUTPUT_EVALUATION_GENERAL
+    - TASK_EXECUTION_QUALITY_GENERAL
+    - CUSTOMER_TICKET_RESOLUTION_GENERAL
+    - CONTRACT_OBLIGATION_AUDIT_GENERAL
+    - CODE_PATCH_VERIFY_GENERAL
+    - REGRESSION_VERIFY_GENERAL
+    - FACT_CHECK_GENERAL
+    - CONTENT_VERIFICATION_GENERAL
+    - TEXT_AUTHENTICITY_CHECK_GENERAL
+    - AI_TEXT_DETECTION_GENERAL
