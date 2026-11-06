@@ -48,8 +48,8 @@ DECISION: use $14.24312/MWh
 ```
 
 Both transactions are on [Sepolia Etherscan](https://sepolia.etherscan.io), so you can check them. Miner
-20260828 is mine, and it comes first only because few miners claim CAISO. Don't treat this as evidence that
-it's the best source.
+20260828 is mine. The agent tried it because its listing mentions CAISO, so don't treat this as evidence
+that it's the best source.
 
 ## The part most people skip: a paid answer can still be wrong
 
