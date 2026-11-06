@@ -1,7 +1,7 @@
 version: '1'
 kind: miner
 id: 20260828
-slug: preflight-ssl-verification
+slug: a1-preflight
 protocol: generic
 name: PREFLIGHT Infrastructure Signals
 description: >
