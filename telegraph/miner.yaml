@@ -1903,6 +1903,105 @@ endpoints:
             intents: ['*']
             description: 'The text this AI text assessment works from.'
 
+  - path: /travel-disruption
+    external_path: /travel-disruption
+    method: GET
+    description: 'Whether a US airport, or either end of a route between US airports, is disrupted now, from the FAA National Airspace System status: ground stops, ground delay programs, arrival and departure delays and closures, with the delay in minutes. Airports outside the US and bare flight numbers are reported as not covered.'
+    intents:
+      - TRAVEL_DISRUPTION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Is the route BOS to SFO disrupted right now?'
+        optional:
+          - name: route_or_flight
+            type: string
+            intents: ['*']
+            description: 'A US airport or a route by IATA codes, for example JFK or BOS to SFO.'
+
+  - path: /smart-contract-audit
+    external_path: /smart-contract-audit
+    method: GET
+    description: 'Smart contract security review written by a language model: findings with the function, why each is exploitable and the fix, and the worst severity. It reviews the source code given and asks for source when only an address is sent. Any answer that judges something the model did not measure says so, and sources are only those retrieved for the request.'
+    intents:
+      - SMART_CONTRACT_AUDIT_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Audit this Solidity function for vulnerabilities: function withdraw(uint a) external {...}'
+        optional:
+          - name: code
+            type: string
+            intents: ['*']
+            description: 'The contract source code to audit.'
+
+  - path: /invoice-reconcile
+    external_path: /invoice-reconcile
+    method: GET
+    description: 'Invoice and ledger reconciliation written by a language model: whether they match, the discrepancy (ledger minus invoice) and each mismatch with both figures. Any answer that judges something the model did not measure says so, and sources are only those retrieved for the request.'
+    intents:
+      - INVOICE_LEDGER_RECONCILE_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: invoice: INV-1042, total 132.50 USD. ledger: INV-1042 paid 120.00 USD'
+        optional:
+          - name: invoice
+            type: string
+            intents: ['*']
+            description: 'The invoice text.'
+          - name: ledger
+            type: string
+            intents: ['*']
+            description: 'The ledger entries to match against.'
+
+  - path: /document-authenticity
+    external_path: /document-authenticity
+    method: GET
+    description: 'Document authenticity assessment written by a language model from the text alone: impossible dates, arithmetic, identifier formats and issuer wording, with a verdict and the evidence. No register or issuer is contacted. Any answer that judges something the model did not measure says so, and sources are only those retrieved for the request.'
+    intents:
+      - DOCUMENT_AUTHENTICITY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Is this certificate genuine? Certificate of Incorporation, Northwind Ltd, incorporated 31 February 2019'
+        optional:
+          - name: document
+            type: string
+            intents: ['*']
+            description: 'The document text to assess.'
+
+  - path: /plagiarism
+    external_path: /plagiarism
+    method: GET
+    description: 'Plagiarism check written by a language model against sources retrieved for the request: a verdict, the share of matching text and each match with its source. Any answer that judges something the model did not measure says so, and sources are only those retrieved for the request.'
+    intents:
+      - PLAGIARISM_DETECTION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Is this text copied? Four score and seven years ago our fathers brought forth...'
+        optional:
+          - name: text
+            type: string
+            intents: ['*']
+            description: 'The text to check.'
+
 input_schema:
   type: object
   description: >
@@ -2260,12 +2359,18 @@ output_schema:
     distance_km: { type: [number, 'null'] }
     employee_count: { type: [integer, 'null'] }
 
+
 semantics:
   signal_mapping:
     confidence_field: confidence
     label_field: verdict
     reason_field: reason
   supported_intents:
+    - TRAVEL_DISRUPTION_GENERAL
+    - SMART_CONTRACT_AUDIT_GENERAL
+    - INVOICE_LEDGER_RECONCILE_GENERAL
+    - DOCUMENT_AUTHENTICITY_GENERAL
+    - PLAGIARISM_DETECTION_GENERAL
     - SSL_VERIFICATION_CERT
     - URL_SCAN_VERDICT
     - GAS_PRICE_GENERAL
