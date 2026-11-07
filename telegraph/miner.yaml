@@ -1903,6 +1903,69 @@ endpoints:
             intents: ['*']
             description: 'The text this AI text assessment works from.'
 
+  - path: /image-verify
+    external_path: /image-verify
+    method: GET
+    description: 'Whether an image is authentic, edited or AI-generated. It reads the file''s own metadata first (C2PA manifest, IPTC digital source type, generator parameters, editing software, camera), then a vision model reports only visible signs. A firm verdict needs metadata or a visible generator mark; otherwise it is Likely or Inconclusive. Images only, up to 5 MB.'
+    intents:
+      - IMAGE_VERIFICATION_GENERAL
+      - MEDIA_AUTHENTICITY_CHECK_GENERAL
+      - DEEPFAKE_DETECTION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Is the image at https://example.com/photo.jpg authentic or AI-generated?'
+        optional:
+          - name: image_url
+            type: string
+            intents: ['*']
+            description: 'Public URL of the image.'
+          - name: media_url
+            type: string
+            intents: ['*']
+            description: 'Public URL of the image.'
+
+  - path: /media-forensics
+    external_path: /media-forensics
+    method: GET
+    description: 'Forensic check of an image: embedded metadata (C2PA, IPTC digital source type, generator parameters, editing software, camera) and visible signs of editing, with findings and a verdict. A firm verdict needs metadata or a visible generator mark. Images only, up to 5 MB.'
+    intents:
+      - MEDIA_FORENSIC_VERIFY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Has the image at https://example.com/photo.jpg been manipulated?'
+        optional:
+          - name: media_url
+            type: string
+            intents: ['*']
+            description: 'Public URL of the image.'
+
+  - path: /image-caption
+    external_path: /image-caption
+    method: GET
+    description: 'Caption of an image by a vision model: what it shows, the main objects and any legible text. It describes only what is visible and names no person or place unless written in the image. Images only, up to 5 MB.'
+    intents:
+      - IMAGE_CAPTIONING_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Describe the image at https://example.com/photo.jpg'
+        optional:
+          - name: image_url
+            type: string
+            intents: ['*']
+            description: 'Public URL of the image.'
+
   - path: /travel-disruption
     external_path: /travel-disruption
     method: GET
@@ -2366,6 +2429,11 @@ semantics:
     label_field: verdict
     reason_field: reason
   supported_intents:
+    - IMAGE_VERIFICATION_GENERAL
+    - MEDIA_AUTHENTICITY_CHECK_GENERAL
+    - DEEPFAKE_DETECTION_GENERAL
+    - MEDIA_FORENSIC_VERIFY_GENERAL
+    - IMAGE_CAPTIONING_GENERAL
     - TRAVEL_DISRUPTION_GENERAL
     - SMART_CONTRACT_AUDIT_GENERAL
     - INVOICE_LEDGER_RECONCILE_GENERAL
