@@ -1145,7 +1145,7 @@ endpoints:
   - path: /summarize
     external_path: /summarize
     method: GET
-    description: 'Extractive summary of a text (its highest-ranked sentences in original order), or of a topic''s Wikipedia entry when only a short subject is given.'
+    description: "Extractive summary of a text (its highest-ranked sentences in original order), or of a topic's Wikipedia entry when only a short subject is given."
     intents:
       - TEXT_SUMMARIZATION_GENERAL
     params:
@@ -1896,7 +1896,7 @@ endpoints:
           - name: query
             type: string
             intents: ['*']
-            description: 'The full request in plain language, kept verbatim, for example: In today''s fast-paced world, it is important to note that synergy matters.'
+            description: "The full request in plain language, kept verbatim, for example: In today's fast-paced world, it is important to note that synergy matters."
         optional:
           - name: text
             type: string
@@ -1906,7 +1906,7 @@ endpoints:
   - path: /image-verify
     external_path: /image-verify
     method: GET
-    description: 'Whether an image is authentic, edited or AI-generated. It reads the file''s own metadata first (C2PA manifest, IPTC digital source type, generator parameters, editing software, camera), then a vision model reports only visible signs. A firm verdict needs metadata or a visible generator mark; otherwise it is Likely or Inconclusive. Images only, up to 5 MB.'
+    description: "Whether an image is authentic, edited or AI-generated. It reads the file's own metadata first (C2PA manifest, IPTC digital source type, generator parameters, editing software, camera), then a vision model reports only visible signs. A firm verdict needs metadata or a visible generator mark; otherwise it is Likely or Inconclusive. Images only, up to 5 MB."
     intents:
       - IMAGE_VERIFICATION_GENERAL
       - MEDIA_AUTHENTICITY_CHECK_GENERAL
@@ -2064,6 +2064,147 @@ endpoints:
             type: string
             intents: ['*']
             description: 'The text to check.'
+
+  - path: /embedding
+    external_path: /embedding
+    method: GET
+    description: "A real text embedding from Google's gemini-embedding-001 at 768 dimensions, L2-normalised: the whole vector, its dimension, the norm before normalisation and the exact text embedded."
+    intents:
+      - EMBEDDING_GENERATION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Generate an embedding for "the quick brown fox"'
+        optional:
+          - name: text
+            type: string
+            intents: ['*']
+            description: 'The text to embed.'
+
+  - path: /satellite
+    external_path: /satellite
+    method: GET
+    description: 'What a recent satellite image shows at a place: NASA GIBS MODIS Terra true-colour imagery (about 250 m per pixel) for the date asked or the latest full day, read by a vision model for cloud, smoke, snow, water, burn scars and land cover, with the capture date and image link. Features under a few hundred metres are stated as not visible.'
+    intents:
+      - SATELLITE_IMAGERY_ANALYSIS_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Is there smoke over Los Angeles today?'
+        optional:
+          - name: location
+            type: string
+            intents: ['*']
+            description: 'Place name or coordinates.'
+          - name: question
+            type: string
+            intents: ['*']
+            description: 'What to look for in the image.'
+
+  - path: /social-bot
+    external_path: /social-bot
+    method: GET
+    description: 'Whether a social account behaves like a bot, from its public profile on Bluesky, Mastodon or GitHub: self-declared bot flags, account age, posting rate, follow ratios, empty profiles and handle patterns, with a bot score and the signals. X, Instagram and TikTok have no keyless profile source and are reported as inconclusive.'
+    intents:
+      - SOCIAL_BOT_DETECTION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Is @name@mastodon.social a bot?'
+        optional:
+          - name: account
+            type: string
+            intents: ['*']
+            description: 'The account handle or profile URL.'
+
+  - path: /wash-trading
+    external_path: /wash-trading
+    method: GET
+    description: 'A wash-trading screen for a token or pair from DEX Screener live data on its busiest pool: turnover against liquidity, buy and sell balance, trade size and pool age, with an estimated wash share only when two independent signs agree. Exchanges get their CoinGecko trust score; NFT collections are not covered.'
+    intents:
+      - WASH_TRADING_DETECTION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Is PEPE volume being wash traded?'
+        optional:
+          - name: subject
+            type: string
+            intents: ['*']
+            description: 'Token symbol, pair or pool address.'
+
+  - path: /sla-compliance
+    external_path: /sla-compliance
+    method: GET
+    description: "A service's uptime over a period from the incidents on its public Statuspage (major outages in full, partial outages at 30%), against the SLA target stated, the provider's published SLA or 99.9%, with whether it complied and the downtime minutes."
+    intents:
+      - SLA_COMPLIANCE_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Did GitHub meet its 99.9% SLA over the last 30 days?'
+        optional:
+          - name: service
+            type: string
+            intents: ['*']
+            description: 'The service or provider.'
+          - name: period
+            type: string
+            intents: ['*']
+            description: 'The period, such as last 30 days or October 2026.'
+
+  - path: /product-authenticity
+    external_path: /product-authenticity
+    method: GET
+    description: 'Product authenticity assessment written by a language model from the description given: price against retail, seller and shipping red flags, model numbers, packaging and sales channel, with a verdict and the evidence. The item, seller and brand are not checked, and every answer says so.'
+    intents:
+      - PRODUCT_AUTHENTICITY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Is this Rolex Submariner for $250 with no box or papers genuine?'
+        optional:
+          - name: product
+            type: string
+            intents: ['*']
+            description: 'The product or listing description.'
+
+  - path: /shipment-delay-risk
+    external_path: /shipment-delay-risk
+    method: GET
+    description: 'Shipment delay risk written by a language model from the details given and general route knowledge: chokepoints, seasonal peaks, weather seasons, customs and carrier reliability, with a risk level, a delay probability and the factors. No live tracking, port or weather data is read, and every answer says so.'
+    intents:
+      - SHIPMENT_DELAY_RISK_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Will an ocean shipment from Shanghai to Rotterdam via Suez departing in 10 days be delayed?'
+        optional:
+          - name: shipment
+            type: string
+            intents: ['*']
+            description: 'The shipment details: mode, route, dates and carrier.'
 
 input_schema:
   type: object
@@ -2257,6 +2398,20 @@ output_schema:
           'Likely AI-generated',
           'Likely human',
           'Human',
+          bot,
+          likely_bot,
+          likely_human,
+          human,
+          wash_trading,
+          likely_wash_trading,
+          organic,
+          'Likely counterfeit',
+          'Counterfeit',
+          'Likely manipulated',
+          'Manipulated',
+          'Synthetic',
+          'Likely forged',
+          'Forged',
         ]
     valid: { type: [boolean, 'null'] }
     chain_complete: { type: [boolean, 'null'] }
@@ -2389,7 +2544,11 @@ output_schema:
     precipitation_mm: { type: [number, 'null'] }
     peak_gust_kmh: { type: [number, 'null'] }
     condition: { type: [string, 'null'] }
-    risk_level: { type: [string, 'null'], enum: [LOW, MODERATE, HIGH, SEVERE, null] }
+    risk_level:
+      {
+        type: [string, 'null'],
+        enum: [LOW, MODERATE, HIGH, SEVERE, low, moderate, high, severe, null],
+      }
     rate_pct: { type: [number, 'null'] }
     rate_name: { type: [string, 'null'] }
     lmp_usd_per_mwh: { type: [number, 'null'] }
@@ -2422,13 +2581,19 @@ output_schema:
     distance_km: { type: [number, 'null'] }
     employee_count: { type: [integer, 'null'] }
 
-
 semantics:
   signal_mapping:
     confidence_field: confidence
     label_field: verdict
     reason_field: reason
   supported_intents:
+    - EMBEDDING_GENERATION_GENERAL
+    - SATELLITE_IMAGERY_ANALYSIS_GENERAL
+    - SOCIAL_BOT_DETECTION_GENERAL
+    - WASH_TRADING_DETECTION_GENERAL
+    - SLA_COMPLIANCE_GENERAL
+    - PRODUCT_AUTHENTICITY_GENERAL
+    - SHIPMENT_DELAY_RISK_GENERAL
     - IMAGE_VERIFICATION_GENERAL
     - MEDIA_AUTHENTICITY_CHECK_GENERAL
     - DEEPFAKE_DETECTION_GENERAL
