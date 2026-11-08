@@ -2206,6 +2206,240 @@ endpoints:
             intents: ['*']
             description: 'The shipment details: mode, route, dates and carrier.'
 
+  - path: /video-verify
+    external_path: /video-verify
+    method: GET
+    description: "Whether a video is authentic, edited or AI-generated. It reads the file's container metadata first (C2PA manifest, generator and editor tags, encoder, camera), then a vision model reports only visible signs in clips up to 8 MB. A firm verdict needs metadata or a visible generator mark; YouTube links are judged from their thumbnail frame only, at most Inconclusive."
+    intents:
+      - VIDEO_VERIFICATION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Is the video at https://example.com/clip.mp4 real?'
+        optional:
+          - name: video_url
+            type: string
+            intents: ['*']
+            description: 'Public URL of the video file or a YouTube link.'
+
+  - path: /transcribe
+    external_path: /transcribe
+    method: GET
+    description: 'Transcript of the speech in an audio file at a public URL (MP3, WAV, OGG, FLAC or M4A, up to 8 MB), written by a speech-capable model in the original language with the detected language. Nothing is transcribed without audio.'
+    intents:
+      - SPEECH_TO_TEXT_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Transcribe https://example.com/interview.mp3'
+        optional:
+          - name: audio_url
+            type: string
+            intents: ['*']
+            description: 'Public URL of the audio file.'
+
+  - path: /carrier-coverage
+    external_path: /carrier-coverage
+    method: GET
+    description: "Whether a carrier (USPS, UPS, FedEx, DHL, Aramex, Canada Post, Purolator, Royal Mail, Evri, Deutsche Post, La Poste, PostNL, Australia Post, Japan Post, India Post, Blue Dart, Delhivery, OnTrac) delivers to an area, at country level: the postal code is checked against a public postal-code database, and the carrier's home market and announced suspensions decide, with the services offered. Address-level remoteness needs the carrier's own lookup, and every answer says so."
+    intents:
+      - CARRIER_SERVICEABILITY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Does UPS deliver to 10001?'
+        optional:
+          - name: carrier
+            type: string
+            intents: ['*']
+            description: 'The carrier.'
+          - name: area
+            type: string
+            intents: ['*']
+            description: 'Address or postal code to check.'
+
+  - path: /purchase-verify
+    external_path: /purchase-verify
+    method: GET
+    description: 'Checks that a purchase happened as claimed by comparing the order, receipt, payment and delivery details given: order number, merchant, items, amounts, tax, total and payment status, with the arithmetic shown. A language model does the comparison; the merchant''s order system is not accessed, and an order number alone is reported as unverified.'
+    intents:
+      - COMMERCE_PURCHASE_VERIFY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Verify Amazon order 112-4839201-5512203: Kindle Paperwhite 159.99 USD plus 13.20 tax, total 173.19, paid by Visa on 2026-10-30.'
+        optional:
+          - name: order_id
+            type: string
+            intents: ['*']
+            description: 'Order or purchase identifier.'
+          - name: merchant
+            type: string
+            intents: ['*']
+            description: 'Merchant or store.'
+          - name: receipt
+            type: string
+            intents: ['*']
+            description: 'Receipt, payment or delivery details to check.'
+
+  - path: /purchase-order-verify
+    external_path: /purchase-order-verify
+    method: GET
+    description: 'Checks a purchase order against the invoice, delivery note or receipt given (a three-way match when all are present): line items, quantities ordered and delivered, unit prices, totals and currency, listing each mismatch with both figures. A language model does the comparison; no procurement or vendor system is accessed, and a PO number alone is reported as unverified.'
+    intents:
+      - PURCHASE_ORDER_VERIFY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Does PO-7781 from Acme Supply (200 bolts at 0.40, total 235.00) match invoice INV-55 (200 bolts at 0.45, total 245.00)?'
+        optional:
+          - name: po_number
+            type: string
+            intents: ['*']
+            description: 'Purchase order number.'
+          - name: vendor
+            type: string
+            intents: ['*']
+            description: 'Vendor.'
+          - name: invoice
+            type: string
+            intents: ['*']
+            description: 'Invoice, delivery note or receipt to match against.'
+
+  - path: /fare-rule-verify
+    external_path: /fare-rule-verify
+    method: GET
+    description: 'Change, cancellation and refund rules for an airline fare (carrier, fare brand, fare basis or booking class), with any claim checked against them: refundable or not, the change fee, and each rule. Uses fare rules quoted in the request, else the carrier''s published fare families as a language model knows them; the ticket''s live fare rules are not retrieved, and every answer says so.'
+    intents:
+      - FARE_RULE_VERIFY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Is a United Basic Economy domestic ticket refundable, and can I change it for a fee?'
+        optional:
+          - name: fare
+            type: string
+            intents: ['*']
+            description: 'Fare, fare basis or ticket.'
+          - name: carrier
+            type: string
+            intents: ['*']
+            description: 'Airline.'
+          - name: claim
+            type: string
+            intents: ['*']
+            description: 'A claim about the fare to check.'
+
+  - path: /delivery-window
+    external_path: /delivery-window
+    method: GET
+    description: 'Delivery window in business days for a carrier service between two places, from the carrier''s published service standards (zone-based ground transit, overnight and two-day commitments) as a language model knows them, marked as an estimate unless the service carries a published guarantee. No live tracking or carrier transit calculator is used.'
+    intents:
+      - DELIVERY_WINDOW_VERIFY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: How long does FedEx Ground take from New York to Los Angeles?'
+        optional:
+          - name: carrier
+            type: string
+            intents: ['*']
+            description: 'Carrier and service level.'
+          - name: route
+            type: string
+            intents: ['*']
+            description: 'Origin and destination.'
+
+  - path: /ship-rate-eta
+    external_path: /ship-rate-eta
+    method: GET
+    description: 'Estimated shipping price and transit days for a parcel of a given weight between two places, for the most common economical tracked service on that lane, with a likely price range and what changes it. An estimate from published retail rate tables as a language model knows them, not a carrier quote; every answer says so.'
+    intents:
+      - SHIP_RATE_ETA_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: What does it cost to ship a 2 kg parcel from Chicago to Austin, and how long does it take?'
+        optional:
+          - name: origin
+            type: string
+            intents: ['*']
+            description: 'Origin.'
+          - name: destination
+            type: string
+            intents: ['*']
+            description: 'Destination.'
+          - name: weight_kg
+            type: string
+            intents: ['*']
+            description: 'Parcel weight in kilograms.'
+
+  - path: /port-audit
+    external_path: /port-audit
+    method: GET
+    description: 'Open ports, exposed services and fingerprint-matched CVEs for a host (IPv4 address, domain or URL), from Shodan InternetDB, the public index of Shodan''s internet-wide scans. Passive: no connection is made to the host, so the answer is Shodan''s latest observation (about weekly), and it says so. Ports that should rarely face the internet (Telnet, SMB, RDP, databases, Redis, Docker API) are flagged and set the risk level.'
+    intents:
+      - PORT_SCAN_AUDIT_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Which ports are open on scanme.nmap.org?'
+        optional:
+          - name: host
+            type: string
+            intents: ['*']
+            description: 'The hostname, IPv4 address or URL to audit.'
+
+  - path: /tts
+    external_path: /tts
+    method: GET
+    description: 'Text to speech: the given text spoken by a Gemini speech model, returned as a 16-bit mono WAV clip in base64 (audio_base64) with its duration, sample rate, voice and model. Up to 1,200 characters per clip; longer text is cut at a sentence end and the answer says so. Voices: Kore (default), Puck, Charon, Fenrir, Aoede, Leda, Orus, Zephyr.'
+    intents:
+      - TEXT_TO_SPEECH_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The text to speak, kept verbatim, for example: Your package will arrive on Tuesday between 9 and 12.'
+        optional:
+          - name: text
+            type: string
+            intents: ['*']
+            description: 'The text to speak, when the query also carries other words.'
+          - name: voice
+            type: string
+            intents: ['*']
+            description: 'A voice name: Kore, Puck, Charon, Fenrir, Aoede, Leda, Orus or Zephyr.'
+
 input_schema:
   type: object
   description: >
@@ -2520,6 +2754,14 @@ output_schema:
     tx_hash: { type: string }
     value_eth: { type: number }
     holders_count: { type: number }
+    verified: { type: boolean }
+    refundable: { type: boolean }
+    change_fee: { type: number }
+    amount: { type: number }
+    transit_days: { type: number }
+    transit_days_min: { type: number }
+    transit_days_max: { type: number }
+    is_estimate: { type: boolean }
     token_symbol: { type: string }
     supply_apy: { type: number }
     protocol_or_chain: { type: string }
@@ -2587,6 +2829,16 @@ semantics:
     label_field: verdict
     reason_field: reason
   supported_intents:
+    - TEXT_TO_SPEECH_GENERAL
+    - PORT_SCAN_AUDIT_GENERAL
+    - COMMERCE_PURCHASE_VERIFY_GENERAL
+    - PURCHASE_ORDER_VERIFY_GENERAL
+    - FARE_RULE_VERIFY_GENERAL
+    - DELIVERY_WINDOW_VERIFY_GENERAL
+    - SHIP_RATE_ETA_GENERAL
+    - VIDEO_VERIFICATION_GENERAL
+    - SPEECH_TO_TEXT_GENERAL
+    - CARRIER_SERVICEABILITY_GENERAL
     - EMBEDDING_GENERATION_GENERAL
     - SATELLITE_IMAGERY_ANALYSIS_GENERAL
     - SOCIAL_BOT_DETECTION_GENERAL
