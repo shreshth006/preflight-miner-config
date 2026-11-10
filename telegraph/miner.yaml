@@ -142,7 +142,9 @@ endpoints:
     description: >
       Status and effect of a transaction hash: decoded token transfers, sender
       and recipient, confirmations, gas and full fee, and whether amounts or
-      addresses the question claims match the receipt.
+      addresses the question claims match the receipt. Bitcoin txids are read
+      from mempool.space and Blockstream: confirmation, block, every input and
+      output with its amount, and the fee.
     intents:
       - ONCHAIN_TX_LOOKUP_GENERAL
       - CRYPTO_TRANSFER_VERIFY_GENERAL
@@ -2270,7 +2272,7 @@ endpoints:
   - path: /purchase-verify
     external_path: /purchase-verify
     method: GET
-    description: 'Checks that a purchase happened as claimed by comparing the order, receipt, payment and delivery details given: order number, merchant, items, amounts, tax, total and payment status, with the arithmetic shown. A language model does the comparison; the merchant''s order system is not accessed, and an order number alone is reported as unverified.'
+    description: "Checks that a purchase happened as claimed by comparing the order, receipt, payment and delivery details given: order number, merchant, items, amounts, tax, total and payment status, with the arithmetic shown. A language model does the comparison; the merchant's order system is not accessed, and an order number alone is reported as unverified."
     intents:
       - COMMERCE_PURCHASE_VERIFY_GENERAL
     params:
@@ -2324,7 +2326,7 @@ endpoints:
   - path: /fare-rule-verify
     external_path: /fare-rule-verify
     method: GET
-    description: 'Change, cancellation and refund rules for an airline fare (carrier, fare brand, fare basis or booking class), with any claim checked against them: refundable or not, the change fee, and each rule. Uses fare rules quoted in the request, else the carrier''s published fare families as a language model knows them; the ticket''s live fare rules are not retrieved, and every answer says so.'
+    description: "Change, cancellation and refund rules for an airline fare (carrier, fare brand, fare basis or booking class), with any claim checked against them: refundable or not, the change fee, and each rule. Uses fare rules quoted in the request, else the carrier's published fare families as a language model knows them; the ticket's live fare rules are not retrieved, and every answer says so."
     intents:
       - FARE_RULE_VERIFY_GENERAL
     params:
@@ -2351,7 +2353,7 @@ endpoints:
   - path: /delivery-window
     external_path: /delivery-window
     method: GET
-    description: 'Delivery window in business days for a carrier service between two places, from the carrier''s published service standards (zone-based ground transit, overnight and two-day commitments) as a language model knows them, marked as an estimate unless the service carries a published guarantee. No live tracking or carrier transit calculator is used.'
+    description: "Delivery window in business days for a carrier service between two places, from the carrier's published service standards (zone-based ground transit, overnight and two-day commitments) as a language model knows them, marked as an estimate unless the service carries a published guarantee. No live tracking or carrier transit calculator is used."
     intents:
       - DELIVERY_WINDOW_VERIFY_GENERAL
     params:
@@ -2401,7 +2403,7 @@ endpoints:
   - path: /port-audit
     external_path: /port-audit
     method: GET
-    description: 'Open ports, exposed services and fingerprint-matched CVEs for a host (IPv4 address, domain or URL), from Shodan InternetDB, the public index of Shodan''s internet-wide scans. Passive: no connection is made to the host, so the answer is Shodan''s latest observation (about weekly), and it says so. Ports that should rarely face the internet (Telnet, SMB, RDP, databases, Redis, Docker API) are flagged and set the risk level.'
+    description: "Open ports, exposed services and fingerprint-matched CVEs for a host (IPv4 address, domain or URL), from Shodan InternetDB, the public index of Shodan's internet-wide scans. Passive: no connection is made to the host, so the answer is Shodan's latest observation (about weekly), and it says so. Ports that should rarely face the internet (Telnet, SMB, RDP, databases, Redis, Docker API) are flagged and set the risk level."
     intents:
       - PORT_SCAN_AUDIT_GENERAL
     params:
@@ -2439,6 +2441,25 @@ endpoints:
             type: string
             intents: ['*']
             description: 'A voice name: Kore, Puck, Charon, Fenrir, Aoede, Leda, Orus or Zephyr.'
+
+  - path: /return-policy
+    external_path: /return-policy
+    method: GET
+    description: "A retailer's standard return window in days, with its main conditions and exceptions, read from the retailer's own return-policy page when it answers a plain request (verified: true, with the page as the source). Retailers whose pages refuse automated clients get the commonly published window, marked verified: false."
+    intents:
+      - RETURN_POLICY_VERIFY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: "The full request in plain language, kept verbatim, for example: What is Walmart's return policy?"
+        optional:
+          - name: retailer
+            type: string
+            intents: ['*']
+            description: 'The retailer, for example Amazon, Walmart, Target, Apple or IKEA.'
 
 input_schema:
   type: object
@@ -2762,6 +2783,7 @@ output_schema:
     transit_days_min: { type: number }
     transit_days_max: { type: number }
     is_estimate: { type: boolean }
+    return_window_days: { type: number }
     token_symbol: { type: string }
     supply_apy: { type: number }
     protocol_or_chain: { type: string }
@@ -2829,6 +2851,7 @@ semantics:
     label_field: verdict
     reason_field: reason
   supported_intents:
+    - RETURN_POLICY_VERIFY_GENERAL
     - TEXT_TO_SPEECH_GENERAL
     - PORT_SCAN_AUDIT_GENERAL
     - COMMERCE_PURCHASE_VERIFY_GENERAL
