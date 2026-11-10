@@ -2616,6 +2616,46 @@ endpoints:
             intents: ['*']
             description: 'The full request in plain language, kept verbatim, for example: Is USGS gauge 01646500 reporting?'
 
+  - path: /credit-check
+    external_path: /credit-check
+    method: GET
+    description: 'A credit profile given in the request graded against published benchmarks: the score placed in the FICO or VantageScore band (and checked for the 300-850 range), debt-to-income (stated, or from monthly debts and income) against the 36% preferred, 43% Qualified Mortgage and 50% automated-underwriting limits, revolving utilization against the advised 30%, and stated adverse factors. No credit bureau is queried.'
+    intents:
+      - CREDIT_SCORE_VERIFY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Is a FICO score of 712 good? My DTI is 41% and utilization 24%.'
+  - path: /datacenter-telemetry
+    external_path: /datacenter-telemetry
+    method: GET
+    description: "Datacenter readings given in the request graded against published benchmarks: PUE against the Uptime Institute industry average, inlet temperature and humidity against the ASHRAE recommended and class A1 allowable envelopes, and backup generator fuel level and days since its last load test against NFPA 110. A facility's own telemetry is never claimed."
+    intents:
+      - DATACENTER_TELEMETRY_VERIFY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Rack 12: PUE 1.72, inlet temperature 29 C, humidity 45%, generator fuel 62%'
+  - path: /warehouse-inventory
+    external_path: /warehouse-inventory
+    method: GET
+    description: "Stock counts given in the request worked through: units available after allocations, days of cover at the stated demand, the reorder point (stated, or demand x lead time + safety stock) and whether a replenishment order is due or the item is stocked out. A warehouse system's own records are never claimed."
+    intents:
+      - WAREHOUSE_INVENTORY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: SKU WR-100: 340 on hand, 120 allocated, daily demand 25 units per day, lead time 7 days, safety stock 50'
+
 input_schema:
   type: object
   description: >
@@ -3021,6 +3061,12 @@ output_schema:
     heartbeat_fresh: { type: [boolean, 'null'] }
     all_in_range: { type: [boolean, 'null'] }
     age_seconds: { type: [integer, 'null'] }
+    score_band: { type: [string, 'null'] }
+    dti_pct: { type: [number, 'null'] }
+    available: { type: [integer, 'null'] }
+    reorder_needed: { type: [boolean, 'null'] }
+    days_of_cover: { type: [number, 'null'] }
+    pue: { type: [number, 'null'] }
 
 semantics:
   signal_mapping:
@@ -3028,6 +3074,9 @@ semantics:
     label_field: verdict
     reason_field: reason
   supported_intents:
+    - CREDIT_SCORE_VERIFY_GENERAL
+    - DATACENTER_TELEMETRY_VERIFY_GENERAL
+    - WAREHOUSE_INVENTORY_GENERAL
     - VESSEL_TELEMETRY_VERIFY_GENERAL
     - LIVE_PORT_CONGESTION_GENERAL
     - TWITTER_SEARCH_GENERAL
