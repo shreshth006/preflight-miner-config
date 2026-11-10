@@ -2461,6 +2461,161 @@ endpoints:
             intents: ['*']
             description: 'The retailer, for example Amazon, Walmart, Target, Apple or IKEA.'
 
+  - path: /vessel
+    external_path: /vessel
+    method: GET
+    description: "Live AIS telemetry for a vessel named by MMSI, IMO number or name, from Fintraffic Digitraffic's open AIS feed (Finnish waters and much of the northern Baltic): position, speed over ground, course, heading, navigational status, draught, destination and ETA, with the position's age. AIS carries no fuel burn, so none is reported."
+    intents:
+      - VESSEL_TELEMETRY_VERIFY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: What is the current speed of vessel MMSI 230629000?'
+        optional:
+          - name: mmsi
+            type: string
+            intents: ['*']
+            description: 'The 9-digit MMSI of the vessel.'
+          - name: imo
+            type: string
+            intents: ['*']
+            description: 'The 7-digit IMO number.'
+          - name: vessel
+            type: string
+            intents: ['*']
+            description: 'The vessel name, for example VIKING GRACE.'
+  - path: /port-congestion
+    external_path: /port-congestion
+    method: GET
+    description: "Live congestion at a Finnish port (Helsinki, Turku, Kotka, Hamina, Rauma, Oulu and others, or its UN/LOCODE) from Fintraffic Digitraffic's port-call register and AIS: vessels at berth, expected in 24 hours and departed in 24 hours, vessels waiting at anchor nearby, average arrival delay against ETA and berth dwell time, with a low/moderate/high level. Ports outside Finland are reported as not covered."
+    intents:
+      - LIVE_PORT_CONGESTION_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: How congested is the port of Helsinki right now?'
+        optional:
+          - name: port
+            type: string
+            intents: ['*']
+            description: 'Port name or UN/LOCODE, for example Helsinki or FIHEL.'
+  - path: /social-search
+    external_path: /social-search
+    method: GET
+    description: "Recent public social posts about a topic or #hashtag from Bluesky's public search, Mastodon's public hashtag timeline and Hacker News, each with platform, author, time and link. X (Twitter) has no search without a paid API key, and the answer says it was not searched."
+    intents:
+      - TWITTER_SEARCH_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Search Twitter for the latest tweets about #bitcoin'
+        optional:
+          - name: keyword
+            type: string
+            intents: ['*']
+            description: 'Topic, keyword or #hashtag to search for.'
+  - path: /shelf-price
+    external_path: /shelf-price
+    method: GET
+    description: "A product's current price: from a store's own public Shopify product feed when a product link is given (live price and availability per variant), otherwise the latest dated shelf prices photographed in shops on Open Prices (prices.openfoodfacts.org) for a product named or given by barcode. Marketplaces that refuse automated clients are not fetched."
+    intents:
+      - LIVE_SHELF_PRICE_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: What is the shelf price of Coca-Cola barcode 5449000000996?'
+        optional:
+          - name: url
+            type: string
+            intents: ['*']
+            description: "Product page link on the store's own site."
+          - name: barcode
+            type: string
+            intents: ['*']
+            description: 'EAN or UPC barcode.'
+          - name: product
+            type: string
+            intents: ['*']
+            description: 'Product name.'
+  - path: /stock-check
+    external_path: /stock-check
+    method: GET
+    description: "Whether a product, or one size or variant of it, is in stock right now, read from the store's own public Shopify product feed for the product link given, with every variant's availability, price and SKU. Without a store link there is no open live-inventory source, and the answer says so instead of guessing."
+    intents:
+      - SKU_IN_STOCK_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Is https://www.allbirds.com/products/mens-wool-runners in stock in size 10?'
+        optional:
+          - name: url
+            type: string
+            intents: ['*']
+            description: "Product page link on the store's own site."
+          - name: variant
+            type: string
+            intents: ['*']
+            description: 'Size or variant, for example 10 or Large.'
+  - path: /kyc
+    external_path: /kyc
+    method: GET
+    description: "The open-data part of a KYC check: the applicant's name screened against the OFAC SDN, OFAC consolidated and UN Security Council sanctions lists, including names asked without their middle names. Biometric liveness, selfie-to-ID matching and document authenticity need a live capture session and the document, so they are reported as not performed, never as passed."
+    intents:
+      - KYC_BIOMETRIC_LIVENESS_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Run a KYC check for applicant John Smith'
+        optional:
+          - name: name
+            type: string
+            intents: ['*']
+            description: "The applicant's full name."
+  - path: /cloud-usage
+    external_path: /cloud-usage
+    method: GET
+    description: "Cloud utilization graded from the readings in the request (CPU, memory, disk, GPU, network as % or used/total) against common alerting thresholds, and a named provider's live public health from its own status feed: AWS Health, Google Cloud Service Health, Azure status, or the Statuspage of GitHub, Cloudflare, DigitalOcean, Vercel and others. An account's private metrics are never claimed."
+    intents:
+      - CLOUD_RESOURCE_USAGE_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Our EC2 instance shows CPU at 92% and memory 14 of 16 GB used. Is this healthy?'
+  - path: /sensor-telemetry
+    external_path: /sensor-telemetry
+    method: GET
+    description: 'Whether a sensor is alive and reporting sane values: public sensors read live by id (USGS water gauges, Sensor.Community, NWS/ASOS stations such as KSEA), with heartbeat freshness against the asked interval and each value checked against its physical range; readings pasted into the request are graded from that data only.'
+    intents:
+      - SENSOR_TELEMETRY_VERIFY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Is USGS gauge 01646500 reporting?'
+
 input_schema:
   type: object
   description: >
@@ -2844,6 +2999,28 @@ output_schema:
     duration: { type: [number, 'null'] }
     distance_km: { type: [number, 'null'] }
     employee_count: { type: [integer, 'null'] }
+    speed_knots: { type: [number, 'null'] }
+    course_deg: { type: [number, 'null'] }
+    draught_m: { type: [number, 'null'] }
+    navigational_status: { type: [string, 'null'] }
+    position_age_minutes: { type: [integer, 'null'] }
+    congestion_level: { type: [string, 'null'] }
+    at_berth: { type: integer }
+    expected_24h: { type: integer }
+    waiting_at_anchor: { type: [integer, 'null'] }
+    avg_arrival_delay_min: { type: [number, 'null'] }
+    in_stock: { type: [boolean, 'null'] }
+    price: { type: [number, 'null'] }
+    currency: { type: [string, 'null'] }
+    sanctions_match: { type: [boolean, 'null'] }
+    liveness_checked: { type: boolean }
+    provider_status: { type: [string, 'null'] }
+    utilization_level: { type: [string, 'null'] }
+    cpu_pct: { type: [number, 'null'] }
+    memory_pct: { type: [number, 'null'] }
+    heartbeat_fresh: { type: [boolean, 'null'] }
+    all_in_range: { type: [boolean, 'null'] }
+    age_seconds: { type: [integer, 'null'] }
 
 semantics:
   signal_mapping:
@@ -2851,6 +3028,14 @@ semantics:
     label_field: verdict
     reason_field: reason
   supported_intents:
+    - VESSEL_TELEMETRY_VERIFY_GENERAL
+    - LIVE_PORT_CONGESTION_GENERAL
+    - TWITTER_SEARCH_GENERAL
+    - LIVE_SHELF_PRICE_GENERAL
+    - SKU_IN_STOCK_GENERAL
+    - KYC_BIOMETRIC_LIVENESS_GENERAL
+    - CLOUD_RESOURCE_USAGE_GENERAL
+    - SENSOR_TELEMETRY_VERIFY_GENERAL
     - RETURN_POLICY_VERIFY_GENERAL
     - TEXT_TO_SPEECH_GENERAL
     - PORT_SCAN_AUDIT_GENERAL
