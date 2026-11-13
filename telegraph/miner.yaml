@@ -2442,6 +2442,94 @@ endpoints:
             intents: ['*']
             description: 'A voice name: Kore, Puck, Charon, Fenrir, Aoede, Leda, Orus or Zephyr.'
 
+  - path: /hotel-availability
+    external_path: /hotel-availability
+    method: GET
+    description: "Room availability and the lowest nightly rate for a named hotel and dates, from the rates booking sites (Booking.com, Agoda, Trip.com, the hotel's own site) list for its TripAdvisor property through Xotelo's free hotel-prices API, covering 42 major cities. Offers listed means rooms are bookable on those sites; rates are before taxes and fees."
+    intents:
+      - HOTEL_AVAILABILITY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Is the Marina Bay Sands in Singapore available on 2026-12-01 for 2 nights?'
+        optional:
+          - name: hotel
+            type: string
+            intents: ['*']
+            description: 'The hotel with its city, for example Hilton Times Square, New York.'
+          - name: check_in
+            type: string
+            intents: ['*']
+            description: 'Check-in date, for example 2026-12-01.'
+          - name: nights
+            type: string
+            intents: ['*']
+            description: 'Number of nights, 1 to 30.'
+
+  - path: /flight-availability
+    external_path: /flight-availability
+    method: GET
+    description: "The route a flight number flies (adsbdb callsign database) and whether it is airborne now (adsb.lol live ADS-B). Seat inventory and fares are held in airline reservation systems with no public feed, so available and price are left empty and the reason says where to get them."
+    intents:
+      - FLIGHT_AVAILABILITY_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Are seats available on UA934 on December 5?'
+        optional:
+          - name: flight
+            type: string
+            intents: ['*']
+            description: 'Flight number, for example UA934 or BA117.'
+          - name: date
+            type: string
+            intents: ['*']
+            description: 'Date of travel, for example 2026-12-05.'
+
+  - path: /transit-lock
+    external_path: /transit-lock
+    method: GET
+    description: "A fare, seat or booking lock lives only in the airline's or agency's reservation record, so it is never claimed as locked. For a route given by IATA airport codes, the current METAR flight category at each airport is reported from aviationweather.gov, flagging instrument conditions that threaten a tight connection."
+    intents:
+      - TRAVEL_TRANSIT_LOCK_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Is my fare locked for JFK to LHR, booking ABC123?'
+        optional:
+          - name: booking
+            type: string
+            intents: ['*']
+            description: 'Route or booking reference, for example JFK-LHR or ABC123.'
+
+  - path: /package-status
+    external_path: /package-status
+    method: GET
+    description: "The carrier a tracking number belongs to (UPS 1Z, USPS 20-22 digit, FedEx 12/15 digit, DHL Express 10 digit) and whether its check digit is correct (UPS, USPS and DHL rules), with the carrier's own tracking link. Live scan events are read only through each carrier's tracking API, so no status is claimed."
+    intents:
+      - PACKAGE_STATUS_GENERAL
+    params:
+      query:
+        required:
+          - name: query
+            type: string
+            intents: ['*']
+            description: 'The full request in plain language, kept verbatim, for example: Where is my UPS package 1Z999AA10123456784?'
+        optional:
+          - name: tracking_number
+            type: string
+            intents: ['*']
+            description: 'The tracking number.'
+
   - path: /return-policy
     external_path: /return-policy
     method: GET
@@ -3074,6 +3162,10 @@ semantics:
     label_field: verdict
     reason_field: reason
   supported_intents:
+    - HOTEL_AVAILABILITY_GENERAL
+    - FLIGHT_AVAILABILITY_GENERAL
+    - TRAVEL_TRANSIT_LOCK_GENERAL
+    - PACKAGE_STATUS_GENERAL
     - CREDIT_SCORE_VERIFY_GENERAL
     - DATACENTER_TELEMETRY_VERIFY_GENERAL
     - WAREHOUSE_INVENTORY_GENERAL
