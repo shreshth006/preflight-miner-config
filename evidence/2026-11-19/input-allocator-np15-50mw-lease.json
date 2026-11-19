@@ -1,0 +1,9 @@
+{
+  "name": "Sample site, NP15 50 MW with an AI lease",
+  "node": "TH_NP15_GEN-APND",
+  "megawatts": 50,
+  "efficiency_j_per_th": 21,
+  "opex_usd_per_mwh": 10,
+  "lease_usd_per_mwh": 95,
+  "sample": true
+}

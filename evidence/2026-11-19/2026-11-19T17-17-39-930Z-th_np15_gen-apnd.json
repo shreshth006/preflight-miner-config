@@ -1,0 +1,179 @@
+{
+  "id": "2026-11-19T17-17-39-930Z-th_np15_gen-apnd",
+  "created_at": "2026-11-19T17:17:39.930Z",
+  "site": {
+    "name": "Sample site, NP15 50 MW with an AI lease",
+    "node": "TH_NP15_GEN-APND",
+    "megawatts": 50,
+    "efficiency_j_per_th": 21,
+    "opex_usd_per_mwh": 10,
+    "lease_usd_per_mwh": 95,
+    "sample": true
+  },
+  "call": "LEASE",
+  "reasons": [
+    "Leasing nets $25.68/MWh against $-13.79/MWh for hashing at $59.32/MWh power."
+  ],
+  "inputs": {
+    "block_height": 976608,
+    "interval_start": "2026-11-19T17:00:00Z",
+    "hashprice_sats_per_ph_day": 44924.96928,
+    "btc_usd": 62297.34,
+    "lmp_usd_per_mwh": 59.31539
+  },
+  "economics": {
+    "revenue_usd_per_mwh": 55.53,
+    "margin_hash_usd_per_mwh": -13.79,
+    "margin_lease_usd_per_mwh": 25.68,
+    "breakeven_power_usd_per_mwh": 45.53,
+    "best_usd_per_hour": 1284.23
+  },
+  "findings": [
+    {
+      "check": "Hashprice",
+      "intent": "MINING_HASHPRICE_VERIFY_GENERAL",
+      "flag": "ok",
+      "summary": "44,924.969 sats per PH/s per day at block 976608.",
+      "purchase": {
+        "intent": "MINING_HASHPRICE_VERIFY_GENERAL",
+        "request": {
+          "intent": "MINING_HASHPRICE_VERIFY_GENERAL",
+          "params": {
+            "block_height": 976608
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "20260828",
+        "miner_name": "PREFLIGHT Infrastructure Signals",
+        "result": {
+          "hashprice_sats_per_ph_day": 44924.96928,
+          "block_height": 976608,
+          "hashrate_eh_s": 1008.026,
+          "hashprice_usd_per_ph_day": 28.3216
+        },
+        "field_status": {
+          "hashprice_sats_per_ph_day": "ok",
+          "block_height": "ok",
+          "hashrate_eh_s": "ok",
+          "hashprice_usd_per_ph_day": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xc1d360f4560d726aacc8a135e89adf72ba4fce2f30bfcb40a82543741e130084",
+        "receipt": {
+          "receipt_hash": "0xc1c66db3aed976c1a5c5347cc81e9e57ee63e623232cd7caf1d72eb57b863321",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5311",
+          "intent": "MINING_HASHPRICE_VERIFY_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 18,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795108667
+        },
+        "duration_ms": 7682,
+        "error": null
+      }
+    },
+    {
+      "check": "BTC price",
+      "intent": "CRYPTO_PRICE_USD",
+      "flag": "ok",
+      "summary": "BTC at $62,297.34.",
+      "purchase": {
+        "intent": "CRYPTO_PRICE_USD",
+        "request": {
+          "intent": "CRYPTO_PRICE_USD",
+          "params": {
+            "symbol": "BTC"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "4433",
+        "miner_name": "LiveCert — Sourced Answers for Agents",
+        "result": {
+          "price_usd": 62297.34
+        },
+        "field_status": {
+          "price_usd": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x757e5101a56f3783c20abc311ad70d05018e64bc11a4852c6e0239dbfe19ebb9",
+        "receipt": {
+          "receipt_hash": "0x7287b1c810c32473b0864940abeff5745528abb57a6cbc6c96fd9fcbade70eb3",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6126",
+          "intent": "CRYPTO_PRICE_USD",
+          "amount_uusdc": "10000",
+          "epoch_id": 18,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795108662
+        },
+        "duration_ms": 2414,
+        "error": null
+      }
+    },
+    {
+      "check": "Power price",
+      "intent": "GRID_POWER_PRICE_GENERAL",
+      "flag": "ok",
+      "summary": "$59.31539/MWh at TH_NP15_GEN-APND for the hour starting 2026-11-19T17:00:00Z.",
+      "purchase": {
+        "intent": "GRID_POWER_PRICE_GENERAL",
+        "request": {
+          "intent": "GRID_POWER_PRICE_GENERAL",
+          "params": {
+            "node_or_zone": "TH_NP15_GEN-APND",
+            "interval_start": "2026-11-19T17:00:00Z"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "7319205",
+        "miner_name": "Telegraph Provider (CAISO, NYISO, MISO grid prices)",
+        "result": {
+          "lmp_usd_per_mwh": 59.31539,
+          "node_or_zone": "TH_NP15_GEN-APND",
+          "market": "CAISO day-ahead hourly LMP (DAM)",
+          "interval_start": "2026-11-19T17:00:00Z",
+          "currency": "USD"
+        },
+        "field_status": {
+          "lmp_usd_per_mwh": "ok",
+          "node_or_zone": "ok",
+          "market": "ok",
+          "interval_start": "ok",
+          "currency": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x69b66db9b264f0a57d38fcab85276aebea3c0b428051425cd777e8b468a7de72",
+        "receipt": {
+          "receipt_hash": "0x406f20d59330ec10b369a1454e46d9f0c5814d91d943e6d04b6869f13bac78cf",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6129",
+          "intent": "GRID_POWER_PRICE_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 18,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795108667
+        },
+        "duration_ms": 7945,
+        "error": null
+      }
+    }
+  ],
+  "paid_requests": 3,
+  "total_cost_usd": 0.03,
+  "network": "eip155:11155111",
+  "network_label": "Ethereum Sepolia testnet",
+  "boundary": "Testnet: payments are Ethereum Sepolia test USDC with no monetary value. Miner answers are real; settlement is on a test network.",
+  "agent": "0x9B3c9555c28CA6cc1D07085d5fE81D9d229f0975",
+  "memo_hash": "0xa13703c576f2f1e9c3fd57a954fd88492d7551ebfde4049f2073b7d317606246",
+  "signature": "0x5c4749310e429630d95d4626f422a99e40306eca10a5cf77bd28fc0e23ceb0060a860818ba798a081ecd8bb70376c50bcdd79467c5949c79f323cf639f9f83431b"
+}

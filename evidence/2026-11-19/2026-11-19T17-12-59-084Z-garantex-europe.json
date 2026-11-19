@@ -1,0 +1,566 @@
+{
+  "id": "2026-11-19T17-12-59-084Z-garantex-europe",
+  "created_at": "2026-11-19T17:12:59.084Z",
+  "subject": {
+    "name": "Garantex Europe OU",
+    "jurisdiction": "EE",
+    "sample": true
+  },
+  "decision": "STOP",
+  "reasons": [
+    "\"Garantex Europe OU\" is a possible match on OFAC SDN list (score 1). A name match needs a person to confirm it."
+  ],
+  "findings": [
+    {
+      "check": "Registry record",
+      "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+      "attempts": 7,
+      "flag": "unverified",
+      "summary": "Registry record: no legal name given.",
+      "purchase": {
+        "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+        "request": {
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "params": {
+            "company": "Garantex Europe OU",
+            "jurisdiction": "EE"
+          }
+        },
+        "direct_miner": "4433",
+        "ok": true,
+        "status": 200,
+        "miner_id": "4433",
+        "miner_name": "LiveCert — Sourced Answers for Agents",
+        "result": {
+          "active": null,
+          "answer": "No register record matching Garantex Europe OU was found in the GLEIF LEI register for EE.",
+          "checked_at": "2026-11-19T17:13:35.912Z",
+          "confidence": 0.6,
+          "licensing": {
+            "endpoint_status": "unclear",
+            "ledger": "/sources",
+            "notices": [
+              "EU financial sanctions list: © European Union, reused under CC BY 4.0; names re-encoded into a search index.",
+              "UK Sanctions List (FCDO): contains public sector information licensed under the Open Government Licence v3.0."
+            ],
+            "upstreams": [
+              {
+                "source": "EU financial sanctions consolidated list (European Commission)",
+                "status": "conditional"
+              },
+              {
+                "source": "GLEIF",
+                "status": "licensed"
+              },
+              {
+                "source": "US Treasury OFAC",
+                "status": "licensed"
+              },
+              {
+                "source": "OFAC addresses list (0xB10C, GitHub)",
+                "status": "licensed"
+              },
+              {
+                "source": "US SEC EDGAR",
+                "status": "conditional"
+              },
+              {
+                "source": "UK Sanctions List (FCDO)",
+                "status": "conditional"
+              },
+              {
+                "source": "UN Security Council Consolidated List",
+                "status": "unclear"
+              }
+            ]
+          },
+          "not_in_sources": [
+            "directors and officers",
+            "beneficial owners (GLEIF records accounting-consolidation parents only)"
+          ],
+          "reason": "No register record matching Garantex Europe OU was found in the GLEIF LEI register for EE. Only legal entities that hold an LEI are covered, so this is not proof that no such company exists.",
+          "receipt": {
+            "answered_at": "2026-11-19T17:13:35.912Z",
+            "deployment": "miner-n0lo5k8w7-wukong4.vercel.app",
+            "from_cache": false,
+            "id": "a65dfc74-12ad-4fe1-b013-cf8b6a0e4ea2",
+            "upstream": [
+              {
+                "method": "GET",
+                "ms": 342,
+                "started_at": "2026-11-19T17:13:35.569Z",
+                "status": 200,
+                "url": "https://api.gleif.org/api/v1/lei-records?filter%5Bentity.legalName%5D=Garantex%20Europe%20OU&filter%5Bentity.legalAddress.country%5D=EE&page%5Bsize%5D=15"
+              }
+            ]
+          },
+          "registration_id": null,
+          "sources": [],
+          "subject": "Garantex Europe OU",
+          "verdict": "not_found"
+        },
+        "field_status": null,
+        "cost_usd": 0.01,
+        "signal_hash": "0xc5dfb2548d8d0cc338d200e68b16a470d1ecc26d29969d990ab62202ecc3b48a",
+        "receipt": {
+          "receipt_hash": "0xc09ecb72a3ecebab00372c973a27fb71eb97b68fc07909c3e57622b6b0badc31",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6126",
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 18,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795108416
+        },
+        "duration_ms": 1782,
+        "error": null
+      },
+      "superseded": {
+        "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+        "request": {
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "params": {
+            "company": "Garantex Europe OU",
+            "jurisdiction": "EE"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "7393",
+        "miner_name": "DataWire Corporate Registry Lookup",
+        "result": {
+          "legal_name": null,
+          "registration_id": null,
+          "active": null,
+          "jurisdiction": "EE",
+          "registered_address": null,
+          "incorporated": null
+        },
+        "field_status": {
+          "legal_name": "missing",
+          "registration_id": "missing",
+          "active": "missing",
+          "jurisdiction": "ok",
+          "registered_address": "missing",
+          "incorporated": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xd11fedb41f88da280d10e7679598332602e67d00c9c909b25ecf381f2a170792",
+        "receipt": {
+          "receipt_hash": "0x5243f8c83e1d43303f3818b5017dde1a76e2a705083fe94a019abbfbcbc48282",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "4471",
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 18,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795108397
+        },
+        "duration_ms": 18756,
+        "error": null
+      },
+      "also_tried": [
+        {
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "request": {
+            "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+            "params": {
+              "company": "Garantex Europe OU",
+              "jurisdiction": "EE"
+            }
+          },
+          "direct_miner": "20260828",
+          "ok": true,
+          "status": 200,
+          "miner_id": "20260828",
+          "miner_name": "PREFLIGHT Infrastructure Signals",
+          "result": {
+            "active": null,
+            "checked_at": "2026-11-19T17:13:21.082Z",
+            "confidence": 0.75,
+            "entity_status": null,
+            "found": false,
+            "incorporated": null,
+            "jurisdiction": null,
+            "legal_name": null,
+            "reason": "No legal entity named \"Garantex Europe OU\" in Estonia holds an LEI in GLEIF's index.",
+            "registered_address": null,
+            "registration_id": null,
+            "registration_status": null,
+            "source": "GLEIF LEI index",
+            "verdict": "not_found"
+          },
+          "field_status": null,
+          "cost_usd": 0.01,
+          "signal_hash": "0x0dc5c4041854c6fcdfa3e7f9d098b39fe741cb21c6ec8cd60a9d2f65ffdcf29a",
+          "receipt": {
+            "receipt_hash": "0x714d6c2631c6332acdc39d177050b756f7c947891da627c9b652b9944b8fb798",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "5311",
+            "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 18,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795108403
+          },
+          "duration_ms": 4154,
+          "error": null
+        },
+        {
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "request": {
+            "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+            "params": {
+              "company": "Garantex Europe OU",
+              "jurisdiction": "EE"
+            }
+          },
+          "direct_miner": "6127",
+          "ok": true,
+          "status": 200,
+          "miner_id": "6127",
+          "miner_name": "Praman Desk Compliance & Procurement Auditor",
+          "result": {
+            "legal_name": null,
+            "registration_id": null,
+            "active": false,
+            "jurisdiction": "EE",
+            "registered_address": null,
+            "incorporated": null
+          },
+          "field_status": {
+            "legal_name": "missing",
+            "registration_id": "missing",
+            "active": "ok",
+            "jurisdiction": "ok",
+            "registered_address": "missing",
+            "incorporated": "missing"
+          },
+          "cost_usd": 0.01,
+          "signal_hash": "0x35db024d01dedf6c16e4f0d5cc6220eb2da4d230218255f9e64c0e4160c659a0",
+          "receipt": {
+            "receipt_hash": "0x3a9ec12e1983774a74b6716f1727bbcaaa3b040630b85b77699d0de41c395153",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "6128",
+            "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 18,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795108406
+          },
+          "duration_ms": 3223,
+          "error": null
+        }
+      ]
+    },
+    {
+      "check": "Company sanctions screen",
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "flag": "block",
+      "summary": "\"Garantex Europe OU\" is a possible match on OFAC SDN list (score 1). A name match needs a person to confirm it.",
+      "purchase": {
+        "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+        "request": {
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "params": {
+            "name": "Garantex Europe OU"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "9002",
+        "miner_name": "TxLens",
+        "result": {
+          "name": "Garantex Europe OU",
+          "matched": true,
+          "matches": [
+            "GARANTEX EUROPE OU"
+          ],
+          "lists": [
+            "OFAC SDN list"
+          ],
+          "match_score": 1
+        },
+        "field_status": {
+          "name": "ok",
+          "matched": "ok",
+          "matches": "ok",
+          "lists": "ok",
+          "match_score": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x675e04b3894e1e0e05099fd00dcb047f3de21b025accbe0ff631d3fe70e37898",
+        "receipt": {
+          "receipt_hash": "0xd9d7cf24e015c09902231e9d393c560e7e2f1f43a88e038480abe9d3f85e83b8",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6121",
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 18,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795108386
+        },
+        "duration_ms": 7468,
+        "error": null
+      }
+    },
+    {
+      "check": "Regulatory filings",
+      "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+      "flag": "ok",
+      "summary": "Regulatory filings: 1 mentioning \"Garantex Europe\" in the last 12 months. One of them: \"Permitted Payment Stablecoin Issuer Anti-Money Laundering/Countering the Financing of Terrorism Program and Sanctions Compliance Program Requirements\". A count of mentions isn't a finding against anyone.",
+      "purchase": {
+        "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+        "request": {
+          "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+          "params": {
+            "entity": "Garantex Europe",
+            "period": "the last 12 months"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "20260828",
+        "miner_name": "PREFLIGHT Infrastructure Signals",
+        "result": {
+          "entity": "Garantex Europe",
+          "filing_count": 1,
+          "filings": [
+            "Permitted Payment Stablecoin Issuer Anti-Money Laundering/Countering the Financing of Terrorism Program and Sanctions Compliance Program Requirements"
+          ],
+          "urls": [
+            "https://www.federalregister.gov/documents/2026/04/10/2026-06963/permitted-payment-stablecoin-issuer-anti-money-launderingcountering-the-financing-of-terrorism"
+          ]
+        },
+        "field_status": {
+          "entity": "ok",
+          "filing_count": "ok",
+          "filings": "ok",
+          "urls": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x3b55ec37f1d10078294a055b2ec823dc4b9d29810b764b916ee8d8eb9e6b42d7",
+        "receipt": {
+          "receipt_hash": "0xc4a080c6cf149d6b4c791c5c24c9f7ee1ca8d1d30a76b3dd95f9dcc0a96c3f5f",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5311",
+          "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 18,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795108402
+        },
+        "duration_ms": 23724,
+        "error": null
+      }
+    },
+    {
+      "check": "Adverse media",
+      "intent": "WEB_SEARCH_GENERAL",
+      "attempts": 5,
+      "flag": "unverified",
+      "summary": "Adverse media: the answer gave no results to read for \"Garantex Europe\".",
+      "purchase": {
+        "intent": "WEB_SEARCH_GENERAL",
+        "request": {
+          "intent": "WEB_SEARCH_GENERAL",
+          "params": {
+            "query": "Garantex Europe lawsuit fraud investigation sanctions"
+          }
+        },
+        "direct_miner": "49007",
+        "ok": true,
+        "status": 200,
+        "miner_id": "49007",
+        "miner_name": "Crossref Works Web Search",
+        "result": {
+          "message": "[omitted]",
+          "message-type": "work-list",
+          "message-version": "1.0.0",
+          "status": "ok",
+          "trimmed_from_bytes": 72491
+        },
+        "field_status": null,
+        "cost_usd": 0.01,
+        "signal_hash": "0x87f7d35fbd19a4cc4808251f216c94329db6d952c9c8f4587c32f0fc5e6821c8",
+        "receipt": {
+          "receipt_hash": "0x0568ab5eba7147e7fab5381959ec11db957d3b4f9250b1a80c020c574a7d76f8",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "4287",
+          "intent": "WEB_SEARCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 18,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795108404
+        },
+        "duration_ms": 3067,
+        "error": null
+      },
+      "superseded": {
+        "intent": "WEB_SEARCH_GENERAL",
+        "request": {
+          "intent": "WEB_SEARCH_GENERAL",
+          "params": {
+            "query": "Garantex Europe lawsuit fraud investigation sanctions"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "302",
+        "miner_name": "ChainSight — Universal Intelligence & Data Oracle",
+        "result": {
+          "answer": null,
+          "sources": [
+            "https://en.wikipedia.org/wiki/Tether_(cryptocurrency)"
+          ],
+          "brief": null
+        },
+        "field_status": {
+          "answer": "missing",
+          "sources": "ok",
+          "brief": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x62484bc924cb9772832cdf309dfd71c34f4124dfcf06dc3a8fc6ea4fbd4748bf",
+        "receipt": {
+          "receipt_hash": "0x6b74932e2370dd68476b2b5f69773977d3a78b406b2a317f9b144ec28dd5e523",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6119",
+          "intent": "WEB_SEARCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 18,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795108387
+        },
+        "duration_ms": 8356,
+        "error": null
+      },
+      "also_tried": [
+        {
+          "intent": "WEB_SEARCH_GENERAL",
+          "request": {
+            "intent": "WEB_SEARCH_GENERAL",
+            "params": {
+              "query": "Garantex Europe lawsuit fraud investigation sanctions"
+            }
+          },
+          "direct_miner": "78221",
+          "ok": true,
+          "status": 200,
+          "miner_id": "78221",
+          "miner_name": "Revision-linked Wikipedia Source Search",
+          "result": {
+            "answer": "[1] Tether (cryptocurrency)\nTether is a stablecoin—a digital currency whose value aims to  maintain a stable value relative to the United States dollar—launched by Tether Limited in 2014. It is represented by its currency codes USD₮ and USDT.",
+            "sources": [
+              "https://en.wikipedia.org/wiki/Tether_(cryptocurrency)"
+            ],
+            "brief": "The top Wikipedia source is Tether (cryptocurrency)."
+          },
+          "field_status": {
+            "answer": "ok",
+            "sources": "ok",
+            "brief": "ok"
+          },
+          "cost_usd": 0.01,
+          "signal_hash": "0x65b81aadfa72ba0151f917284531c6361e51054ba55e87fcebcad838d08f7e47",
+          "receipt": {
+            "receipt_hash": "0x4703718e3a61d5ad1a78b4f709b6a3430418cfbc0496992b083f60d7dff996fa",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "4874",
+            "intent": "WEB_SEARCH_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 18,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795108396
+          },
+          "duration_ms": 7092,
+          "error": null
+        },
+        {
+          "intent": "WEB_SEARCH_GENERAL",
+          "request": {
+            "intent": "WEB_SEARCH_GENERAL",
+            "params": {
+              "query": "Garantex Europe lawsuit fraud investigation sanctions"
+            }
+          },
+          "direct_miner": "49002",
+          "ok": true,
+          "status": 200,
+          "miner_id": "49002",
+          "miner_name": "HN Search By Date",
+          "result": {
+            "exhaustive": {
+              "nbHits": false,
+              "typo": false
+            },
+            "exhaustiveNbHits": false,
+            "exhaustiveTypo": false,
+            "hits": [],
+            "hitsPerPage": 20,
+            "nbHits": 0,
+            "nbPages": 0,
+            "page": 0,
+            "params": "query=Garantex+Europe+lawsuit+fraud+investigation+sanctions&tags=story&advancedSyntax=true&analyticsTags=backend",
+            "processingTimeMS": 29,
+            "processingTimingsMS": {
+              "_request": {
+                "roundTrip": 19
+              },
+              "fetch": {
+                "query": 27,
+                "total": 28
+              },
+              "total": 29
+            },
+            "query": "Garantex Europe lawsuit fraud investigation sanctions",
+            "serverTimeMS": 29
+          },
+          "field_status": null,
+          "cost_usd": 0.01,
+          "signal_hash": "0x672c89eb0f92fd1a685dcc296e109dd8e6fd62bae469d99eb61cf5fa99756667",
+          "receipt": {
+            "receipt_hash": "0x35b1f26296ef98d5610a97bb5186c72e5486d220428d056030abf950697ed1c3",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "4291",
+            "intent": "WEB_SEARCH_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 18,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795108399
+          },
+          "duration_ms": 3026,
+          "error": null
+        }
+      ]
+    }
+  ],
+  "paid_requests": 10,
+  "total_cost_usd": 0.1,
+  "network": "eip155:11155111",
+  "network_label": "Ethereum Sepolia testnet",
+  "boundary": "Testnet: payments are Ethereum Sepolia test USDC with no monetary value. Miner answers are real; settlement is on a test network.",
+  "agent": "0x9B3c9555c28CA6cc1D07085d5fE81D9d229f0975",
+  "memo_hash": "0xab6eda5d24815766e25a1a27643f75eb53bccff9f054e766ffba7cb59945f1d8",
+  "signature": "0x9321a7e863e4187204b91d6e43daf04abc1200215045a50df2b7f3ddc230dc0d191cc05a049fcda2b1eca8b7ae7e3bec4a92984c66bfc26d69d7375a4751030d1b"
+}

@@ -1,0 +1,710 @@
+{
+  "id": "2026-11-19T17-12-59-086Z-uni",
+  "created_at": "2026-11-19T17:12:59.086Z",
+  "application": {
+    "project": "Uniswap",
+    "symbol": "UNI",
+    "chain": "ethereum",
+    "contract": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+    "issuer": "Uniswap Foundation",
+    "treasury": [
+      "0x1a9C8182C09F50C8318d769245beA52c32BE35BC"
+    ],
+    "pool": "UNI/USDC",
+    "social": "@Uniswap",
+    "website": "https://uniswap.org"
+  },
+  "decision": "REVIEW",
+  "reasons": [
+    "Contract audit: no risk grade given. Smart contract audit query for \"\". Please provide a valid contract address (0x...) for security analysis."
+  ],
+  "findings": [
+    {
+      "check": "Contract audit",
+      "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+      "attempts": 4,
+      "flag": "unverified",
+      "summary": "Contract audit: no risk grade given. Smart contract audit query for \"\". Please provide a valid contract address (0x...) for security analysis.",
+      "purchase": {
+        "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+        "request": {
+          "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+          "query": "Audit the UNI token contract 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984 on ethereum for a listing review: owner and admin keys, mint, burn, pause and blacklist powers, upgradeability, reentrancy and known vulnerability classes. Give a verdict (safe, caution or unsafe) and the findings."
+        },
+        "direct_miner": "501",
+        "ok": true,
+        "status": 200,
+        "miner_id": "501",
+        "miner_name": "Telegraph Sentinel Risk Intelligence",
+        "result": {
+          "answer": "Smart contract audit query for \"\". Please provide a valid contract address (0x...) for security analysis.",
+          "as_of": "2026-11-19T17:13:09.892Z",
+          "confidence": 0.5,
+          "confidence_score": 0.5,
+          "contract": "",
+          "contract_name": "",
+          "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+          "intents": [
+            "SMART_CONTRACT_AUDIT_GENERAL",
+            "SMART_CONTRACT_AUDIT"
+          ],
+          "miner_id": 501,
+          "signal": "Smart contract audit query for \"\". Please provide a valid contract address (0x...) for security analysis.",
+          "source": "sentinel-contract-auditor",
+          "status": "success",
+          "summary": "Smart contract audit query for \"\". Please provide a valid contract address (0x...) for security analysis.",
+          "timestamp": "2026-11-19T17:13:09.892Z",
+          "verified": false
+        },
+        "field_status": null,
+        "cost_usd": 0.01,
+        "signal_hash": "0xfafaecefd643e10b87e36164f554115e2a6096b06a06a6e71886146041d77712",
+        "receipt": {
+          "receipt_hash": "0xd5a63eb603b6f774f0110de0bb8e16a187580b2b14e980f8eccb30897c49a1dc",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5233",
+          "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 18,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795108389
+        },
+        "duration_ms": 642,
+        "error": null
+      },
+      "superseded": {
+        "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+        "request": {
+          "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+          "query": "Audit the UNI token contract 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984 on ethereum for a listing review: owner and admin keys, mint, burn, pause and blacklist powers, upgradeability, reentrancy and known vulnerability classes. Give a verdict (safe, caution or unsafe) and the findings."
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "openai",
+        "miner_name": "openai",
+        "result": "Here's an audit of the UNI token contract (0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984) on Ethereum for a listing review:\n\n**Findings:**\n\n*   **Owner and Admin Keys:** The contract is owned by a `Timelock` contract (0x1a2b3d4d2a2c2d2d2d2d2d2d2d2d2d2d2d2d2d2d). This `Timelock` contract itself is controlled by a multisig wallet (0x4678f0975a463d37308300000000000000000000). This indicates a decentralized governance model for administrative actions, which is generally a positive security feature.\n*   **Mint Powers:** The `mint` function is not publicly accessible. Minting of UNI tokens is typically handled by the governance process and deployed through separate contracts, not directly by the ERC-20 token contract itself.\n*   **Burn Powers:** The `burn` and `burnFrom` functions are available, allowing token holders to burn their own tokens or tokens they have allowance for. This is a standard ERC-20 feature.\n*   **Pause Powers:** The contract does not appear to have a `pause` mechanism.\n*   **Blacklist Powers:** The contract does not have a direct `blacklist` function. However, the governance mechanism (via the `Timelock` and multisig) could potentially implement measures that indirectly affect token holders, though this is not a direct blacklist function within the ERC-20 contract.\n*   **Upgradeability:** The UNI token contract is **not upgradeable**. It is a standard ERC-20 implementation.\n*   **Reentrancy:** The contract's public functions do not appear to be vulnerable to reentrancy attacks. Standard ERC-20 operations like `transfer` and `approve` are generally safe in this regard.\n*   **Known Vulnerability Classes:** As a standard ERC-20 implementation with a decentralized ownership model, it does not exhibit common vulnerabilities found in more complex DeFi protocols. The primary risk would lie in the security of the governance multisig and the `Timelock` contract.\n\n**Verdict:**\n\n**Safe**\n\n**Explanation:**\n\nThe UNI token contract is a well-established and widely used ERC-20 token. Its administrative functions are controlled by a decentralized governance mechanism (Timelock and multisig), which is a strong security practice. The contract itself is a standard implementation without apparent reentrancy or other common smart contract vulnerabilities. The lack of upgradeability means its core functionality is fixed, reducing the",
+        "field_status": null,
+        "cost_usd": 0,
+        "signal_hash": "0x3c6b2484416a0752e13bd3d82afad581438b65afdad3de8d78196b431dc666c7",
+        "receipt": null,
+        "duration_ms": 3557,
+        "error": null
+      },
+      "also_tried": [
+        {
+          "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+          "request": {
+            "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+            "query": "Audit the UNI token contract 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984 on ethereum for a listing review: owner and admin keys, mint, burn, pause and blacklist powers, upgradeability, reentrancy and known vulnerability classes. Give a verdict (safe, caution or unsafe) and the findings."
+          },
+          "direct_miner": "4433",
+          "ok": true,
+          "status": 200,
+          "miner_id": "4433",
+          "miner_name": "LiveCert — Sourced Answers for Agents",
+          "result": {
+            "answer": "A link or an address was sent, and neither is fetched.",
+            "checked_at": "2026-11-19T17:13:07.117Z",
+            "confidence": 0,
+            "error": "source_not_fetched",
+            "finding_count": null,
+            "findings": [],
+            "licensing": {
+              "endpoint_status": "unclear",
+              "ledger": "/sources",
+              "upstreams": [
+                {
+                  "source": "endoflife.date",
+                  "status": "licensed"
+                },
+                {
+                  "source": "Groq",
+                  "status": "unclear"
+                },
+                {
+                  "source": "Wikidata",
+                  "status": "licensed"
+                }
+              ]
+            },
+            "reason": "A link or an address was sent, and neither is fetched. Send the Solidity source itself as the contract parameter.",
+            "receipt": {
+              "answered_at": "2026-11-19T17:13:07.117Z",
+              "deployment": "miner-n0lo5k8w7-wukong4.vercel.app",
+              "from_cache": false,
+              "id": "23723155-3946-4f9d-b8b0-56ebb65b9364",
+              "note": "No upstream request was made for this answer: it was computed from the question alone, or from data this instance already held from an earlier request (for example sanctions lists, the ECB rate table, a weather forecast, a place lookup or a model reply). The answer's own source fields name where that data came from.",
+              "upstream": []
+            },
+            "source": "Groq (gpt-oss-120b, falling back to qwen3.8-27b and gpt-oss-20b)",
+            "summary": null,
+            "verdict": "insufficient_input"
+          },
+          "field_status": null,
+          "cost_usd": 0.01,
+          "signal_hash": "0x675a6c3584c1b5071d56365ac0070d67da24f91bda26021012a8bbb6571f5c05",
+          "receipt": {
+            "receipt_hash": "0x5f4141f567b450eca101b5f80fda7612de1fffcedae3bf0485b782ba9e9e5df6",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "6126",
+            "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 18,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795108387
+          },
+          "duration_ms": 3114,
+          "error": null
+        },
+        {
+          "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+          "request": {
+            "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+            "query": "Audit the UNI token contract 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984 on ethereum for a listing review: owner and admin keys, mint, burn, pause and blacklist powers, upgradeability, reentrancy and known vulnerability classes. Give a verdict (safe, caution or unsafe) and the findings."
+          },
+          "direct_miner": "200001",
+          "ok": true,
+          "status": 200,
+          "miner_id": "200001",
+          "miner_name": "GoPlus Security",
+          "result": {
+            "code": 1,
+            "message": "OK",
+            "result": {
+              "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984": {
+                "anti_whale_modifiable": "0",
+                "buy_tax": "0",
+                "can_take_back_ownership": "0",
+                "cannot_buy": "0",
+                "creator_address": "0x41653c7d61609d856f29355e404f310ec4142cfb",
+                "creator_balance": "0.002858162612694493",
+                "creator_percent": "0.000000",
+                "external_call": "0",
+                "hidden_owner": "0",
+                "holder_count": "407483",
+                "holders": [
+                  {
+                    "address": "0x1a9c8182c09f50c8318d769245bea52c32be35bc",
+                    "balance": "262247996.305835021033106178",
+                    "is_contract": 1,
+                    "is_locked": 0,
+                    "percent": "0.262247996305835021",
+                    "tag": ""
+                  },
+                  {
+                    "address": "0x000000000000000000000000000000000000dead",
+                    "balance": "114285581.213802937903387397",
+                    "is_contract": 0,
+                    "is_locked": 1,
+                    "percent": "0.114285581213802937",
+                    "tag": ""
+                  },
+                  {
+                    "address": "0x5a52e96bacdabb82fd05763e25335261b270efcb",
+                    "balance": "35438427.44",
+                    "is_contract": 0,
+                    "is_locked": 0,
+                    "percent": "0.035438427440000000",
+                    "tag": ""
+                  },
+                  {
+                    "address": "0xf977814e90da44bfa03b6295a0616a897441acec",
+                    "balance": "23073400.304",
+                    "is_contract": 0,
+                    "is_locked": 0,
+                    "percent": "0.023073400304000000",
+                    "tag": ""
+                  },
+                  {
+                    "address": "0x61cb39bece033c5bda281747db1c15cced2096eb",
+                    "balance": "23047480.513298522",
+                    "is_contract": 0,
+                    "is_locked": 0,
+                    "percent": "0.023047480513298522",
+                    "tag": ""
+                  },
+                  {
+                    "address": "0x611f7bf868a6212f871e89f7e44684045ddfb09d",
+                    "balance": "16971242.59500058",
+                    "is_contract": 0,
+                    "is_locked": 0,
+                    "percent": "0.016971242595000580",
+                    "tag": ""
+                  },
+                  {
+                    "address": "0x5069a64bc6616dec1584ee0500b7813a9b680f7e",
+                    "balance": "13314112.20580350296996031",
+                    "is_contract": 0,
+                    "is_locked": 0,
+                    "percent": "0.013314112205803502",
+                    "tag": ""
+                  },
+                  {
+                    "address": "0x36ca0abdf3852f00aee7798c7dfb5ead5d3fec2a",
+                    "balance": "12611331.35576091",
+                    "is_contract": 0,
+                    "is_locked": 0,
+                    "percent": "0.012611331355760910",
+                    "tag": ""
+                  },
+                  {
+                    "address": "0x6d278351f4a973d1349ef1e54ed37daed0799e19",
+                    "balance": "10286054.26409608",
+                    "is_contract": 0,
+                    "is_locked": 0,
+                    "percent": "0.010286054264096080",
+                    "tag": ""
+                  },
+                  {
+                    "address": "0xe49b875a4c4be752489eed3e67aaebbe65397deb",
+                    "balance": "9000000.0001",
+                    "is_contract": 0,
+                    "is_locked": 0,
+                    "percent": "0.009000000000100000",
+                    "tag": ""
+                  }
+                ],
+                "honeypot_with_same_creator": "0",
+                "is_anti_whale": "0",
+                "is_blacklisted": "0",
+                "is_honeypot": "0",
+                "is_in_cex": {
+                  "cex_list": [
+                    "Binance",
+                    "Coinbase"
+                  ],
+                  "listed": "1"
+                },
+                "is_mintable": "0",
+                "is_open_source": "1",
+                "is_proxy": "0",
+                "is_whitelisted": "0",
+                "owner_address": "0x1a9c8182c09f50c8318d769245bea52c32be35bc",
+                "owner_balance": "262247996.30583504",
+                "owner_change_balance": "0",
+                "owner_percent": "0.262248",
+                "personal_slippage_modifiable": "0",
+                "selfdestruct": "0",
+                "sell_tax": "0",
+                "slippage_modifiable": "0",
+                "token_name": "Uniswap",
+                "token_symbol": "UNI",
+                "total_supply": "1000000000",
+                "trading_cooldown": "0",
+                "transfer_pausable": "0",
+                "transfer_tax": "",
+                "trust_list": "1"
+              }
+            }
+          },
+          "field_status": null,
+          "cost_usd": 0.01,
+          "signal_hash": "0xaf3bb482c3107b46833c962f2e0f5f24eff275806ee2eb2e1bbe429e2aa21030",
+          "receipt": {
+            "receipt_hash": "0x2b412a161f80e5c0bc00aecdd0a1895a157d72dd47f24eeefbd3ac9f149a3716",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "4819",
+            "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 18,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795108389
+          },
+          "duration_ms": 2107,
+          "error": null
+        }
+      ]
+    },
+    {
+      "check": "Total supply",
+      "intent": "TOKEN_TOTAL_SUPPLY_VERIFY_GENERAL",
+      "flag": "ok",
+      "summary": "Total supply on-chain: 1,000,000,000 UNI.",
+      "purchase": {
+        "intent": "TOKEN_TOTAL_SUPPLY_VERIFY_GENERAL",
+        "request": {
+          "intent": "TOKEN_TOTAL_SUPPLY_VERIFY_GENERAL",
+          "params": {
+            "token": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984 on ethereum"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "4433",
+        "miner_name": "LiveCert — Sourced Answers for Agents",
+        "result": {
+          "total_supply": 1000000000
+        },
+        "field_status": {
+          "total_supply": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xdca2f6d33c96682e04902ee7c3e1d03ef64c3e77698c96e89824b075c56bf840",
+        "receipt": {
+          "receipt_hash": "0x489efccc1f4cd93e49820924307153ef9d3657bd6a69e1910db5f4b66becdf3d",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6126",
+          "intent": "TOKEN_TOTAL_SUPPLY_VERIFY_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 18,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795108383
+        },
+        "duration_ms": 4077,
+        "error": null
+      }
+    },
+    {
+      "check": "Holder distribution",
+      "intent": "TOKEN_HOLDER_COUNT_GENERAL",
+      "flag": "ok",
+      "summary": "431,268 distinct holders.",
+      "purchase": {
+        "intent": "TOKEN_HOLDER_COUNT_GENERAL",
+        "request": {
+          "intent": "TOKEN_HOLDER_COUNT_GENERAL",
+          "params": {
+            "token": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+            "chain": "ethereum"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "73102",
+        "miner_name": "ChainWire Sourced Token Holders",
+        "result": {
+          "token": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+          "chain": "ethereum",
+          "holders_count": 431268,
+          "token_symbol": "UNI"
+        },
+        "field_status": {
+          "token": "ok",
+          "chain": "ok",
+          "holders_count": "ok",
+          "token_symbol": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x52c105d47e68dfbccfecd8861a9455fd9aa59bf055aed6082861e68a2b1fa02b",
+        "receipt": {
+          "receipt_hash": "0xd1d14c97d791e16d9df93c58249a4da2b64c3e6ad8c2af061beccb9b9f29022f",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5065",
+          "intent": "TOKEN_HOLDER_COUNT_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 18,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795108386
+        },
+        "duration_ms": 7619,
+        "error": null
+      }
+    },
+    {
+      "check": "Issuer sanctions screen",
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "flag": "ok",
+      "summary": "Issuer \"Uniswap Foundation\": no sanctions-list match.",
+      "purchase": {
+        "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+        "request": {
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "params": {
+            "name": "Uniswap Foundation"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "9002",
+        "miner_name": "TxLens",
+        "result": {
+          "name": "Uniswap Foundation",
+          "matched": false,
+          "matches": null,
+          "lists": null,
+          "match_score": 0.75
+        },
+        "field_status": {
+          "name": "ok",
+          "matched": "ok",
+          "matches": "missing",
+          "lists": "missing",
+          "match_score": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x7ade749ba89e3e0d6c9a6d3aefac0f108e1017ef2201ce9c3b86af53cd1a2b8f",
+        "receipt": {
+          "receipt_hash": "0x0386065b21c9e8c5e448d3b352fc6646ba9fbfe6abb165fed7cada39e27d714c",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6121",
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 18,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795108387
+        },
+        "duration_ms": 8181,
+        "error": null
+      }
+    },
+    {
+      "check": "Pool liquidity",
+      "intent": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+      "flag": "ok",
+      "summary": "DEX pool UNI/USDC holds $2,395,872.",
+      "purchase": {
+        "intent": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+        "request": {
+          "intent": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+          "params": {
+            "pool": "UNI/USDC",
+            "chain": "ethereum"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "20260828",
+        "miner_name": "PREFLIGHT Infrastructure Signals",
+        "result": {
+          "liquidity_usd": 2395871.57
+        },
+        "field_status": {
+          "liquidity_usd": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x549d9e69f542e794851e96b9dcc1ef4df0b81d2295d307797da166cbde6c90a7",
+        "receipt": {
+          "receipt_hash": "0xf93b463c1b6691e1783c6594bb05790a09cbed67a5c322750ccf517271bd1a04",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5311",
+          "intent": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 18,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795108387
+        },
+        "duration_ms": 8449,
+        "error": null
+      }
+    },
+    {
+      "check": "Treasury 0x1a9C8182…",
+      "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+      "flag": "ok",
+      "summary": "Treasury 0x1a9C8182C09F50C8318d769245beA52c32BE35BC held 0.2377 ETH at block 26,450,546.",
+      "purchase": {
+        "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+        "request": {
+          "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+          "params": {
+            "address": "0x1a9C8182C09F50C8318d769245beA52c32BE35BC",
+            "block": 26450546
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "73199",
+        "miner_name": "ZK Pinned Ethereum Balance",
+        "result": {
+          "balance_gwei": 237652245.4626291,
+          "address": "0x1a9C8182C09F50C8318d769245beA52c32BE35BC",
+          "block": "26450546",
+          "chain": "ethereum",
+          "tx_count": null
+        },
+        "field_status": {
+          "balance_gwei": "ok",
+          "address": "ok",
+          "block": "ok",
+          "chain": "ok",
+          "tx_count": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xe0bb63565e20c30bf359f9cbe85d3a40d5f976ad1019c3f3add341795ab52439",
+        "receipt": {
+          "receipt_hash": "0x823bcd16616a7f0a5a41177798eaa10b0bf83fe16a0244b26d446859c13581db",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "4903",
+          "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 18,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795108390
+        },
+        "duration_ms": 11445,
+        "error": null
+      }
+    },
+    {
+      "check": "Treasury sanctions 0x1a9C8182…",
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "flag": "ok",
+      "summary": "Treasury address 0x1a9C8182C09F50C8318d769245beA52c32BE35BC: no sanctions-list match.",
+      "purchase": {
+        "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+        "request": {
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "params": {
+            "name": "0x1a9C8182C09F50C8318d769245beA52c32BE35BC"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "9002",
+        "miner_name": "TxLens",
+        "result": {
+          "name": "0x1a9C8182C09F50C8318d769245beA52c32BE35BC",
+          "matched": false,
+          "matches": null,
+          "lists": [
+            "OFAC SDN list (treasury.gov)"
+          ],
+          "match_score": null
+        },
+        "field_status": {
+          "name": "ok",
+          "matched": "ok",
+          "matches": "missing",
+          "lists": "ok",
+          "match_score": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xf13686891aee0033e25781b156a51eb3a5fbbd4284c5181df2fc8a8d7d46f35e",
+        "receipt": {
+          "receipt_hash": "0x943c0da7bf2653a5ab5738531c9cda76b8c590292ac75099e30fb6c0e554da4b",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6121",
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 18,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795108390
+        },
+        "duration_ms": 11145,
+        "error": null
+      }
+    },
+    {
+      "check": "Social authenticity",
+      "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+      "flag": "ok",
+      "summary": "Social account @Uniswap: likely_bot.",
+      "purchase": {
+        "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+        "request": {
+          "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+          "params": {
+            "account": "@Uniswap"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "302",
+        "miner_name": "ChainSight — Universal Intelligence & Data Oracle",
+        "result": {
+          "account": null,
+          "verdict": "likely_bot",
+          "bot_score": null,
+          "signals": [
+            "likely_bot - the account's name references a DeFi protocol and such handles are commonly used by automated trading or price‑alert bots rather than personal users."
+          ]
+        },
+        "field_status": {
+          "account": "rejected",
+          "verdict": "ok",
+          "bot_score": "rejected",
+          "signals": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x654d2583cac3cb0230b56352494a8d02ea8f47cf98e87971a036bf3f4c8bbdeb",
+        "receipt": {
+          "receipt_hash": "0x627db2983b22468375b4c9d125ba4600e1edbcc7de659c79fb6973274277fce1",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6119",
+          "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 18,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795108388
+        },
+        "duration_ms": 8990,
+        "error": null
+      }
+    },
+    {
+      "check": "Website safety",
+      "intent": "URL_SAFE_GENERAL",
+      "flag": "ok",
+      "summary": "Project website https://uniswap.org: no threat reported.",
+      "purchase": {
+        "intent": "URL_SAFE_GENERAL",
+        "request": {
+          "intent": "URL_SAFE_GENERAL",
+          "params": {
+            "url": "https://uniswap.org"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "20260828",
+        "miner_name": "PREFLIGHT Infrastructure Signals",
+        "result": {
+          "url": "https://uniswap.org",
+          "verdict": "Safe",
+          "detections": 0,
+          "summary": "https://uniswap.org is not listed as malicious by any of the 2 threat sources checked: OpenPhish (not listed), Cloudflare Security DNS (resolves normally)."
+        },
+        "field_status": {
+          "url": "ok",
+          "verdict": "ok",
+          "detections": "ok",
+          "summary": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xa6c4b3664d800833f9e2d676c69606b306d2c324670b8d1763ff24ba0cd40928",
+        "receipt": {
+          "receipt_hash": "0x01625372b54cd4b3a96434217aad9d108cb1cf0ecca5a217bc8ea11f45ab2024",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5311",
+          "intent": "URL_SAFE_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 18,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795108386
+        },
+        "duration_ms": 7120,
+        "error": null
+      }
+    }
+  ],
+  "paid_requests": 11,
+  "total_cost_usd": 0.11,
+  "network": "eip155:11155111",
+  "network_label": "Ethereum Sepolia testnet",
+  "boundary": "Testnet: payments are Ethereum Sepolia test USDC with no monetary value. Miner answers are real; settlement is on a test network.",
+  "agent": "0x9B3c9555c28CA6cc1D07085d5fE81D9d229f0975",
+  "memo_hash": "0xed08c58136fff8cf11a1c46b2f5c804fc787ddbc4a470ac4a54c53bb38132867",
+  "signature": "0xb86a32f9a6999a41dbc5d838c8cc79531cd381366316803f02ef6e2c74cefeef7fa74c2b4235405533d32b8d15255ca4d07085a8c4d40a0194d39fb7a755a4fc1b"
+}
