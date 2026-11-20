@@ -1,0 +1,8 @@
+{
+  "name": "Deutsche Bank AG",
+  "jurisdiction": "DE",
+  "officers": ["Christian Sewing"],
+  "claim": "Deutsche Bank is headquartered in Frankfurt am Main.",
+  "ticker": "DB",
+  "sample": true
+}

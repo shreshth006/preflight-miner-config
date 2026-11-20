@@ -1,0 +1,408 @@
+{
+  "id": "2026-11-20T17-56-39-411Z-deutsche-bank",
+  "created_at": "2026-11-20T17:56:39.411Z",
+  "subject": {
+    "name": "Deutsche Bank AG",
+    "jurisdiction": "DE",
+    "officers": [
+      "Christian Sewing"
+    ],
+    "claim": "Deutsche Bank is headquartered in Frankfurt am Main.",
+    "ticker": "DB",
+    "sample": true
+  },
+  "decision": "REVIEW",
+  "reasons": [
+    "Registry record: the closest name is \"DEUTSCHE BANK AKTIENGESELLSCHAFT\", registration 7LTWFZYICNSX8D621K86, DE. Confirm it's the intended company.",
+    "Adverse media: a search answer links \"Deutsche Bank\" to a risk term, so a person should read it: \"Deutsche Bank agreed to a $7.2 billion settlement for misleading investors in mortgage‑backed securities, which includes a $3.1 billion civil monetary penalty under FIRREA. The settlement resolves fraud‑related claims bu\"."
+  ],
+  "findings": [
+    {
+      "check": "Registry record",
+      "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+      "flag": "flag",
+      "summary": "Registry record: the closest name is \"DEUTSCHE BANK AKTIENGESELLSCHAFT\", registration 7LTWFZYICNSX8D621K86, DE. Confirm it's the intended company.",
+      "purchase": {
+        "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+        "request": {
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "params": {
+            "company": "Deutsche Bank AG",
+            "jurisdiction": "DE"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "20260828",
+        "miner_name": "PREFLIGHT Infrastructure Signals",
+        "result": {
+          "legal_name": "DEUTSCHE BANK AKTIENGESELLSCHAFT",
+          "registration_id": "7LTWFZYICNSX8D621K86",
+          "active": true,
+          "jurisdiction": "DE",
+          "registered_address": "Taunusanlage 12, Frankfurt am Main, DE-HE, 60325, DE",
+          "incorporated": "1952-11-10"
+        },
+        "field_status": {
+          "legal_name": "ok",
+          "registration_id": "ok",
+          "active": "ok",
+          "jurisdiction": "ok",
+          "registered_address": "ok",
+          "incorporated": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x339ceb351a33664821e40cd4588f07dc55cc06a6f89527f9df2cc4e865d0dc61",
+        "receipt": {
+          "receipt_hash": "0xdd121139079c75f5abacdd75fe07367e77b6aaaf0b288e2b189c2b815e87433c",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5311",
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 25,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795197408
+        },
+        "duration_ms": 8988,
+        "error": null
+      }
+    },
+    {
+      "check": "Company sanctions screen",
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "flag": "ok",
+      "summary": "\"Deutsche Bank AG\": no match on OFAC SDN, OFAC Consolidated (non-SDN), UK Sanctions List (entities only), Canada autonomous sanctions (entities only), EU Financial Sanctions (entities only), US BIS Entity List (export controls), US BIS Military End User List (export controls), US BIS Denied Persons List (dated standard export-denial orders), UK Sanctions List (ships), US BIS Entity List (additional primary-row corroborated records), Canada autonomous sanctions (November 5 additional entities), Canada autonomous sanctions (corroborated ships), Canada autonomous sanctions (November 5 Iranian entity amendment).",
+      "purchase": {
+        "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+        "request": {
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "params": {
+            "name": "Deutsche Bank AG"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "710637",
+        "miner_name": "Sanctions Name Evidence",
+        "result": {
+          "name": "Deutsche Bank AG",
+          "matched": false,
+          "matches": null,
+          "lists": [
+            "OFAC SDN",
+            "OFAC Consolidated (non-SDN)",
+            "UK Sanctions List (entities only)",
+            "Canada autonomous sanctions (entities only)",
+            "EU Financial Sanctions (entities only)",
+            "US BIS Entity List (export controls)",
+            "US BIS Military End User List (export controls)",
+            "US BIS Denied Persons List (dated standard export-denial orders)",
+            "UK Sanctions List (ships)",
+            "US BIS Entity List (additional primary-row corroborated records)",
+            "Canada autonomous sanctions (November 5 additional entities)",
+            "Canada autonomous sanctions (corroborated ships)",
+            "Canada autonomous sanctions (November 5 Iranian entity amendment)"
+          ],
+          "match_score": 0
+        },
+        "field_status": {
+          "name": "ok",
+          "matched": "ok",
+          "matches": "missing",
+          "lists": "ok",
+          "match_score": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x244a20201c8321cbc851aed23457ad2a9d0f5794ec6f797c5940229f869b6c2e",
+        "receipt": {
+          "receipt_hash": "0x31f238b30178ab4530ec9bd7ad261e50499ac844961df80696c7e159f0c9fb77",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "4860",
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 25,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795197412
+        },
+        "duration_ms": 13730,
+        "error": null
+      }
+    },
+    {
+      "check": "Officer sanctions screen: Christian Sewing",
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "flag": "ok",
+      "summary": "\"Christian Sewing\": no match on OFAC SDN, OFAC Consolidated (non-SDN), UK Sanctions List (entities only), Canada autonomous sanctions (entities only), EU Financial Sanctions (entities only), US BIS Entity List (export controls), US BIS Military End User List (export controls), US BIS Denied Persons List (dated standard export-denial orders), UK Sanctions List (ships), US BIS Entity List (additional primary-row corroborated records), Canada autonomous sanctions (November 5 additional entities), Canada autonomous sanctions (corroborated ships), Canada autonomous sanctions (November 5 Iranian entity amendment).",
+      "purchase": {
+        "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+        "request": {
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "params": {
+            "name": "Christian Sewing"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "710637",
+        "miner_name": "Sanctions Name Evidence",
+        "result": {
+          "name": "Christian Sewing",
+          "matched": false,
+          "matches": null,
+          "lists": [
+            "OFAC SDN",
+            "OFAC Consolidated (non-SDN)",
+            "UK Sanctions List (entities only)",
+            "Canada autonomous sanctions (entities only)",
+            "EU Financial Sanctions (entities only)",
+            "US BIS Entity List (export controls)",
+            "US BIS Military End User List (export controls)",
+            "US BIS Denied Persons List (dated standard export-denial orders)",
+            "UK Sanctions List (ships)",
+            "US BIS Entity List (additional primary-row corroborated records)",
+            "Canada autonomous sanctions (November 5 additional entities)",
+            "Canada autonomous sanctions (corroborated ships)",
+            "Canada autonomous sanctions (November 5 Iranian entity amendment)"
+          ],
+          "match_score": 0
+        },
+        "field_status": {
+          "name": "ok",
+          "matched": "ok",
+          "matches": "missing",
+          "lists": "ok",
+          "match_score": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x01bf42d940de2855355da40d6057b3ac591193331ac770afaa43b03c7a36e3b7",
+        "receipt": {
+          "receipt_hash": "0xf27994f4c430191fdfdd544fd23426497e2df719c8a90fa79b78d2c409ee0c8c",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "4860",
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 25,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795197412
+        },
+        "duration_ms": 13502,
+        "error": null
+      }
+    },
+    {
+      "check": "Regulatory filings",
+      "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+      "flag": "ok",
+      "summary": "Regulatory filings: 4 mentioning \"Deutsche Bank\" in the last 12 months. One of them: \"Rescission of Policy Relating to the Acceptance of Settlements in Administrative and Civil Proceedings\". A count of mentions isn't a finding against anyone.",
+      "purchase": {
+        "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+        "request": {
+          "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+          "params": {
+            "entity": "Deutsche Bank",
+            "period": "the last 12 months"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "20260828",
+        "miner_name": "PREFLIGHT Infrastructure Signals",
+        "result": {
+          "entity": "Deutsche Bank",
+          "filing_count": 4,
+          "filings": [
+            "Rescission of Policy Relating to the Acceptance of Settlements in Administrative and Civil Proceedings",
+            "Clearing Requirement Determination Under Section 2(h) of the Commodity Exchange Act for Interest Rate Swaps to Account for CAD and MXN Interest Rate Benchmark Transitions",
+            "Fiduciary Duties in Selecting Designated Investment Alternatives",
+            "Regulatory Capital Rule: Category I and II Banking Organizations, Banking Organizations With Significant Trading Activity, and Optional Adoption for Other Banking Organizations"
+          ],
+          "urls": [
+            "https://www.federalregister.gov/documents/2026/06/08/2026-11466/rescission-of-policy-relating-to-the-acceptance-of-settlements-in-administrative-and-civil",
+            "https://www.federalregister.gov/documents/2026/05/12/2026-09428/clearing-requirement-determination-under-section-2h-of-the-commodity-exchange-act-for-interest-rate",
+            "https://www.federalregister.gov/documents/2026/03/31/2026-06178/fiduciary-duties-in-selecting-designated-investment-alternatives",
+            "https://www.federalregister.gov/documents/2026/03/27/2026-05959/regulatory-capital-rule-category-i-and-ii-banking-organizations-banking-organizations-with"
+          ]
+        },
+        "field_status": {
+          "entity": "ok",
+          "filing_count": "ok",
+          "filings": "ok",
+          "urls": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x88d01ee4cc490d9b86cba2a3a1768276b134c7ce888da4841485116244736b4d",
+        "receipt": {
+          "receipt_hash": "0xbcc9af43250fb645457672051ffb78d315804642c494a70a9a8e6af8fc149ca9",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5311",
+          "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 25,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795197414
+        },
+        "duration_ms": 15264,
+        "error": null
+      }
+    },
+    {
+      "check": "Adverse media",
+      "intent": "WEB_SEARCH_GENERAL",
+      "flag": "flag",
+      "summary": "Adverse media: a search answer links \"Deutsche Bank\" to a risk term, so a person should read it: \"Deutsche Bank agreed to a $7.2 billion settlement for misleading investors in mortgage‑backed securities, which includes a $3.1 billion civil monetary penalty under FIRREA. The settlement resolves fraud‑related claims bu\".",
+      "purchase": {
+        "intent": "WEB_SEARCH_GENERAL",
+        "request": {
+          "intent": "WEB_SEARCH_GENERAL",
+          "params": {
+            "query": "Deutsche Bank lawsuit fraud investigation sanctions"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "9002",
+        "miner_name": "TxLens",
+        "result": {
+          "answer": "Deutsche Bank agreed to a $7.2 billion settlement for misleading investors in mortgage‑backed securities, which includes a $3.1 billion civil monetary penalty under FIRREA. The settlement resolves fraud‑related claims but does not shield individuals from further liability.",
+          "sources": [
+            "Office of Public Affairs |  Deutsche Bank Agrees to Pay $7.2 Billion for Misleading Investors in its Sale of Residential Mortgage-Backed Securities | United States Department of Justice"
+          ],
+          "brief": null
+        },
+        "field_status": {
+          "answer": "ok",
+          "sources": "ok",
+          "brief": "rejected"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x885a0356c5ef0ea127338221afb93d45129ecb44f6cb464a76af1aafd7b2330f",
+        "receipt": {
+          "receipt_hash": "0xdee7a3d8835894346d2e8b893db3f3ed6c4b9ba1525ee2d2aa992d109204d10c",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6121",
+          "intent": "WEB_SEARCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 25,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795197411
+        },
+        "duration_ms": 12078,
+        "error": null
+      }
+    },
+    {
+      "check": "Claim check",
+      "intent": "FACT_CHECK_GENERAL",
+      "flag": "ok",
+      "summary": "Claim \"Deutsche Bank is headquartered in Frankfurt am Main.\" came back True.",
+      "purchase": {
+        "intent": "FACT_CHECK_GENERAL",
+        "request": {
+          "intent": "FACT_CHECK_GENERAL",
+          "params": {
+            "claim": "Deutsche Bank is headquartered in Frankfurt am Main."
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "4433",
+        "miner_name": "LiveCert — Sourced Answers for Agents",
+        "result": {
+          "claim": null,
+          "verdict": "True",
+          "reasoning": null,
+          "sources": null
+        },
+        "field_status": {
+          "claim": "missing",
+          "verdict": "ok",
+          "reasoning": "missing",
+          "sources": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x3bc1feea8010c24f044bc5d2c3066576802befc1caacfa1906beddb6c938a53a",
+        "receipt": {
+          "receipt_hash": "0x7b68c035962c687b8c39510fde4c37e46c93eb0dc17f39e075bf208e5b1dd00a",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6126",
+          "intent": "FACT_CHECK_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 25,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795197406
+        },
+        "duration_ms": 7556,
+        "error": null
+      }
+    },
+    {
+      "check": "Market figure",
+      "intent": "FINANCIAL_DATA_GENERAL",
+      "flag": "ok",
+      "summary": "Market figure: DB is valued at about $60,416,226,132.",
+      "purchase": {
+        "intent": "FINANCIAL_DATA_GENERAL",
+        "request": {
+          "intent": "FINANCIAL_DATA_GENERAL",
+          "params": {
+            "asset": "DB"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "20260828",
+        "miner_name": "PREFLIGHT Infrastructure Signals",
+        "result": {
+          "asset": "DB",
+          "market_cap_usd": 60416226132,
+          "volume_24h_usd": 50394521,
+          "metrics": null,
+          "as_of": "2026-11-20T17:56:43.291Z"
+        },
+        "field_status": {
+          "asset": "ok",
+          "market_cap_usd": "ok",
+          "volume_24h_usd": "ok",
+          "metrics": "missing",
+          "as_of": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xefcfbd247fddddbbf83e269f3399eccbbd97bc8d01ed8f4bb01a96cf65960b64",
+        "receipt": {
+          "receipt_hash": "0x17aa3ceb9176831ac5f34e9c40625ac3697e05e8a6e3d8860a8dc13a76a6a9b3",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5311",
+          "intent": "FINANCIAL_DATA_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 25,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795197407
+        },
+        "duration_ms": 8629,
+        "error": null
+      }
+    }
+  ],
+  "paid_requests": 7,
+  "total_cost_usd": 0.07,
+  "network": "eip155:11155111",
+  "network_label": "Ethereum Sepolia testnet",
+  "boundary": "Testnet: payments are Ethereum Sepolia test USDC with no monetary value. Miner answers are real; settlement is on a test network.",
+  "agent": "0x9B3c9555c28CA6cc1D07085d5fE81D9d229f0975",
+  "memo_hash": "0xc8db1aadf304b97651c5cb562fd75f84dfba60ac716693a0b4771b133f1b3640",
+  "signature": "0x082adedbdfe7013e46d6912b597e98da2c516498a69367d758f5a9a6f7136b6758a80c9d46ff32342fb892edafd66b749d731f049a042470b38390e0cd3854ab1b"
+}
