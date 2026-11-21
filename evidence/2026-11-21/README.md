@@ -36,7 +36,8 @@ A listing review of LDO on Ethereum (contract `0x5A98FcBEA516Cf06857215779Fd812C
 | Run record | Paid asks | Cost | Median latency | Decision |
 |---|---|---|---|---|
 | `2026-11-21T17-00-51-728Z-ldo.json` | 12 | $0.12 | 4.7 s | REVIEW |
-| `2026-11-21T17-05-58-729Z-ldo.json` (after the fixes below) | 10 | $0.10 | 5.5 s | REVIEW |
+| `2026-11-21T17-05-58-729Z-ldo.json` (after fixes 1 and 2) | 10 | $0.10 | 5.5 s | REVIEW |
+| `2026-11-21T17-50-32-438Z-ldo.json` (after fix 3) | 14 | $0.14 | – | REVIEW |
 
 What the second run found: total supply 999,999,994.672 LDO on-chain, 65,146 holders, no sanctions match for the issuer or the treasury address, $936,373 in the deepest LDO/WETH pool, @LidoFinance assessed as likely human (ChainSight), and no threat reported for lido.fi (FakeWatch). It goes to REVIEW for one reason: the contract audit. The only answer came from a miner ("openai") that does not declare `SMART_CONTRACT_AUDIT_GENERAL`, and it described owner, pause and blacklist powers that LDO's MiniMe token does not have. The desk does not use answers from a miner that doesn't declare the intent, so no audit was used and none was paid for. No declared Provider answers that intent today (bounties #224).
 
@@ -44,7 +45,7 @@ Failures found in the first run, and what changed:
 
 1. **A lookalike token's pool was reported as LDO's liquidity.** Our own miner (PREFLIGHT, miner 20260828) answered $148,773,260 for LDO/WETH. The pool it picked is built on a different contract that also calls itself LDO, with no trading in 24 hours; the real LDO's deepest pool held $936,373. A pair named by symbol is now read as the most-traded contract for each symbol, so copies are dropped. The desk accepted the figure, which is why this is listed as a failure.
 2. **A social check with no verdict was passed.** TxLens answered @LidoFinance with `verdict: null` and `bot_score: null`, and the desk recorded it as "assessed". Such an answer now counts as unverified, which makes the desk ask another Provider: in the second run ChainSight answered `likely_human`.
-3. **Treasury check reads native ETH only.** The treasury held 9.303 ETH at the block read, while the same address holds about 128 million LDO (read with `balanceOf` before the run). The check proves the address is live and screened, not what it holds in the project's own token. Not changed yet.
+3. **Treasury check read native ETH only.** The treasury held 9.303 ETH at the block read, while the same address holds about 128 million LDO. The desk now also buys each treasury's balance of the project's own token (`WALLET_BALANCE_CHECK_GENERAL` with the token contract), and refuses an answer given in another coin. In the third run (`2026-11-21T17-50-32-438Z-ldo.json`, 14 asks, $0.14) it read 128,086,165.18 LDO. That run went to REVIEW on the audit and on social authenticity: our miner, TradeWire and TxLens all answered "inconclusive" or nothing for @LidoFinance, where ChainSight had said `likely_human` in the second run. One Provider's answer on an account is not settled evidence.
 
 **Related party:** total supply and pool liquidity were answered by our own miner.
 
