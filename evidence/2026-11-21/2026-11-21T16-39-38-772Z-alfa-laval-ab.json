@@ -1,0 +1,612 @@
+{
+  "id": "2026-11-21T16-39-38-772Z-alfa-laval-ab",
+  "created_at": "2026-11-21T16:39:38.772Z",
+  "subject": {
+    "name": "Alfa Laval AB",
+    "jurisdiction": "SE",
+    "claim": "Alfa Laval is headquartered in Lund, Sweden.",
+    "ticker": "ALFA",
+    "sample": true
+  },
+  "decision": "REVIEW",
+  "reasons": [
+    "Adverse media: the answer only repeated the search terms, so there are no results to read for \"Alfa Laval AB\".",
+    "Market figure: the answer gives $218,888 for the symbol ALFA without naming the asset, too small to take as Alfa Laval AB's listing (a token or another market may share the symbol)."
+  ],
+  "findings": [
+    {
+      "check": "Registry record",
+      "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+      "flag": "ok",
+      "summary": "Registry record: \"Alfa Laval AB\", registration 556587-8054, SE is active.",
+      "purchase": {
+        "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+        "request": {
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "params": {
+            "company": "Alfa Laval AB",
+            "jurisdiction": "SE"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "20260828",
+        "miner_name": "PREFLIGHT Infrastructure Signals",
+        "result": {
+          "legal_name": "Alfa Laval AB",
+          "registration_id": "556587-8054",
+          "active": true,
+          "jurisdiction": "SE",
+          "registered_address": "Box 73, Lund, SE-M, 221 00, SE",
+          "incorporated": "2000-03-27"
+        },
+        "field_status": {
+          "legal_name": "ok",
+          "registration_id": "ok",
+          "active": "ok",
+          "jurisdiction": "ok",
+          "registered_address": "ok",
+          "incorporated": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xab08485816dc170c7f182a7701b018bf0ba444f6e5ac54c3aa07e64f45ab4327",
+        "receipt": {
+          "receipt_hash": "0xaba3712d5c48b0a007fb92c49da718a8216cd9de8e501f7d8ac68084127caa63",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5311",
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795279185
+        },
+        "duration_ms": 6612,
+        "error": null
+      }
+    },
+    {
+      "check": "Company sanctions screen",
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "flag": "ok",
+      "summary": "\"Alfa Laval AB\": no match on OFAC SDN, OFAC Consolidated (non-SDN), UK Sanctions List (entities only), Canada autonomous sanctions (entities only), EU Financial Sanctions (entities only), US BIS Entity List (export controls), US BIS Military End User List (export controls), US BIS Denied Persons List (dated standard export-denial orders), UK Sanctions List (ships), US BIS Entity List (additional primary-row corroborated records), Canada autonomous sanctions (November 5 additional entities), Canada autonomous sanctions (corroborated ships), Canada autonomous sanctions (November 5 Iranian entity amendment).",
+      "purchase": {
+        "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+        "request": {
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "params": {
+            "name": "Alfa Laval AB"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "710637",
+        "miner_name": "Sanctions Name Evidence",
+        "result": {
+          "name": "Alfa Laval AB",
+          "matched": false,
+          "matches": null,
+          "lists": [
+            "OFAC SDN",
+            "OFAC Consolidated (non-SDN)",
+            "UK Sanctions List (entities only)",
+            "Canada autonomous sanctions (entities only)",
+            "EU Financial Sanctions (entities only)",
+            "US BIS Entity List (export controls)",
+            "US BIS Military End User List (export controls)",
+            "US BIS Denied Persons List (dated standard export-denial orders)",
+            "UK Sanctions List (ships)",
+            "US BIS Entity List (additional primary-row corroborated records)",
+            "Canada autonomous sanctions (November 5 additional entities)",
+            "Canada autonomous sanctions (corroborated ships)",
+            "Canada autonomous sanctions (November 5 Iranian entity amendment)"
+          ],
+          "match_score": 0
+        },
+        "field_status": {
+          "name": "ok",
+          "matched": "ok",
+          "matches": "missing",
+          "lists": "ok",
+          "match_score": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x03d137225c9886b2ea517f5a70bbf13f421ea77b13eeba68e4972ff1ee6e6140",
+        "receipt": {
+          "receipt_hash": "0x5f7b699ea2eab56cbfaabda6d7647170524787e6ce8ba62ddf993383fb920694",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "4860",
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795279188
+        },
+        "duration_ms": 10504,
+        "error": null
+      }
+    },
+    {
+      "check": "Regulatory filings",
+      "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+      "flag": "ok",
+      "summary": "Regulatory filings: 0 mentioning \"Alfa Laval AB\" in the last 12 months. A count of mentions isn't a finding against anyone.",
+      "purchase": {
+        "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+        "request": {
+          "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+          "params": {
+            "entity": "Alfa Laval AB",
+            "period": "the last 12 months"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "20260828",
+        "miner_name": "PREFLIGHT Infrastructure Signals",
+        "result": {
+          "entity": "Alfa Laval AB",
+          "filing_count": 0,
+          "filings": null,
+          "urls": null
+        },
+        "field_status": {
+          "entity": "ok",
+          "filing_count": "ok",
+          "filings": "missing",
+          "urls": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x520ff39a4e228ad1dda36299e00c31a90ba073a205340135f3debcf83df3b986",
+        "receipt": {
+          "receipt_hash": "0x43263730748e299ea265bf5b8c87c4ea06d080f94693edcd43bb0a3b44262680",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5311",
+          "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795279184
+        },
+        "duration_ms": 6375,
+        "error": null
+      }
+    },
+    {
+      "check": "Adverse media",
+      "intent": "WEB_SEARCH_GENERAL",
+      "attempts": 4,
+      "flag": "unverified",
+      "summary": "Adverse media: the answer only repeated the search terms, so there are no results to read for \"Alfa Laval AB\".",
+      "purchase": {
+        "intent": "WEB_SEARCH_GENERAL",
+        "request": {
+          "intent": "WEB_SEARCH_GENERAL",
+          "params": {
+            "query": "Alfa Laval AB lawsuit fraud investigation sanctions"
+          }
+        },
+        "direct_miner": "49007",
+        "ok": true,
+        "status": 200,
+        "miner_id": "49007",
+        "miner_name": "Crossref Works Web Search",
+        "result": {
+          "answer": "Alfa Laval AB lawsuit fraud investigation sanctions",
+          "sources": [
+            "Crossref"
+          ],
+          "brief": null
+        },
+        "field_status": {
+          "answer": "ok",
+          "sources": "ok",
+          "brief": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xb41eb0dfacbda3fe61ae3fac23d920232b9b4496bde1eb50aa5eafbcc1a348d1",
+        "receipt": {
+          "receipt_hash": "0x49e793dd0d2457f761fab291d015736f161eeea052763b9adf2b2ffdefb9e2ea",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "4287",
+          "intent": "WEB_SEARCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795279201
+        },
+        "duration_ms": 3227,
+        "error": null
+      },
+      "superseded": {
+        "intent": "WEB_SEARCH_GENERAL",
+        "request": {
+          "intent": "WEB_SEARCH_GENERAL",
+          "params": {
+            "query": "Alfa Laval AB lawsuit fraud investigation sanctions"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "302",
+        "miner_name": "ChainSight — Universal Intelligence & Data Oracle",
+        "result": {
+          "answer": "Denmark lands first-ever Russian sanctions conviction",
+          "sources": [
+            "Alfa Laval - Global Investigations Review",
+            "wikipedia+web"
+          ],
+          "brief": "Denmark lands first-ever Russian sanctions conviction"
+        },
+        "field_status": {
+          "answer": "ok",
+          "sources": "ok",
+          "brief": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xbbabb1c542c2785d9e94db7a35f16dadb8441055f395ba5b271e291fbefab1cd",
+        "receipt": {
+          "receipt_hash": "0xe2d9b5c6c9a61991ed854229faa13c8614e47d45928f5372bc3c89fbdc2c8047",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6119",
+          "intent": "WEB_SEARCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795279185
+        },
+        "duration_ms": 6991,
+        "error": null
+      },
+      "also_tried": [
+        {
+          "intent": "WEB_SEARCH_GENERAL",
+          "request": {
+            "intent": "WEB_SEARCH_GENERAL",
+            "params": {
+              "query": "Alfa Laval AB lawsuit fraud investigation sanctions"
+            }
+          },
+          "direct_miner": "78221",
+          "ok": true,
+          "status": 200,
+          "miner_id": "78221",
+          "miner_name": "Revision-linked Wikipedia Source Search",
+          "result": {
+            "answer": "Wikipedia returned no source pages for this search.",
+            "sources": null,
+            "brief": "Wikipedia returned no source pages for this search."
+          },
+          "field_status": {
+            "answer": "ok",
+            "sources": "missing",
+            "brief": "ok"
+          },
+          "cost_usd": 0.01,
+          "signal_hash": "0x9b30246ac1cd3619aa5aa05f332fc66b87f392a86aff5f54b069825df58a3cd8",
+          "receipt": {
+            "receipt_hash": "0x7a8e8012e55521a2630b465689be9c635fd38d5d4b0e5010e9376c2a7b7491b5",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "4874",
+            "intent": "WEB_SEARCH_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 32,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795279194
+          },
+          "duration_ms": 6071,
+          "error": null
+        },
+        {
+          "intent": "WEB_SEARCH_GENERAL",
+          "request": {
+            "intent": "WEB_SEARCH_GENERAL",
+            "params": {
+              "query": "Alfa Laval AB lawsuit fraud investigation sanctions"
+            }
+          },
+          "direct_miner": "49002",
+          "ok": true,
+          "status": 200,
+          "miner_id": "49002",
+          "miner_name": "HN Search By Date",
+          "result": {
+            "exhaustive": {
+              "nbHits": false,
+              "typo": false
+            },
+            "exhaustiveNbHits": false,
+            "exhaustiveTypo": false,
+            "hits": [],
+            "hitsPerPage": 20,
+            "nbHits": 0,
+            "nbPages": 0,
+            "page": 0,
+            "params": "query=Alfa+Laval+AB+lawsuit+fraud+investigation+sanctions&tags=story&advancedSyntax=true&analyticsTags=backend",
+            "processingTimeMS": 30,
+            "processingTimingsMS": {
+              "_request": {
+                "queue": 20,
+                "roundTrip": 17
+              },
+              "fetch": {
+                "query": 28,
+                "total": 29
+              },
+              "total": 30
+            },
+            "query": "Alfa Laval AB lawsuit fraud investigation sanctions",
+            "serverTimeMS": 51
+          },
+          "field_status": null,
+          "cost_usd": 0.01,
+          "signal_hash": "0xecbc7ccd1f6ad58b3c34d4b6e7390c79be4c7342cef94ae6d9d1f37d9d826688",
+          "receipt": {
+            "receipt_hash": "0xc1bcdb66f9605b6bae8b0dab6748b4f023fdc88dbde3a4ccc1bd1fe16bc685ed",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "4291",
+            "intent": "WEB_SEARCH_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 32,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795279198
+          },
+          "duration_ms": 3991,
+          "error": null
+        }
+      ]
+    },
+    {
+      "check": "Claim check",
+      "intent": "FACT_CHECK_GENERAL",
+      "flag": "ok",
+      "summary": "Claim \"Alfa Laval is headquartered in Lund, Sweden.\" came back True.",
+      "purchase": {
+        "intent": "FACT_CHECK_GENERAL",
+        "request": {
+          "intent": "FACT_CHECK_GENERAL",
+          "params": {
+            "claim": "Alfa Laval is headquartered in Lund, Sweden."
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "4433",
+        "miner_name": "LiveCert — Sourced Answers for Agents",
+        "result": {
+          "claim": null,
+          "verdict": "True",
+          "reasoning": null,
+          "sources": null
+        },
+        "field_status": {
+          "claim": "missing",
+          "verdict": "ok",
+          "reasoning": "missing",
+          "sources": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xc93e09093f5325b1a7fed6d450d541a01b27a25fbefd9ec06445b5634d44cf5d",
+        "receipt": {
+          "receipt_hash": "0x44ee95b54a2cb698b72eb30e7d9203abc4fcf26365e22580d7bd3f1d10e22d5a",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6126",
+          "intent": "FACT_CHECK_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795279182
+        },
+        "duration_ms": 3572,
+        "error": null
+      }
+    },
+    {
+      "check": "Market figure",
+      "intent": "FINANCIAL_DATA_GENERAL",
+      "attempts": 4,
+      "flag": "unverified",
+      "summary": "Market figure: the answer gives $218,888 for the symbol ALFA without naming the asset, too small to take as Alfa Laval AB's listing (a token or another market may share the symbol).",
+      "purchase": {
+        "intent": "FINANCIAL_DATA_GENERAL",
+        "request": {
+          "intent": "FINANCIAL_DATA_GENERAL",
+          "params": {
+            "asset": "ALFA"
+          }
+        },
+        "direct_miner": "20260828",
+        "ok": true,
+        "status": 200,
+        "miner_id": "20260828",
+        "miner_name": "PREFLIGHT Infrastructure Signals",
+        "result": {
+          "asset": "ALFA",
+          "market_cap_usd": 218888,
+          "volume_24h_usd": 2498.17,
+          "metrics": null,
+          "as_of": "2026-11-21T16:39:57.158Z"
+        },
+        "field_status": {
+          "asset": "ok",
+          "market_cap_usd": "ok",
+          "volume_24h_usd": "ok",
+          "metrics": "missing",
+          "as_of": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x61ed4741c4f8b23986527d8b11af17698e52d5ba6444829f288355f525b1cce8",
+        "receipt": {
+          "receipt_hash": "0x34236190e81897c360c2d07696c878d3081fa4416b2cd58a68c29e1c7d98e952",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5311",
+          "intent": "FINANCIAL_DATA_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795279199
+        },
+        "duration_ms": 4004,
+        "error": null
+      },
+      "superseded": {
+        "intent": "FINANCIAL_DATA_GENERAL",
+        "request": {
+          "intent": "FINANCIAL_DATA_GENERAL",
+          "params": {
+            "asset": "ALFA"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "9002",
+        "miner_name": "TxLens",
+        "result": {
+          "asset": "ALFA",
+          "market_cap_usd": null,
+          "volume_24h_usd": null,
+          "metrics": null,
+          "as_of": null
+        },
+        "field_status": {
+          "asset": "ok",
+          "market_cap_usd": "missing",
+          "volume_24h_usd": "missing",
+          "metrics": "missing",
+          "as_of": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x4443103112813a399dead74906d831cebc985dbdefdc49fa653fc4c28f301eb3",
+        "receipt": {
+          "receipt_hash": "0x9fa7b3a82ae9e1a7a13457bf190175cc0efc01b7751a6a63d560157cea17f746",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6121",
+          "intent": "FINANCIAL_DATA_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795279186
+        },
+        "duration_ms": 7724,
+        "error": null
+      },
+      "also_tried": [
+        {
+          "intent": "FINANCIAL_DATA_GENERAL",
+          "request": {
+            "intent": "FINANCIAL_DATA_GENERAL",
+            "params": {
+              "asset": "ALFA"
+            }
+          },
+          "direct_miner": "7324",
+          "ok": true,
+          "status": 200,
+          "miner_id": "7324",
+          "miner_name": "FinWire Financial Data",
+          "result": {
+            "asset": "ALFA",
+            "market_cap_usd": null,
+            "volume_24h_usd": null,
+            "metrics": "No verified financial figure is available for ALFA: no unambiguous SEC filer matches that name.",
+            "as_of": "2026-11-21T16:39:49.667Z"
+          },
+          "field_status": {
+            "asset": "ok",
+            "market_cap_usd": "missing",
+            "volume_24h_usd": "missing",
+            "metrics": "ok",
+            "as_of": "ok"
+          },
+          "cost_usd": 0.01,
+          "signal_hash": "0xe1e4cf82cdf75a5b0b096a02e56b9c5096b18fcab30746a18f2e39745040955d",
+          "receipt": {
+            "receipt_hash": "0xf521edb66b900a004a077d138297ee24854f47e700e9f7f8f11db3cace24adbc",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "5408",
+            "intent": "FINANCIAL_DATA_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 32,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795279193
+          },
+          "duration_ms": 5987,
+          "error": null
+        },
+        {
+          "intent": "FINANCIAL_DATA_GENERAL",
+          "request": {
+            "intent": "FINANCIAL_DATA_GENERAL",
+            "params": {
+              "asset": "ALFA"
+            }
+          },
+          "direct_miner": "70004",
+          "ok": true,
+          "status": 200,
+          "miner_id": "70004",
+          "miner_name": "CoinGecko Global",
+          "result": {
+            "asset": null,
+            "market_cap_usd": 2076735188147.8633,
+            "volume_24h_usd": 139195909307.91827,
+            "metrics": "21338",
+            "as_of": "1795278740"
+          },
+          "field_status": {
+            "asset": "rejected",
+            "market_cap_usd": "ok",
+            "volume_24h_usd": "ok",
+            "metrics": "ok",
+            "as_of": "ok"
+          },
+          "cost_usd": 0.01,
+          "signal_hash": "0x7948d3dc90a0197b14d5d1fcb2468786baeda598b107bc06ae814bbedab60fa4",
+          "receipt": {
+            "receipt_hash": "0xff6b19868c6e0724f1058345fc4ba7e86ab2fd8036d6622e6e34c2d7765dd626",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "3332",
+            "intent": "FINANCIAL_DATA_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 32,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795279195
+          },
+          "duration_ms": 1947,
+          "error": null
+        }
+      ]
+    }
+  ],
+  "paid_requests": 12,
+  "total_cost_usd": 0.12,
+  "network": "eip155:11155111",
+  "network_label": "Ethereum Sepolia testnet",
+  "boundary": "Testnet: payments are Ethereum Sepolia test USDC with no monetary value. Miner answers are real; settlement is on a test network.",
+  "agent": "0x9B3c9555c28CA6cc1D07085d5fE81D9d229f0975",
+  "memo_hash": "0xa55f75f4d646ef91ed28b3878bfb01ab9e392cc04a617fc47e77d1ed626416a1",
+  "signature": "0x7efa8807a9feaf30dd7b169f5db5952f852e8127fa6518a6ab6c7e46269d4eec066cada308f60764fd6a4dde9db68365118c77e18f2f0d5579daf2db8a5e6c5e1c"
+}

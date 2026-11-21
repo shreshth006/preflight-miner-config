@@ -1,0 +1,442 @@
+{
+  "id": "2026-11-21T16-34-02-401Z-siemens",
+  "created_at": "2026-11-21T16:34:02.401Z",
+  "subject": {
+    "name": "Siemens AG",
+    "jurisdiction": "FR",
+    "claim": "Siemens AG is registered in France.",
+    "sample": true
+  },
+  "decision": "REVIEW",
+  "reasons": [
+    "Registry record: the closest name is \"SIEMENS SAS\", registration 5299001X70EYQ92D3V29, FR. Confirm it's the intended company.",
+    "Adverse media: a search answer links \"Siemens\" to a risk term, so a person should read it: \"Siemens lawsuit fraud investigation sanctions\".",
+    "Claim \"Siemens AG is registered in France.\" came back False."
+  ],
+  "findings": [
+    {
+      "check": "Registry record",
+      "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+      "flag": "flag",
+      "summary": "Registry record: the closest name is \"SIEMENS SAS\", registration 5299001X70EYQ92D3V29, FR. Confirm it's the intended company.",
+      "purchase": {
+        "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+        "request": {
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "params": {
+            "company": "Siemens AG",
+            "jurisdiction": "FR"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "6137",
+        "miner_name": "Praman Desk Compliance & Procurement Auditor",
+        "result": {
+          "legal_name": "SIEMENS SAS",
+          "registration_id": "5299001X70EYQ92D3V29",
+          "active": true,
+          "jurisdiction": "FR",
+          "registered_address": "16, Place de l'Iris, Tour Cb21, Courbevoie, FR-IDF, 92400, FR",
+          "incorporated": "1943-11-24"
+        },
+        "field_status": {
+          "legal_name": "ok",
+          "registration_id": "ok",
+          "active": "ok",
+          "jurisdiction": "ok",
+          "registered_address": "ok",
+          "incorporated": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x5631d060a2357287c44c769a462be5712822da344790f078f9a1b95b1cf772df",
+        "receipt": {
+          "receipt_hash": "0x3f49f116bb1cb7ff075e74447c8db2785fcb15fc4f2946576fcf09e000a7aeb9",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6142",
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795278862
+        },
+        "duration_ms": 20348,
+        "error": null
+      }
+    },
+    {
+      "check": "Company sanctions screen",
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "flag": "ok",
+      "summary": "\"Siemens AG\": no match on OFAC SDN, OFAC Consolidated (non-SDN), UK Sanctions List (entities only), Canada autonomous sanctions (entities only), EU Financial Sanctions (entities only), US BIS Entity List (export controls), US BIS Military End User List (export controls), US BIS Denied Persons List (dated standard export-denial orders), UK Sanctions List (ships), US BIS Entity List (additional primary-row corroborated records), Canada autonomous sanctions (November 5 additional entities), Canada autonomous sanctions (corroborated ships), Canada autonomous sanctions (November 5 Iranian entity amendment).",
+      "purchase": {
+        "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+        "request": {
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "params": {
+            "name": "Siemens AG"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "710637",
+        "miner_name": "Sanctions Name Evidence",
+        "result": {
+          "name": "Siemens AG",
+          "matched": false,
+          "matches": null,
+          "lists": [
+            "OFAC SDN",
+            "OFAC Consolidated (non-SDN)",
+            "UK Sanctions List (entities only)",
+            "Canada autonomous sanctions (entities only)",
+            "EU Financial Sanctions (entities only)",
+            "US BIS Entity List (export controls)",
+            "US BIS Military End User List (export controls)",
+            "US BIS Denied Persons List (dated standard export-denial orders)",
+            "UK Sanctions List (ships)",
+            "US BIS Entity List (additional primary-row corroborated records)",
+            "Canada autonomous sanctions (November 5 additional entities)",
+            "Canada autonomous sanctions (corroborated ships)",
+            "Canada autonomous sanctions (November 5 Iranian entity amendment)"
+          ],
+          "match_score": 0
+        },
+        "field_status": {
+          "name": "ok",
+          "matched": "ok",
+          "matches": "missing",
+          "lists": "ok",
+          "match_score": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xafee08b296d521079ed4a3c1360f54e02c34ed04cffc73cf1e54233c2cb94aa9",
+        "receipt": {
+          "receipt_hash": "0xea49795299d41932f5533f7ee8526cac313c809fe645b4ba780a4f8b026ba991",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "4860",
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795278852
+        },
+        "duration_ms": 10393,
+        "error": null
+      }
+    },
+    {
+      "check": "Regulatory filings",
+      "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+      "flag": "ok",
+      "summary": "Regulatory filings: 20 mentioning \"Siemens\" in the last 12 months. One of them: \"Notice of Receipt of Complaint; Solicitation of Comments Relating to the Public Interest\". A count of mentions isn't a finding against anyone.",
+      "purchase": {
+        "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+        "request": {
+          "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+          "params": {
+            "entity": "Siemens",
+            "period": "the last 12 months"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "20260828",
+        "miner_name": "PREFLIGHT Infrastructure Signals",
+        "result": {
+          "entity": "Siemens",
+          "filing_count": 20,
+          "filings": [
+            "Notice of Receipt of Complaint; Solicitation of Comments Relating to the Public Interest",
+            "Notice of Receipt of Complaint; Solicitation of Comments Relating to the Public Interest",
+            "Utility Scale Wind Towers From Indonesia: Preliminary Results and Partial Rescission of the Antidumping Duty Administrative Review; 2024-2025",
+            "Notice Pursuant to the National Cooperative Research and Production Act of 1993-Bytecode Alliance Foundation",
+            "Notice of Buy America Waiver for North County Transit District DMU Replacement Parts"
+          ],
+          "urls": [
+            "https://www.federalregister.gov/documents/2026/11/20/2026-23627/notice-of-receipt-of-complaint-solicitation-of-comments-relating-to-the-public-interest",
+            "https://www.federalregister.gov/documents/2026/11/20/2026-23619/notice-of-receipt-of-complaint-solicitation-of-comments-relating-to-the-public-interest",
+            "https://www.federalregister.gov/documents/2026/11/16/2026-23273/utility-scale-wind-towers-from-indonesia-preliminary-results-and-partial-rescission-of-the",
+            "https://www.federalregister.gov/documents/2026/11/10/2026-22908/notice-pursuant-to-the-national-cooperative-research-and-production-act-of-1993-bytecode-alliance",
+            "https://www.federalregister.gov/documents/2026/10/05/2026-20358/notice-of-buy-america-waiver-for-north-county-transit-district-dmu-replacement-parts"
+          ]
+        },
+        "field_status": {
+          "entity": "ok",
+          "filing_count": "ok",
+          "filings": "ok",
+          "urls": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x50aaffd5885690d4cfb8bd9bdd19b7a79cb9674a33e26eeea92c4677a27a30e5",
+        "receipt": {
+          "receipt_hash": "0x41610f839cb9afbbae4652091580e6a5b41a0d273e3a0da325e46c6b7e999784",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5311",
+          "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795278858
+        },
+        "duration_ms": 16432,
+        "error": null
+      }
+    },
+    {
+      "check": "Adverse media",
+      "intent": "WEB_SEARCH_GENERAL",
+      "attempts": 4,
+      "flag": "flag",
+      "summary": "Adverse media: a search answer links \"Siemens\" to a risk term, so a person should read it: \"Siemens lawsuit fraud investigation sanctions\".",
+      "purchase": {
+        "intent": "WEB_SEARCH_GENERAL",
+        "request": {
+          "intent": "WEB_SEARCH_GENERAL",
+          "params": {
+            "query": "Siemens lawsuit fraud investigation sanctions"
+          }
+        },
+        "direct_miner": "49007",
+        "ok": true,
+        "status": 200,
+        "miner_id": "49007",
+        "miner_name": "Crossref Works Web Search",
+        "result": {
+          "answer": "Siemens lawsuit fraud investigation sanctions",
+          "sources": [
+            "Crossref"
+          ],
+          "brief": null
+        },
+        "field_status": {
+          "answer": "ok",
+          "sources": "ok",
+          "brief": "rejected"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x71c7a39915ec4f5d8f7f73a69770d268166ad4dccfa889a40ccddc72f5b20651",
+        "receipt": {
+          "receipt_hash": "0x6dc2bbb58ba0907d4310a08208e5230cb2d3a0de81787cf6efc1c54e837d65c3",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "4287",
+          "intent": "WEB_SEARCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795278879
+        },
+        "duration_ms": 3048,
+        "error": null
+      },
+      "superseded": {
+        "intent": "WEB_SEARCH_GENERAL",
+        "request": {
+          "intent": "WEB_SEARCH_GENERAL",
+          "params": {
+            "query": "Siemens lawsuit fraud investigation sanctions"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "302",
+        "miner_name": "ChainSight — Universal Intelligence & Data Oracle",
+        "result": {
+          "answer": "KPMG",
+          "sources": [
+            "https://en.wikipedia.org/wiki/KPMG"
+          ],
+          "brief": "KPMG"
+        },
+        "field_status": {
+          "answer": "ok",
+          "sources": "ok",
+          "brief": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xa8cd1f7dcd1d14de2ff5d4e5fc11f9627538651d118ef8bb1870bb4c3551dedf",
+        "receipt": {
+          "receipt_hash": "0xa5809c577e870ebfa87b7ad5e6202a7a646c80a7198471bf823af3da3001642b",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6119",
+          "intent": "WEB_SEARCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795278848
+        },
+        "duration_ms": 6778,
+        "error": null
+      },
+      "also_tried": [
+        {
+          "intent": "WEB_SEARCH_GENERAL",
+          "request": {
+            "intent": "WEB_SEARCH_GENERAL",
+            "params": {
+              "query": "Siemens lawsuit fraud investigation sanctions"
+            }
+          },
+          "direct_miner": "78221",
+          "ok": true,
+          "status": 200,
+          "miner_id": "78221",
+          "miner_name": "Revision-linked Wikipedia Source Search",
+          "result": {
+            "answer": "[1] KPMG\nKPMG is a multinational professional services network headquartered in London, England. It is one of the Big Four accounting firms, alongside Deloitte, EY and PwC.\nSource: https://en.wikipedia.org/wiki/KPMG\nRevision: https://en.wikipedia.org/w/index.php?title=KPMG&oldid=1386005346\n\n[2] Cybercrime\nCybercrime or computer crime encompasses a wide range of criminal activities that are carried out using digital devices and/or networks. It has been variously defined as \"a crime committed on a computer network, especially the Internet\".\nSource: https://en.wikipedia.org/wiki/Cybercrime\nRevision: https://en.wikipedia.org/w/index.php?title=Cybercrime&oldid=1386298334\n\n[3] International sanctions during the Russo-Ukrainian war\nInternational sanctions have been imposed against Russia and Crimea during the Russo-Ukrainian War by a large number of countries, including the United States, Canada, the European Union, and international organisations following the Russian annexation of Crimea, which began in late February 2014. [...] The sanctions were imposed against individuals, businesses, and officials from Russia and Ukraine.\nSource: https://en.wikipedia.org/wiki/International_sanctions_during_the_Russo-Ukrainian_war\nRevision: https://en.wikipedia.org/w/index.php?title=International%20sanctions%20during%20the%20Russo-Ukrainian%20war&oldid=1383033339",
+            "sources": [
+              "https://en.wikipedia.org/wiki/KPMG",
+              "https://en.wikipedia.org/wiki/Cybercrime",
+              "https://en.wikipedia.org/wiki/International_sanctions_during_the_Russo-Ukrainian_war"
+            ],
+            "brief": "The top Wikipedia source is KPMG."
+          },
+          "field_status": {
+            "answer": "ok",
+            "sources": "ok",
+            "brief": "ok"
+          },
+          "cost_usd": 0.01,
+          "signal_hash": "0xfac8d4d00820b380274e095bba40ed3e0d98036578dc64660fcbdfc9c0eccefb",
+          "receipt": {
+            "receipt_hash": "0x1e95180dd4f869303cfe1cda872e71931bc1e5c238894a7f27ecf525df24fafc",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "4874",
+            "intent": "WEB_SEARCH_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 32,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795278871
+          },
+          "duration_ms": 21631,
+          "error": null
+        },
+        {
+          "intent": "WEB_SEARCH_GENERAL",
+          "request": {
+            "intent": "WEB_SEARCH_GENERAL",
+            "params": {
+              "query": "Siemens lawsuit fraud investigation sanctions"
+            }
+          },
+          "direct_miner": "49002",
+          "ok": true,
+          "status": 200,
+          "miner_id": "49002",
+          "miner_name": "HN Search By Date",
+          "result": {
+            "exhaustive": {
+              "nbHits": false,
+              "typo": false
+            },
+            "exhaustiveNbHits": false,
+            "exhaustiveTypo": false,
+            "hits": [],
+            "hitsPerPage": 20,
+            "nbHits": 0,
+            "nbPages": 0,
+            "page": 0,
+            "params": "query=Siemens+lawsuit+fraud+investigation+sanctions&tags=story&advancedSyntax=true&analyticsTags=backend",
+            "processingTimeMS": 25,
+            "processingTimingsMS": {
+              "_request": {
+                "roundTrip": 22
+              },
+              "fetch": {
+                "query": 24,
+                "total": 24
+              },
+              "total": 25
+            },
+            "query": "Siemens lawsuit fraud investigation sanctions",
+            "serverTimeMS": 25
+          },
+          "field_status": null,
+          "cost_usd": 0.01,
+          "signal_hash": "0x6dad70bbcd52ce31ffc9a21bb699f4af60e39bc2ce9013c8a8f7e795cc2bff76",
+          "receipt": {
+            "receipt_hash": "0xb54a46cbce3f021da920c7f05aa68e4e9b1010fcd83f6f5d8e189f3350ffdf1b",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "4291",
+            "intent": "WEB_SEARCH_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 32,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795278876
+          },
+          "duration_ms": 5040,
+          "error": null
+        }
+      ]
+    },
+    {
+      "check": "Claim check",
+      "intent": "FACT_CHECK_GENERAL",
+      "flag": "flag",
+      "summary": "Claim \"Siemens AG is registered in France.\" came back False.",
+      "purchase": {
+        "intent": "FACT_CHECK_GENERAL",
+        "request": {
+          "intent": "FACT_CHECK_GENERAL",
+          "params": {
+            "claim": "Siemens AG is registered in France."
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "4433",
+        "miner_name": "LiveCert — Sourced Answers for Agents",
+        "result": {
+          "claim": null,
+          "verdict": "False",
+          "reasoning": null,
+          "sources": null
+        },
+        "field_status": {
+          "claim": "missing",
+          "verdict": "ok",
+          "reasoning": "missing",
+          "sources": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x41be2350c241db6f30dc3d0cc29fa21ba57cdc00dbfd672328d372e74ce86ce3",
+        "receipt": {
+          "receipt_hash": "0x412f4bd4b587de609f259ffa1ab583723505522f3ca5903af0b59fb37350f5b4",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6126",
+          "intent": "FACT_CHECK_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795278848
+        },
+        "duration_ms": 6308,
+        "error": null
+      }
+    }
+  ],
+  "paid_requests": 8,
+  "total_cost_usd": 0.08,
+  "network": "eip155:11155111",
+  "network_label": "Ethereum Sepolia testnet",
+  "boundary": "Testnet: payments are Ethereum Sepolia test USDC with no monetary value. Miner answers are real; settlement is on a test network.",
+  "agent": "0x9B3c9555c28CA6cc1D07085d5fE81D9d229f0975",
+  "memo_hash": "0xf6ce3406c07bbdf6b79920cabfc2dcaf9d60be604f45d30bb97026b001f2fe44",
+  "signature": "0x08798721e0329e4a22363275be659ca7830163d0ab49e24880f27e969348f51a5f582fda54f31dc1b503492fdbd3653b63685dab0cb2886ca76588e9fe158f5c1b"
+}

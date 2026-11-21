@@ -1,0 +1,1327 @@
+{
+  "id": "2026-11-21T16-32-45-117Z-halvorsen-quantum-freight",
+  "created_at": "2026-11-21T16:32:45.117Z",
+  "subject": {
+    "name": "Halvorsen Quantum Freight Ltd",
+    "jurisdiction": "GB",
+    "claim": "Halvorsen Quantum Freight Ltd has been registered at Companies House since 2015.",
+    "sample": true
+  },
+  "decision": "REVIEW",
+  "reasons": [
+    "Registry record: no legal name given.",
+    "Adverse media: a search answer links \"Halvorsen Quantum Freight\" to a risk term, so a person should read it: \"Halvorsen Quantum Freight lawsuit fraud investigation sanctions\".",
+    "Claim \"Halvorsen Quantum Freight Ltd has been registered at Companies House since 2015.\": no verdict given."
+  ],
+  "findings": [
+    {
+      "check": "Registry record",
+      "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+      "attempts": 4,
+      "flag": "unverified",
+      "summary": "Registry record: no legal name given.",
+      "purchase": {
+        "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+        "request": {
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "params": {
+            "company": "Halvorsen Quantum Freight Ltd",
+            "jurisdiction": "GB"
+          }
+        },
+        "direct_miner": "7310099",
+        "ok": true,
+        "status": 200,
+        "miner_id": "7310099",
+        "miner_name": "VulnRank - Security, Compliance and Verified Lookups",
+        "result": {
+          "answer": "No legal entity matching 'Halvorsen Quantum Freight Ltd' was found in GLEIF. GLEIF only lists entities that hold an LEI, so this is not proof the company does not exist; a national company register may hold it.",
+          "as_of": "2026-11-21T16:33:17Z",
+          "confidence": 0,
+          "legal_name": null,
+          "outcome": "not_found",
+          "registration_id": null,
+          "searched": "fuzzy",
+          "summary": "No legal entity matching 'Halvorsen Quantum Freight Ltd' was found in GLEIF. GLEIF only lists entities that hold an LEI, so this is not proof the company does not exist; a national company register may hold it."
+        },
+        "field_status": null,
+        "cost_usd": 0.01,
+        "signal_hash": "0x2291cefe198faa0e5179c991bbe791e9f6a18eeac39444a5f0acad373f35808e",
+        "receipt": {
+          "receipt_hash": "0x1146f2780519c7a35477da563fbfc607212253765013b2db0bdab28ed9ac5f66",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6144",
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795278798
+        },
+        "duration_ms": 4461,
+        "error": null
+      },
+      "superseded": {
+        "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+        "request": {
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "params": {
+            "company": "Halvorsen Quantum Freight Ltd",
+            "jurisdiction": "GB"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "6137",
+        "miner_name": "Praman Desk Compliance & Procurement Auditor",
+        "result": {
+          "legal_name": null,
+          "registration_id": null,
+          "active": false,
+          "jurisdiction": "GB",
+          "registered_address": null,
+          "incorporated": null
+        },
+        "field_status": {
+          "legal_name": "missing",
+          "registration_id": "missing",
+          "active": "ok",
+          "jurisdiction": "ok",
+          "registered_address": "missing",
+          "incorporated": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x9f1616765a3d927749ec4a70f2a3991db878aab490b58e6b665c66d695717306",
+        "receipt": {
+          "receipt_hash": "0xd61d7da7f0117b6724b1c580ef7b786c34766db6a0ea029652d1beec7e71c3b3",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6142",
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795278784
+        },
+        "duration_ms": 19374,
+        "error": null
+      },
+      "also_tried": [
+        {
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "request": {
+            "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+            "params": {
+              "company": "Halvorsen Quantum Freight Ltd",
+              "jurisdiction": "GB"
+            }
+          },
+          "direct_miner": "20260828",
+          "ok": true,
+          "status": 200,
+          "miner_id": "20260828",
+          "miner_name": "PREFLIGHT Infrastructure Signals",
+          "result": {
+            "active": null,
+            "checked_at": "2026-11-21T16:33:07.782Z",
+            "confidence": 0.75,
+            "entity_status": null,
+            "found": false,
+            "incorporated": null,
+            "jurisdiction": null,
+            "legal_name": null,
+            "lei": null,
+            "reason": "No legal entity named \"Halvorsen Quantum Freight Ltd\" in United Kingdom holds an LEI in GLEIF's index.",
+            "registered_address": null,
+            "registration_id": null,
+            "registration_status": null,
+            "registry": null,
+            "source": "GLEIF LEI index",
+            "verdict": "not_found"
+          },
+          "field_status": null,
+          "cost_usd": 0.01,
+          "signal_hash": "0x7364375a9bdc7d731a97defaaa26b1f3e1a85bf6122240927a7b38ea6901303c",
+          "receipt": {
+            "receipt_hash": "0x14d5277db4bb7004508321e8add1bc923e59002b23f6937c29f8ed40dbe0609b",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "5311",
+            "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 32,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795278789
+          },
+          "duration_ms": 3607,
+          "error": null
+        },
+        {
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "request": {
+            "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+            "params": {
+              "company": "Halvorsen Quantum Freight Ltd",
+              "jurisdiction": "GB"
+            }
+          },
+          "direct_miner": "7393",
+          "ok": true,
+          "status": 200,
+          "miner_id": "7393",
+          "miner_name": "DataWire Corporate Registry Lookup",
+          "result": {
+            "legal_name": null,
+            "registration_id": null,
+            "active": null,
+            "jurisdiction": "GB",
+            "registered_address": null,
+            "incorporated": null
+          },
+          "field_status": {
+            "legal_name": "missing",
+            "registration_id": "missing",
+            "active": "missing",
+            "jurisdiction": "ok",
+            "registered_address": "missing",
+            "incorporated": "missing"
+          },
+          "cost_usd": 0.01,
+          "signal_hash": "0x5d982127234f5075838db64689ff34278ddf9158298b14aa2e36230aaf560b3c",
+          "receipt": {
+            "receipt_hash": "0xf0e7dc8e0103badc91f874f25376973bd04050f26535d98f91298217f98ebe77",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "4471",
+            "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 32,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795278794
+          },
+          "duration_ms": 4400,
+          "error": null
+        }
+      ]
+    },
+    {
+      "check": "Company sanctions screen",
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "flag": "ok",
+      "summary": "\"Halvorsen Quantum Freight Ltd\": no match on OFAC SDN, OFAC Consolidated (non-SDN), UK Sanctions List (entities only), Canada autonomous sanctions (entities only), EU Financial Sanctions (entities only), US BIS Entity List (export controls), US BIS Military End User List (export controls), US BIS Denied Persons List (dated standard export-denial orders), UK Sanctions List (ships), US BIS Entity List (additional primary-row corroborated records), Canada autonomous sanctions (November 5 additional entities), Canada autonomous sanctions (corroborated ships), Canada autonomous sanctions (November 5 Iranian entity amendment).",
+      "purchase": {
+        "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+        "request": {
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "params": {
+            "name": "Halvorsen Quantum Freight Ltd"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "710637",
+        "miner_name": "Sanctions Name Evidence",
+        "result": {
+          "name": "Halvorsen Quantum Freight Ltd",
+          "matched": false,
+          "matches": null,
+          "lists": [
+            "OFAC SDN",
+            "OFAC Consolidated (non-SDN)",
+            "UK Sanctions List (entities only)",
+            "Canada autonomous sanctions (entities only)",
+            "EU Financial Sanctions (entities only)",
+            "US BIS Entity List (export controls)",
+            "US BIS Military End User List (export controls)",
+            "US BIS Denied Persons List (dated standard export-denial orders)",
+            "UK Sanctions List (ships)",
+            "US BIS Entity List (additional primary-row corroborated records)",
+            "Canada autonomous sanctions (November 5 additional entities)",
+            "Canada autonomous sanctions (corroborated ships)",
+            "Canada autonomous sanctions (November 5 Iranian entity amendment)"
+          ],
+          "match_score": 0
+        },
+        "field_status": {
+          "name": "ok",
+          "matched": "ok",
+          "matches": "missing",
+          "lists": "ok",
+          "match_score": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x3fee1dce0499c9c4bb226c9b5d62c180b6dcee6b23983249606fe523630bc78d",
+        "receipt": {
+          "receipt_hash": "0x480cd9d87202697f583a890cbc46f48a256bc0698a3ab12a0e4862dcc2214e2f",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "4860",
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795278797
+        },
+        "duration_ms": 32782,
+        "error": null
+      }
+    },
+    {
+      "check": "Regulatory filings",
+      "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+      "flag": "ok",
+      "summary": "Regulatory filings: 0 mentioning \"Halvorsen Quantum Freight\" in the last 12 months. A count of mentions isn't a finding against anyone.",
+      "purchase": {
+        "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+        "request": {
+          "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+          "params": {
+            "entity": "Halvorsen Quantum Freight",
+            "period": "the last 12 months"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "20260828",
+        "miner_name": "PREFLIGHT Infrastructure Signals",
+        "result": {
+          "entity": "Halvorsen Quantum Freight",
+          "filing_count": 0,
+          "filings": null,
+          "urls": null
+        },
+        "field_status": {
+          "entity": "ok",
+          "filing_count": "ok",
+          "filings": "missing",
+          "urls": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xb731326c122f5a687f370949f05a7cac5bb028658091ba08a159afd0ded571e3",
+        "receipt": {
+          "receipt_hash": "0xba72dff516899168be2226c17a8159c1e91fcf33e53e084932507924a0ca3fa4",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5311",
+          "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795278770
+        },
+        "duration_ms": 5826,
+        "error": null
+      }
+    },
+    {
+      "check": "Adverse media",
+      "intent": "WEB_SEARCH_GENERAL",
+      "attempts": 4,
+      "flag": "flag",
+      "summary": "Adverse media: a search answer links \"Halvorsen Quantum Freight\" to a risk term, so a person should read it: \"Halvorsen Quantum Freight lawsuit fraud investigation sanctions\".",
+      "purchase": {
+        "intent": "WEB_SEARCH_GENERAL",
+        "request": {
+          "intent": "WEB_SEARCH_GENERAL",
+          "params": {
+            "query": "Halvorsen Quantum Freight lawsuit fraud investigation sanctions"
+          }
+        },
+        "direct_miner": "49007",
+        "ok": true,
+        "status": 200,
+        "miner_id": "49007",
+        "miner_name": "Crossref Works Web Search",
+        "result": {
+          "answer": "Halvorsen Quantum Freight lawsuit fraud investigation sanctions",
+          "sources": [
+            "Crossref"
+          ],
+          "brief": null
+        },
+        "field_status": {
+          "answer": "ok",
+          "sources": "ok",
+          "brief": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x205a63a0bfc9b08b83c75ae3a7f2ba896891faf2f01c7486521034af82ece1b8",
+        "receipt": {
+          "receipt_hash": "0xe346bc10b048ed97972d65e7f6e4f25daf606d02789c4b914f2fca3a317728c9",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "4287",
+          "intent": "WEB_SEARCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795278787
+        },
+        "duration_ms": 3636,
+        "error": null
+      },
+      "superseded": {
+        "intent": "WEB_SEARCH_GENERAL",
+        "request": {
+          "intent": "WEB_SEARCH_GENERAL",
+          "params": {
+            "query": "Halvorsen Quantum Freight lawsuit fraud investigation sanctions"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "302",
+        "miner_name": "ChainSight — Universal Intelligence & Data Oracle",
+        "result": {
+          "answer": null,
+          "sources": [
+            "‘The Dissident’"
+          ],
+          "brief": null
+        },
+        "field_status": {
+          "answer": "missing",
+          "sources": "ok",
+          "brief": "rejected"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xa74421ac601b4d452e02e519280562579027abf5e4d1611b24ef6ea84973e669",
+        "receipt": {
+          "receipt_hash": "0xe6aeafc5d6db0165c9d04131f3cd6c2392b460a44ca7675ba6a429a835a84abf",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6119",
+          "intent": "WEB_SEARCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795278775
+        },
+        "duration_ms": 10527,
+        "error": null
+      },
+      "also_tried": [
+        {
+          "intent": "WEB_SEARCH_GENERAL",
+          "request": {
+            "intent": "WEB_SEARCH_GENERAL",
+            "params": {
+              "query": "Halvorsen Quantum Freight lawsuit fraud investigation sanctions"
+            }
+          },
+          "direct_miner": "78221",
+          "ok": true,
+          "status": 200,
+          "miner_id": "78221",
+          "miner_name": "Revision-linked Wikipedia Source Search",
+          "result": {
+            "answer": "Wikipedia returned no source pages for this search.",
+            "sources": null,
+            "brief": "Wikipedia returned no source pages for this search."
+          },
+          "field_status": {
+            "answer": "ok",
+            "sources": "missing",
+            "brief": "ok"
+          },
+          "cost_usd": 0.01,
+          "signal_hash": "0x931a1d7e9ef082a8ccc603766ec0e79076f35e61e368b35a82a4ca3ffed3f988",
+          "receipt": {
+            "receipt_hash": "0xde5a919f2af4cc09f7c2e6b6866e5472f6fe0d209ded3da83435afb5025ae7fe",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "4874",
+            "intent": "WEB_SEARCH_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 32,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795278780
+          },
+          "duration_ms": 4177,
+          "error": null
+        },
+        {
+          "intent": "WEB_SEARCH_GENERAL",
+          "request": {
+            "intent": "WEB_SEARCH_GENERAL",
+            "params": {
+              "query": "Halvorsen Quantum Freight lawsuit fraud investigation sanctions"
+            }
+          },
+          "direct_miner": "49002",
+          "ok": true,
+          "status": 200,
+          "miner_id": "49002",
+          "miner_name": "HN Search By Date",
+          "result": {
+            "exhaustive": {
+              "nbHits": false,
+              "typo": false
+            },
+            "exhaustiveNbHits": false,
+            "exhaustiveTypo": false,
+            "hits": [],
+            "hitsPerPage": 20,
+            "nbHits": 0,
+            "nbPages": 0,
+            "page": 0,
+            "params": "query=Halvorsen+Quantum+Freight+lawsuit+fraud+investigation+sanctions&tags=story&advancedSyntax=true&analyticsTags=backend",
+            "processingTimeMS": 51,
+            "processingTimingsMS": {
+              "_request": {
+                "roundTrip": 17
+              },
+              "fetch": {
+                "query": 49,
+                "total": 50
+              },
+              "total": 51
+            },
+            "query": "Halvorsen Quantum Freight lawsuit fraud investigation sanctions",
+            "serverTimeMS": 51
+          },
+          "field_status": null,
+          "cost_usd": 0.01,
+          "signal_hash": "0x188db3c7020a224edaf0ab6ac486371cda0215d7dad5df3e4c1e932937b6d709",
+          "receipt": {
+            "receipt_hash": "0x9b8b9c4cad6919b625834ac93b2834794583a630b92a778643a044fdd5a89cd5",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "4291",
+            "intent": "WEB_SEARCH_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 32,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795278783
+          },
+          "duration_ms": 3058,
+          "error": null
+        }
+      ]
+    },
+    {
+      "check": "Claim check",
+      "intent": "FACT_CHECK_GENERAL",
+      "attempts": 7,
+      "flag": "unverified",
+      "summary": "Claim \"Halvorsen Quantum Freight Ltd has been registered at Companies House since 2015.\": no verdict given.",
+      "purchase": {
+        "intent": "FACT_CHECK_GENERAL",
+        "request": {
+          "intent": "FACT_CHECK_GENERAL",
+          "params": {
+            "claim": "Halvorsen Quantum Freight Ltd has been registered at Companies House since 2015."
+          }
+        },
+        "direct_miner": "75006",
+        "ok": true,
+        "status": 200,
+        "miner_id": "75006",
+        "miner_name": "CORE Works",
+        "result": {
+          "claim": null,
+          "verdict": null,
+          "reasoning": null,
+          "sources": [
+            "Crossref",
+            "CERES Research Repository (Cranfield Univ.)",
+            "Chalmers Research"
+          ]
+        },
+        "field_status": {
+          "claim": "missing",
+          "verdict": "missing",
+          "reasoning": "missing",
+          "sources": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xbfa17682b3f16a64435afe3ae5f316271ed3f14673948caba4e1cd6e3d09beb9",
+        "receipt": {
+          "receipt_hash": "0xfe856f83b37bc8e923935fc76eda3800c82bb43738828e2e667a39825d31bd05",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "3302",
+          "intent": "FACT_CHECK_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795278812
+        },
+        "duration_ms": 22950,
+        "error": null
+      },
+      "superseded": {
+        "intent": "FACT_CHECK_GENERAL",
+        "request": {
+          "intent": "FACT_CHECK_GENERAL",
+          "params": {
+            "claim": "Halvorsen Quantum Freight Ltd has been registered at Companies House since 2015."
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "4433",
+        "miner_name": "LiveCert — Sourced Answers for Agents",
+        "result": {
+          "claim": null,
+          "verdict": "Unverified",
+          "reasoning": null,
+          "sources": null
+        },
+        "field_status": {
+          "claim": "missing",
+          "verdict": "ok",
+          "reasoning": "missing",
+          "sources": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xd31e6eb6f798a54804dcd9698d4e34bfec0ca2977f7fe7a15bb6816cc514d6c7",
+        "receipt": {
+          "receipt_hash": "0xca4f8e84ca35ee5a5d9665600788b0ce68b95663b1c1d4c1f21a8dbbd6c173c8",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6126",
+          "intent": "FACT_CHECK_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795278770
+        },
+        "duration_ms": 5599,
+        "error": null
+      },
+      "also_tried": [
+        {
+          "intent": "FACT_CHECK_GENERAL",
+          "request": {
+            "intent": "FACT_CHECK_GENERAL",
+            "params": {
+              "claim": "Halvorsen Quantum Freight Ltd has been registered at Companies House since 2015."
+            }
+          },
+          "direct_miner": "7420",
+          "ok": true,
+          "status": 200,
+          "miner_id": "7420",
+          "miner_name": "FactWire Fact Check",
+          "result": {
+            "claim": "Halvorsen Quantum Freight Ltd has been registered at Companies House since 2015.",
+            "verdict": "Unverified",
+            "reasoning": "No usable source evidence was retrieved for a supported assertion. Missing coverage or retrieval failure does not establish falsity.",
+            "sources": null
+          },
+          "field_status": {
+            "claim": "ok",
+            "verdict": "ok",
+            "reasoning": "ok",
+            "sources": "missing"
+          },
+          "cost_usd": 0.01,
+          "signal_hash": "0x8eebe9cc85b92184df2d41fc74ae6bd0d975e50f0e679bf4cc42f5d5a7430a71",
+          "receipt": {
+            "receipt_hash": "0xbda1220ad115f38f6e172a75b4de6bf5820e5b131014b18c4dbab23f28a9476b",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "4406",
+            "intent": "FACT_CHECK_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 32,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795278779
+          },
+          "duration_ms": 4403,
+          "error": null
+        },
+        {
+          "intent": "FACT_CHECK_GENERAL",
+          "request": {
+            "intent": "FACT_CHECK_GENERAL",
+            "params": {
+              "claim": "Halvorsen Quantum Freight Ltd has been registered at Companies House since 2015."
+            }
+          },
+          "direct_miner": "75005",
+          "ok": true,
+          "status": 200,
+          "miner_id": "75005",
+          "miner_name": "Zenodo Records",
+          "result": {
+            "aggregations": {
+              "access_status": {
+                "buckets": [
+                  {
+                    "doc_count": 2175683,
+                    "is_selected": false,
+                    "key": "open",
+                    "label": "Open"
+                  },
+                  {
+                    "doc_count": 98753,
+                    "is_selected": false,
+                    "key": "restricted",
+                    "label": "Restricted"
+                  },
+                  {
+                    "doc_count": 4034,
+                    "is_selected": false,
+                    "key": "embargoed",
+                    "label": "Embargoed"
+                  },
+                  {
+                    "doc_count": 1,
+                    "is_selected": false,
+                    "key": "metadata-only",
+                    "label": "Metadata-only"
+                  }
+                ],
+                "label": "Access status"
+              },
+              "file_type": {
+                "buckets": [
+                  {
+                    "doc_count": 1241196,
+                    "is_selected": false,
+                    "key": "pdf",
+                    "label": "PDF"
+                  },
+                  {
+                    "doc_count": 360836,
+                    "is_selected": false,
+                    "key": "html",
+                    "label": "HTML"
+                  },
+                  {
+                    "doc_count": 156763,
+                    "is_selected": false,
+                    "key": "txt",
+                    "label": "TXT"
+                  },
+                  {
+                    "doc_count": 141989,
+                    "is_selected": false,
+                    "key": "zip",
+                    "label": "ZIP"
+                  },
+                  {
+                    "doc_count": 123109,
+                    "is_selected": false,
+                    "key": "png",
+                    "label": "PNG"
+                  },
+                  {
+                    "doc_count": 67663,
+                    "is_selected": false,
+                    "key": "jpg",
+                    "label": "JPG"
+                  },
+                  {
+                    "doc_count": 54155,
+                    "is_selected": false,
+                    "key": "csv",
+                    "label": "CSV"
+                  },
+                  {
+                    "doc_count": 47666,
+                    "is_selected": false,
+                    "key": "docx",
+                    "label": "DOCX"
+                  },
+                  {
+                    "doc_count": 40776,
+                    "is_selected": false,
+                    "key": "md",
+                    "label": "MD"
+                  },
+                  {
+                    "doc_count": 39090,
+                    "is_selected": false,
+                    "key": "xlsx",
+                    "label": "XLSX"
+                  }
+                ],
+                "label": "File type"
+              },
+              "publication_date": {
+                "buckets": [
+                  {
+                    "doc_count": 2826,
+                    "is_selected": false,
+                    "key": "2000",
+                    "label": "2000"
+                  },
+                  {
+                    "doc_count": 5228,
+                    "is_selected": false,
+                    "key": "2001",
+                    "label": "2001"
+                  },
+                  {
+                    "doc_count": 5857,
+                    "is_selected": false,
+                    "key": "2002",
+                    "label": "2002"
+                  },
+                  {
+                    "doc_count": 11888,
+                    "is_selected": false,
+                    "key": "2003",
+                    "label": "2003"
+                  },
+                  {
+                    "doc_count": 11059,
+                    "is_selected": false,
+                    "key": "2004",
+                    "label": "2004"
+                  },
+                  {
+                    "doc_count": 12716,
+                    "is_selected": false,
+                    "key": "2005",
+                    "label": "2005"
+                  },
+                  {
+                    "doc_count": 15811,
+                    "is_selected": false,
+                    "key": "2006",
+                    "label": "2006"
+                  },
+                  {
+                    "doc_count": 14575,
+                    "is_selected": false,
+                    "key": "2007",
+                    "label": "2007"
+                  },
+                  {
+                    "doc_count": 16880,
+                    "is_selected": false,
+                    "key": "2008",
+                    "label": "2008"
+                  },
+                  {
+                    "doc_count": 18673,
+                    "is_selected": false,
+                    "key": "2009",
+                    "label": "2009"
+                  },
+                  {
+                    "doc_count": 20410,
+                    "is_selected": false,
+                    "key": "2010",
+                    "label": "2010"
+                  },
+                  {
+                    "doc_count": 22877,
+                    "is_selected": false,
+                    "key": "2011",
+                    "label": "2011"
+                  },
+                  {
+                    "doc_count": 25347,
+                    "is_selected": false,
+                    "key": "2012",
+                    "label": "2012"
+                  },
+                  {
+                    "doc_count": 31265,
+                    "is_selected": false,
+                    "key": "2013",
+                    "label": "2013"
+                  },
+                  {
+                    "doc_count": 45844,
+                    "is_selected": false,
+                    "key": "2014",
+                    "label": "2014"
+                  },
+                  {
+                    "doc_count": 99107,
+                    "is_selected": false,
+                    "key": "2015",
+                    "label": "2015"
+                  },
+                  {
+                    "doc_count": 61386,
+                    "is_selected": false,
+                    "key": "2016",
+                    "label": "2016"
+                  },
+                  {
+                    "doc_count": 71242,
+                    "is_selected": false,
+                    "key": "2017",
+                    "label": "2017"
+                  },
+                  {
+                    "doc_count": 86234,
+                    "is_selected": false,
+                    "key": "2018",
+                    "label": "2018"
+                  },
+                  {
+                    "doc_count": 91973,
+                    "is_selected": false,
+                    "key": "2019",
+                    "label": "2019"
+                  },
+                  {
+                    "doc_count": 102161,
+                    "is_selected": false,
+                    "key": "2020",
+                    "label": "2020"
+                  },
+                  {
+                    "doc_count": 124409,
+                    "is_selected": false,
+                    "key": "2021",
+                    "label": "2021"
+                  },
+                  {
+                    "doc_count": 138248,
+                    "is_selected": false,
+                    "key": "2022",
+                    "label": "2022"
+                  },
+                  {
+                    "doc_count": 161637,
+                    "is_selected": false,
+                    "key": "2023",
+                    "label": "2023"
+                  },
+                  {
+                    "doc_count": 192848,
+                    "is_selected": false,
+                    "key": "2024",
+                    "label": "2024"
+                  },
+                  {
+                    "doc_count": 274441,
+                    "is_selected": false,
+                    "key": "2025",
+                    "label": "2025"
+                  },
+                  {
+                    "doc_count": 565500,
+                    "is_selected": false,
+                    "key": "2026",
+                    "label": "2026"
+                  }
+                ],
+                "label": "Publication date"
+              },
+              "resource_type": {
+                "buckets": [
+                  {
+                    "doc_count": 1717957,
+                    "inner": {
+                      "buckets": [
+                        {
+                          "doc_count": 778826,
+                          "is_selected": false,
+                          "key": "publication-article",
+                          "label": "Journal article"
+                        },
+                        {
+                          "doc_count": 339254,
+                          "is_selected": false,
+                          "key": "publication-taxonomictreatment",
+                          "label": "Taxonomic treatment"
+                        },
+                        {
+                          "doc_count": 169956,
+                          "is_selected": false,
+                          "key": "publication-preprint",
+                          "label": "Preprint"
+                        },
+                        {
+                          "doc_count": 101313,
+                          "is_selected": false,
+                          "key": "publication-section",
+                          "label": "Book chapter"
+                        },
+                        {
+                          "doc_count": 65801,
+                          "is_selected": false,
+                          "key": "publication-conferencepaper",
+                          "label": "Conference paper"
+                        },
+                        {
+                          "doc_count": 38541,
+                          "is_selected": false,
+                          "key": "publication-report",
+                          "label": "Report"
+                        },
+                        {
+                          "doc_count": 21954,
+                          "is_selected": false,
+                          "key": "publication-book",
+                          "label": "Book"
+                        },
+                        {
+                          "doc_count": 18593,
+                          "is_selected": false,
+                          "key": "publication-journal",
+                          "label": "Journal"
+                        },
+                        {
+                          "doc_count": 18334,
+                          "is_selected": false,
+                          "key": "publication-other",
+                          "label": "Other"
+                        },
+                        {
+                          "doc_count": 17386,
+                          "is_selected": false,
+                          "key": "publication-deliverable",
+                          "label": "Project deliverable"
+                        }
+                      ]
+                    },
+                    "is_selected": false,
+                    "key": "publication",
+                    "label": "Publication"
+                  },
+                  {
+                    "doc_count": 249956,
+                    "inner": {
+                      "buckets": []
+                    },
+                    "is_selected": false,
+                    "key": "dataset",
+                    "label": "Dataset"
+                  },
+                  {
+                    "doc_count": 144982,
+                    "inner": {
+                      "buckets": [
+                        {
+                          "doc_count": 117404,
+                          "is_selected": false,
+                          "key": "image-figure",
+                          "label": "Figure"
+                        },
+                        {
+                          "doc_count": 22682,
+                          "is_selected": false,
+                          "key": "image-photo",
+                          "label": "Photo"
+                        },
+                        {
+                          "doc_count": 1003,
+                          "is_selected": false,
+                          "key": "image-other",
+                          "label": "Other"
+                        },
+                        {
+                          "doc_count": 849,
+                          "is_selected": false,
+                          "key": "image-diagram",
+                          "label": "Diagram"
+                        },
+                        {
+                          "doc_count": 295,
+                          "is_selected": false,
+                          "key": "image-drawing",
+                          "label": "Drawing"
+                        },
+                        {
+                          "doc_count": 261,
+                          "is_selected": false,
+                          "key": "image-plot",
+                          "label": "Plot"
+                        }
+                      ]
+                    },
+                    "is_selected": false,
+                    "key": "image",
+                    "label": "Image"
+                  },
+                  {
+                    "doc_count": 63516,
+                    "inner": {
+                      "buckets": [
+                        {
+                          "doc_count": 2343,
+                          "is_selected": false,
+                          "key": "software-computationalnotebook",
+                          "label": "Computational notebook"
+                        }
+                      ]
+                    },
+                    "is_selected": false,
+                    "key": "software",
+                    "label": "Software"
+                  },
+                  {
+                    "doc_count": 42698,
+                    "inner": {
+                      "buckets": []
+                    },
+                    "is_selected": false,
+                    "key": "presentation",
+                    "label": "Presentation"
+                  },
+                  {
+                    "doc_count": 19428,
+                    "inner": {
+                      "buckets": []
+                    },
+                    "is_selected": false,
+                    "key": "poster",
+                    "label": "Poster"
+                  },
+                  {
+                    "doc_count": 18778,
+                    "inner": {
+                      "buckets": []
+                    },
+                    "is_selected": false,
+                    "key": "other",
+                    "label": "Other"
+                  },
+                  {
+                    "doc_count": 6372,
+                    "inner": {
+                      "buckets": []
+                    },
+                    "is_selected": false,
+                    "key": "video",
+                    "label": "Video/Audio"
+                  },
+                  {
+                    "doc_count": 5570,
+                    "inner": {
+                      "buckets": []
+                    },
+                    "is_selected": false,
+                    "key": "model",
+                    "label": "Model"
+                  },
+                  {
+                    "doc_count": 4808,
+                    "inner": {
+                      "buckets": []
+                    },
+                    "is_selected": false,
+                    "key": "lesson",
+                    "label": "Lesson"
+                  }
+                ],
+                "label": "Resource types"
+              },
+              "subject": {
+                "buckets": [
+                  {
+                    "doc_count": 530756,
+                    "is_selected": false,
+                    "key": "Biodiversity",
+                    "label": "Biodiversity"
+                  },
+                  {
+                    "doc_count": 503297,
+                    "is_selected": false,
+                    "key": "Taxonomy",
+                    "label": "Taxonomy"
+                  },
+                  {
+                    "doc_count": 404163,
+                    "is_selected": false,
+                    "key": "Animalia",
+                    "label": "Animalia"
+                  },
+                  {
+                    "doc_count": 284691,
+                    "is_selected": false,
+                    "key": "Arthropoda",
+                    "label": "Arthropoda"
+                  },
+                  {
+                    "doc_count": 211479,
+                    "is_selected": false,
+                    "key": "Insecta",
+                    "label": "Insecta"
+                  },
+                  {
+                    "doc_count": 83576,
+                    "is_selected": false,
+                    "key": "Ukraine",
+                    "label": "Ukraine"
+                  },
+                  {
+                    "doc_count": 82858,
+                    "is_selected": false,
+                    "key": "Reference",
+                    "label": "Reference"
+                  },
+                  {
+                    "doc_count": 82840,
+                    "is_selected": false,
+                    "key": "Encyclopedia entry",
+                    "label": "Encyclopedia entry"
+                  },
+                  {
+                    "doc_count": 82840,
+                    "is_selected": false,
+                    "key": "Encyclopedia of Modern Ukraine",
+                    "label": "Encyclopedia of Modern Ukraine"
+                  },
+                  {
+                    "doc_count": 82674,
+                    "is_selected": false,
+                    "key": "ISBN 966-02-2074-X",
+                    "label": "ISBN 966-02-2074-X"
+                  }
+                ],
+                "label": "Subjects"
+              }
+            },
+            "hits": {
+              "hits": [
+                {
+                  "conceptdoi": "10.5281/zenodo.21095434",
+                  "conceptrecid": "21095434",
+                  "created": "2026-07-01T06:06:26.006765+00:00",
+                  "doi": "10.5281/zenodo.21095435",
+                  "doi_url": "https://doi.org/10.5281/zenodo.21095435",
+                  "files": [],
+                  "id": 21095435,
+                  "links": {
+                    "access": "https://zenodo.org/api/records/21095435/access",
+                    "access_grants": "https://zenodo.org/api/records/21095435/access/grants",
+                    "access_links": "https://zenodo.org/api/records/21095435/access/links",
+                    "access_request": "https://zenodo.org/api/records/21095435/access/request",
+                    "access_users": "https://zenodo.org/api/records/21095435/access/users",
+                    "communities": "https://zenodo.org/api/records/21095435/communities",
+                    "communities-suggestions": "https://zenodo.org/api/records/21095435/communities-suggestions",
+                    "doi": "https://doi.org/10.5281/zenodo.21095435",
+                    "draft": "https://zenodo.org/api/records/21095435/draft",
+                    "file_modification": "https://zenodo.org/api/records/21095435/file-modification",
+                    "files": "https://zenodo.org/api/records/21095435/files",
+                    "latest": "https://zenodo.org/api/records/21095435/versions/latest",
+                    "latest_html": "https://zenodo.org/records/21095435/latest",
+                    "media_files": "https://zenodo.org/api/records/21095435/media-files",
+                    "parent": "https://zenodo.org/api/records/21095434",
+                    "parent_doi": "https://doi.org/10.5281/zenodo.21095434",
+                    "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.21095434",
+                    "parent_html": "https://zenodo.org/records/21095434",
+                    "preview_html": "https://zenodo.org/records/21095435?preview=1",
+                    "quota_increase": "https://zenodo.org/api/records/21095435/quota-increase",
+                    "request_deletion": "https://zenodo.org/api/records/21095435/request-deletion",
+                    "requests": "https://zenodo.org/api/records/21095435/requests",
+                    "reserve_doi": "https://zenodo.org/api/records/21095435/draft/pids/doi",
+                    "self": "https://zenodo.org/api/records/21095435",
+                    "self_doi": "https://doi.org/10.5281/zenodo.21095435",
+                    "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.21095435",
+                    "self_html": "https://zenodo.org/records/21095435",
+                    "self_iiif_manifest": "https://zenodo.org/api/iiif/record:21095435/manifest",
+                    "self_iiif_sequence": "https://zenodo.org/api/iiif/record:21095435/sequence/default",
+                    "versions": "https://zenodo.org/api/records/21095435/versions"
+                  },
+                  "metadata": {
+                    "access_right": "restricted",
+                    "creators": [
+                      {
+                        "affiliation": "Sri Venkateswara Engineering College, Suryapet, a premier institution run by the Exhibition Society, Hyderabad. He has 24 years of teaching experience in Mechanical Engineering and has been serving as Principal since 2019.",
+                        "name": "Dr RAJU MUTHYALA"
+                      }
+                    ],
+                    "description": "<div class=\"WordSection1\">\n<p class=\"MsoBodyText\"><span>Mechanical engineering is a cornerstone of technological advancement, contributing significantly to the development of modern industries through innovation in design, manufacturing, energy systems, automation, and sustainable technologies. As engineering challenges continue<span> </span>to evolve, there is an increasing need<span> </span>for<span> </span>solutions<span> </span>that<span> </span>are<span> </span>efficient,<span> </span>reliable,<span> </span>and<span> </span>environmentally <span>responsible.</span></span></p>\n<p class=\"MsoBodyText\"><span>&nbsp;</span></p>\n<p class=\"MsoBodyText\"><strong><span>Mechanical Engineering: Design, Analysis, and Sustainable <span>Solutions</span><span> </span></span></strong><span>provides</span><span> </span><span>a</span><span> </span><span>comprehensive</span><span> </span><span>overview</span><span> </span><span>of</span><span> </span><span>the fundamental </span><span>principles and emerging trends in mechanical engineering. The book brings together contributions from researchers, academicians,<span> </span>and<span> </span>industry<span> </span>experts,<span> </span>covering<span> </span>diverse<span> </span>topics<span> </span>such as<span> </span>machine design,<span> </span>materials<span> </span>engineering, thermal systems, fluid mechanics, manufacturing processes, computational analysis, robotics, renewable energy, and sustainable engineering practices. Each chapter emphasizes the integration of theoretical concepts with practical applications, enabling readers to understand and address real-world engineering problems.</span></p>\n<p class=\"MsoBodyText\"><span>&nbsp;</span></p>\n<p class=\"MsoBodyText\"><span>A<span> </span>key<span> </span>focus<span> </span>of<span> </span>this<span> </span>book<span> </span>is<span> </span>sustainability,<span> </span>highlighting<span> </span>innovative approaches that improve energy efficiency, optimize resource utilization, and minimize environmental impact while maintaining<span> </span>engineering<span> </span>performance.<span> </span>It<span> </span>also<span> </span>explores<span> </span>the<span> </span>role<span> </span>of advanced technologies, including smart manufacturing, additive manufacturing, and digital engineering, in shaping the future of the discipline.</span></p>\n<p class=\"MsoBodyText\"><span>&nbsp;</span></p>\n<p class=\"MsoBodyText\"><span>This<span> </span>volume<span> </span>serves<span> </span>as<span> </span>a<span> </span>valuable<span> </span>resource<span> </span>for<span> </span>undergraduate<span> </span>and postgraduate students, researchers, faculty members, and practicing<span> </span>engineers.<span> </span>We<span> </span>sincerely<span> </span>appreciate<span> </span>the<span> </span>contributions<span> </span><span>of </span></span><span>all<span> </span>authors, reviewers, and<span> </span>editors<span> </span>whose expertise<span> </span>has<span> </span>made<span> </span>this publication possible. We hope this book inspires innovation, fosters technical excellence, and supports the development of sustainable engineering solutions for future generations.</span></p>\n</div>",
+                    "doi": "10.5281/zenodo.21095435",
+                    "license": {
+                      "id": "cc-by-4.0"
+                    },
+                    "publication_date": "2026-06-11",
+                    "relations": {
+                      "version": [
+                        {
+                          "index": 0,
+                          "is_last": true,
+                          "parent": {
+                            "pid_type": "recid",
+                            "pid_value": "21095434"
+                          }
+                        }
+                      ]
+                    },
+                    "resource_type": {
+                      "subtype": "book",
+                      "title": "Book",
+                      "type": "publication"
+                    },
+                    "title": "MECHANICAL ENGINEERING DESIGN, ANALYSIS, AND SUSTAINABLE SOLUTIONS"
+                  },
+                  "modified": "2026-07-01T06:06:26.179926+00:00",
+                  "owners": [
+                    {
+                      "id": "488162"
+                    }
+                  ],
+                  "recid": "21095435",
+                  "revision": 4,
+                  "state": "done",
+                  "stats": {
+                    "downloads": 0,
+                    "unique_downloads": 0,
+                    "unique_views": 26,
+                    "version_downloads": 0,
+                    "version_unique_downloads": 0,
+                    "version_unique_views": 26,
+                    "version_views": 26,
+                    "views": 26
+                  },
+                  "status": "published",
+                  "submitted": true,
+                  "swh": null,
+                  "title": "MECHANICAL ENGINEERING DESIGN, ANALYSIS, AND SUSTAINABLE SOLUTIONS",
+                  "updated": "2026-07-01T06:06:26.179926+00:00"
+                }
+              ],
+              "total": 2278471
+            },
+            "links": {
+              "next": "https://zenodo.org/api/records?page=2&q=Halvorsen+Quantum+Freight+Ltd+has+been+registered+at+Companies+House+since+2015.&size=1&sort=bestmatch",
+              "self": "https://zenodo.org/api/records?page=1&q=Halvorsen+Quantum+Freight+Ltd+has+been+registered+at+Companies+House+since+2015.&size=1&sort=bestmatch"
+            }
+          },
+          "field_status": null,
+          "cost_usd": 0.01,
+          "signal_hash": "0x3e04c14c0c1eb416a7f735a301e35ec57fa3195c34f82aef138a9c258bbf410e",
+          "receipt": {
+            "receipt_hash": "0x7a30813d876ee32bcde434d17317579dfd54f3a833e9fd95162dc4ddbe75dfd7",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "3311",
+            "intent": "FACT_CHECK_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 32,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795278785
+          },
+          "duration_ms": 4970,
+          "error": null
+        }
+      ]
+    }
+  ],
+  "paid_requests": 14,
+  "total_cost_usd": 0.14,
+  "network": "eip155:11155111",
+  "network_label": "Ethereum Sepolia testnet",
+  "boundary": "Testnet: payments are Ethereum Sepolia test USDC with no monetary value. Miner answers are real; settlement is on a test network.",
+  "agent": "0x9B3c9555c28CA6cc1D07085d5fE81D9d229f0975",
+  "memo_hash": "0x9171255065b7e67057c082fcc201fad928745855c9063bc714749cf5dcaed5ba",
+  "signature": "0x5ff349001dd929298331e2a6ed149916c4b168ffc4cb57b8b905ec6a2cfd0d7f6c3f3813402f28f25516445511f24f652523b9f9db0b00b9008ace9837ba47a41c"
+}

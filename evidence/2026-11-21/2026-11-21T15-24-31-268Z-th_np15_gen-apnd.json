@@ -1,0 +1,179 @@
+{
+  "id": "2026-11-21T15-24-31-268Z-th_np15_gen-apnd",
+  "created_at": "2026-11-21T15:24:31.268Z",
+  "site": {
+    "name": "Sample site, NP15 50 MW with an AI lease",
+    "node": "TH_NP15_GEN-APND",
+    "megawatts": 50,
+    "efficiency_j_per_th": 21,
+    "opex_usd_per_mwh": 10,
+    "lease_usd_per_mwh": 95,
+    "sample": true
+  },
+  "call": "LEASE",
+  "reasons": [
+    "Leasing nets $22.09/MWh against $-17.05/MWh for hashing at $62.91/MWh power."
+  ],
+  "inputs": {
+    "block_height": 976911,
+    "interval_start": "2026-11-21T15:00:00Z",
+    "hashprice_sats_per_ph_day": 46827,
+    "btc_usd": 60125.8,
+    "lmp_usd_per_mwh": 62.90907
+  },
+  "economics": {
+    "revenue_usd_per_mwh": 55.86,
+    "margin_hash_usd_per_mwh": -17.05,
+    "margin_lease_usd_per_mwh": 22.09,
+    "breakeven_power_usd_per_mwh": 45.86,
+    "best_usd_per_hour": 1104.55
+  },
+  "findings": [
+    {
+      "check": "Hashprice",
+      "intent": "MINING_HASHPRICE_VERIFY_GENERAL",
+      "flag": "ok",
+      "summary": "46,827 sats per PH/s per day at block 976911.",
+      "purchase": {
+        "intent": "MINING_HASHPRICE_VERIFY_GENERAL",
+        "request": {
+          "intent": "MINING_HASHPRICE_VERIFY_GENERAL",
+          "params": {
+            "block_height": 976911
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "9002",
+        "miner_name": "TxLens",
+        "result": {
+          "hashprice_sats_per_ph_day": 46827,
+          "block_height": 976911,
+          "hashrate_eh_s": 965.1,
+          "hashprice_usd_per_ph_day": null
+        },
+        "field_status": {
+          "hashprice_sats_per_ph_day": "ok",
+          "block_height": "ok",
+          "hashrate_eh_s": "ok",
+          "hashprice_usd_per_ph_day": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xd4bd1a93f0bb78540bc2607f91cb539b9bb232c24e6a1f4eae4a65de016b34b4",
+        "receipt": {
+          "receipt_hash": "0x4b514b53350738107cf1da44cd24662c950ba152601c7c83f982645c11494d55",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6121",
+          "intent": "MINING_HASHPRICE_VERIFY_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 31,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795274702
+        },
+        "duration_ms": 31082,
+        "error": null
+      }
+    },
+    {
+      "check": "BTC price",
+      "intent": "CRYPTO_PRICE_USD",
+      "flag": "ok",
+      "summary": "BTC at $60,125.8.",
+      "purchase": {
+        "intent": "CRYPTO_PRICE_USD",
+        "request": {
+          "intent": "CRYPTO_PRICE_USD",
+          "params": {
+            "symbol": "BTC"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "32003",
+        "miner_name": "Kraken Spot Price",
+        "result": {
+          "price_usd": 60125.8
+        },
+        "field_status": {
+          "price_usd": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x2793734d10a360ea9e4ef0d9183de682e2c30aee2654e16b08afadd9bd3df100",
+        "receipt": {
+          "receipt_hash": "0xc8804a57439acd1e64520aad34d8bc5d931176e3307547e4653970416ee28334",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "2865",
+          "intent": "CRYPTO_PRICE_USD",
+          "amount_uusdc": "10000",
+          "epoch_id": 31,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795274674
+        },
+        "duration_ms": 3634,
+        "error": null
+      }
+    },
+    {
+      "check": "Power price",
+      "intent": "GRID_POWER_PRICE_GENERAL",
+      "flag": "ok",
+      "summary": "$62.90907/MWh at TH_NP15_GEN-APND for the hour starting 2026-11-21T15:00:00Z.",
+      "purchase": {
+        "intent": "GRID_POWER_PRICE_GENERAL",
+        "request": {
+          "intent": "GRID_POWER_PRICE_GENERAL",
+          "params": {
+            "node_or_zone": "TH_NP15_GEN-APND",
+            "interval_start": "2026-11-21T15:00:00Z"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "7319205",
+        "miner_name": "Telegraph Provider (CAISO, NYISO, MISO grid prices)",
+        "result": {
+          "lmp_usd_per_mwh": 62.90907,
+          "node_or_zone": "TH_NP15_GEN-APND",
+          "market": "CAISO day-ahead hourly LMP (DAM)",
+          "interval_start": "2026-11-21T15:00:00Z",
+          "currency": "USD"
+        },
+        "field_status": {
+          "lmp_usd_per_mwh": "ok",
+          "node_or_zone": "ok",
+          "market": "ok",
+          "interval_start": "ok",
+          "currency": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x072904ae19547f5078b389cf812d97c79890b09efeef180282b90b91c3ba39c1",
+        "receipt": {
+          "receipt_hash": "0x3bf3969bd62a43e5b72036b436ec2e88b0346fed3d453dd49887af7ccd8488d5",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6129",
+          "intent": "GRID_POWER_PRICE_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 31,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795274677
+        },
+        "duration_ms": 6101,
+        "error": null
+      }
+    }
+  ],
+  "paid_requests": 3,
+  "total_cost_usd": 0.03,
+  "network": "eip155:11155111",
+  "network_label": "Ethereum Sepolia testnet",
+  "boundary": "Testnet: payments are Ethereum Sepolia test USDC with no monetary value. Miner answers are real; settlement is on a test network.",
+  "agent": "0x9B3c9555c28CA6cc1D07085d5fE81D9d229f0975",
+  "memo_hash": "0xc958eabcb29644b61a90b2bd999dd1e4ada16d4f17b75a2260c08a4acad24716",
+  "signature": "0xdf8949dc586247a4009e3d85ccdc0f5369846028dccbe67a53c21b7dbef3c14a1ec542be8ff87cb6ef04d03414faece9dbef0828dab625025f74db7d5c3e81d41c"
+}
