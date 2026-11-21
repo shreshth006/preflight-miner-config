@@ -37,7 +37,7 @@ A listing review of LDO on Ethereum (contract `0x5A98FcBEA516Cf06857215779Fd812C
 |---|---|---|---|---|
 | `2026-11-21T17-00-51-728Z-ldo.json` | 12 | $0.12 | 4.7 s | REVIEW |
 | `2026-11-21T17-05-58-729Z-ldo.json` (after fixes 1 and 2) | 10 | $0.10 | 5.5 s | REVIEW |
-| `2026-11-21T17-50-32-438Z-ldo.json` (after fix 3) | 14 | $0.14 | – | REVIEW |
+| `2026-11-21T17-50-32-438Z-ldo.json` (after fix 3) | 14 | $0.14 | 6.9 s | REVIEW |
 
 What the second run found: total supply 999,999,994.672 LDO on-chain, 65,146 holders, no sanctions match for the issuer or the treasury address, $936,373 in the deepest LDO/WETH pool, @LidoFinance assessed as likely human (ChainSight), and no threat reported for lido.fi (FakeWatch). It goes to REVIEW for one reason: the contract audit. The only answer came from a miner ("openai") that does not declare `SMART_CONTRACT_AUDIT_GENERAL`, and it described owner, pause and blacklist powers that LDO's MiniMe token does not have. The desk does not use answers from a miner that doesn't declare the intent, so no audit was used and none was paid for. No declared Provider answers that intent today (bounties #224).
 
