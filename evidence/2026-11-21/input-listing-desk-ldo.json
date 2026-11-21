@@ -1,0 +1,13 @@
+{
+  "project": "Lido DAO",
+  "symbol": "LDO",
+  "chain": "ethereum",
+  "contract": "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32",
+  "issuer": "Lido DAO",
+  "treasury": [
+    "0x3e40D73EB977Dc6a537aF587D48316feE66E9C8c"
+  ],
+  "pool": "LDO/WETH",
+  "social": "@LidoFinance",
+  "website": "https://lido.fi"
+}

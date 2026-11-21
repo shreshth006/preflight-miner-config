@@ -29,6 +29,27 @@ Escrow account after these runs, from the public ledger (`https://devnode.telegr
 
 The payment scheme and record format are described in `../2026-11-19/README.md`.
 
+## Listing Desk (#189 Exchange): Lido DAO (LDO)
+
+A listing review of LDO on Ethereum (contract `0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32`, treasury the Lido Aragon Agent `0x3e40D73EB977Dc6a537aF587D48316feE66E9C8c`; both checked on-chain before the run). Input: `input-listing-desk-ldo.json`.
+
+| Run record | Paid asks | Cost | Median latency | Decision |
+|---|---|---|---|---|
+| `2026-11-21T17-00-51-728Z-ldo.json` | 12 | $0.12 | 4.7 s | REVIEW |
+| `2026-11-21T17-05-58-729Z-ldo.json` (after the fixes below) | 10 | $0.10 | 5.5 s | REVIEW |
+
+What the second run found: total supply 999,999,994.672 LDO on-chain, 65,146 holders, no sanctions match for the issuer or the treasury address, $936,373 in the deepest LDO/WETH pool, @LidoFinance assessed as likely human (ChainSight), and no threat reported for lido.fi (FakeWatch). It goes to REVIEW for one reason: the contract audit. The only answer came from a miner ("openai") that does not declare `SMART_CONTRACT_AUDIT_GENERAL`, and it described owner, pause and blacklist powers that LDO's MiniMe token does not have. The desk does not use answers from a miner that doesn't declare the intent, so no audit was used and none was paid for. No declared Provider answers that intent today (bounties #224).
+
+Failures found in the first run, and what changed:
+
+1. **A lookalike token's pool was reported as LDO's liquidity.** Our own miner (PREFLIGHT, miner 20260828) answered $148,773,260 for LDO/WETH. The pool it picked is built on a different contract that also calls itself LDO, with no trading in 24 hours; the real LDO's deepest pool held $936,373. A pair named by symbol is now read as the most-traded contract for each symbol, so copies are dropped. The desk accepted the figure, which is why this is listed as a failure.
+2. **A social check with no verdict was passed.** TxLens answered @LidoFinance with `verdict: null` and `bot_score: null`, and the desk recorded it as "assessed". Such an answer now counts as unverified, which makes the desk ask another Provider: in the second run ChainSight answered `likely_human`.
+3. **Treasury check reads native ETH only.** The treasury held 9.303 ETH at the block read, while the same address holds about 128 million LDO (read with `balanceOf` before the run). The check proves the address is live and screened, not what it holds in the project's own token. Not changed yet.
+
+**Related party:** total supply and pool liquidity were answered by our own miner.
+
+Escrow after these runs: charged 640,000, unbilled 680,000, available 3,680,000 of the 5,000,000 deposited.
+
 ## Allocation Agent (#200 Mining & Power), scheduled runs
 
 The agent makes its hash-or-lease call twice a day for two CAISO hubs, each from 3 escrow-paid asks ($0.03, receipts in each record).

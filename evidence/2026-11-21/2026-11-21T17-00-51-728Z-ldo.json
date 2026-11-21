@@ -1,0 +1,638 @@
+{
+  "id": "2026-11-21T17-00-51-728Z-ldo",
+  "created_at": "2026-11-21T17:00:51.728Z",
+  "application": {
+    "project": "Lido DAO",
+    "symbol": "LDO",
+    "chain": "ethereum",
+    "contract": "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32",
+    "issuer": "Lido DAO",
+    "treasury": [
+      "0x3e40D73EB977Dc6a537aF587D48316feE66E9C8c"
+    ],
+    "pool": "LDO/WETH",
+    "social": "@LidoFinance",
+    "website": "https://lido.fi"
+  },
+  "decision": "REVIEW",
+  "reasons": [
+    "Contract audit: answered by miner openai, which does not declare SMART_CONTRACT_AUDIT_GENERAL, so the answer is not used."
+  ],
+  "findings": [
+    {
+      "check": "Contract audit",
+      "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+      "attempts": 9,
+      "flag": "unverified",
+      "summary": "Contract audit: answered by miner openai, which does not declare SMART_CONTRACT_AUDIT_GENERAL, so the answer is not used.",
+      "purchase": {
+        "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+        "request": {
+          "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+          "params": {
+            "contract_address": "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32",
+            "address": "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32",
+            "chain": "ethereum"
+          },
+          "query": "Audit the LDO token contract 0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32 on ethereum for a listing review: owner and admin keys, mint, burn, pause and blacklist powers, upgradeability, reentrancy and known vulnerability classes. Give a verdict (safe, caution or unsafe) and the findings."
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "openai",
+        "miner_name": "openai",
+        "result": "Here's an audit of the LDO token contract (0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32) on Ethereum for a listing review:\n\n**Findings:**\n\n*   **Owner and Admin Keys:** The contract utilizes a `Ownable` pattern. The `owner` is the address that has the highest level of control. The `admin` role is also present, which has significant powers, including the ability to pause, unpause, mint, burn, and blacklist tokens. The current owner is `0x0000000000000000000000000000000000000000`, which is a zero address. This is unusual and suggests that ownership may have been renounced or transferred to a multisig that is not publicly known or is intended to be a dead address. The `admin` role is held by `0x2353041014563905137459c61815730266773384`.\n\n*   **Mint Powers:** The `admin` role has the ability to `mint` new tokens. This function is not restricted by any time locks or multisig requirements, meaning the admin can mint tokens at any time.\n\n*   **Burn Powers:** The `admin` role has the ability to `burn` tokens from any address. This function is also not restricted by any time locks or multisig requirements.\n\n*   **Pause Powers:** The `admin` role has the ability to `pause` and `unpause` token transfers. This is a significant control mechanism that can halt all token movements.\n\n*   **Blacklist Powers:** The `admin` role has the ability to `blacklist` specific addresses, preventing them from transferring or receiving tokens. This is a powerful tool that can be used to censor or freeze assets.\n\n*   **Upgradeability:** The LDO token contract is **not** upgradeable in the traditional sense (e.g., using proxy patterns). The contract's logic is fixed.\n\n*   **Reentrancy:** The contract's core token transfer logic (`transfer`, `transferFrom`) does not appear to be directly vulnerable to reentrancy attacks. However, any external calls made within functions that are not properly guarded could introduce reentrancy risks. A thorough review of all external interactions within the contract's functions would be necessary for a definitive assessment.\n\n*   **Known Vulnerability Classes:**\n    *   **Centralization of Power:** The `admin` role has extensive powers (mint, burn, pause, blacklist) without apparent time locks or multisig requirements. This represents a significant centralization",
+        "field_status": null,
+        "cost_usd": 0,
+        "signal_hash": "0x8a17b07095e4cc9ea6413cdc877bce0a81cdbf751836a573c436aff0c7abaf60",
+        "receipt": null,
+        "duration_ms": 3643,
+        "error": null
+      }
+    },
+    {
+      "check": "Total supply",
+      "intent": "TOKEN_TOTAL_SUPPLY_VERIFY_GENERAL",
+      "flag": "ok",
+      "summary": "Total supply on-chain: 999,999,994.672 LDO.",
+      "purchase": {
+        "intent": "TOKEN_TOTAL_SUPPLY_VERIFY_GENERAL",
+        "request": {
+          "intent": "TOKEN_TOTAL_SUPPLY_VERIFY_GENERAL",
+          "params": {
+            "token": "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32 on ethereum"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "20260828",
+        "miner_name": "PREFLIGHT Infrastructure Signals",
+        "result": {
+          "total_supply": 999999994.6716269
+        },
+        "field_status": {
+          "total_supply": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x174a5a12a43bc59cfae45b7364158070ac52279148486de892b8c0abbbe0ace1",
+        "receipt": {
+          "receipt_hash": "0xe28f620ac347520036fd7daa7505089032218663cf7fce166e9e2ee694a75f6d",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5311",
+          "intent": "TOKEN_TOTAL_SUPPLY_VERIFY_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795280457
+        },
+        "duration_ms": 5146,
+        "error": null
+      }
+    },
+    {
+      "check": "Holder distribution",
+      "intent": "TOKEN_HOLDER_COUNT_GENERAL",
+      "flag": "ok",
+      "summary": "65,146 distinct holders.",
+      "purchase": {
+        "intent": "TOKEN_HOLDER_COUNT_GENERAL",
+        "request": {
+          "intent": "TOKEN_HOLDER_COUNT_GENERAL",
+          "params": {
+            "token": "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32",
+            "chain": "ethereum"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "4433",
+        "miner_name": "LiveCert — Sourced Answers for Agents",
+        "result": {
+          "token": null,
+          "chain": null,
+          "holders_count": 65146,
+          "token_symbol": null
+        },
+        "field_status": {
+          "token": "missing",
+          "chain": "missing",
+          "holders_count": "ok",
+          "token_symbol": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xd2c965f02876e6b76c990307dd21887460fb8edfcfcecf3add6fafe045e4359a",
+        "receipt": {
+          "receipt_hash": "0x3af39fedd93093434fe6eabc1b0bf918417a0723332d335d91fef7f0949d82c1",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6126",
+          "intent": "TOKEN_HOLDER_COUNT_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795280454
+        },
+        "duration_ms": 2818,
+        "error": null
+      }
+    },
+    {
+      "check": "Issuer sanctions screen",
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "flag": "ok",
+      "summary": "Issuer \"Lido DAO\": no sanctions-list match.",
+      "purchase": {
+        "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+        "request": {
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "params": {
+            "name": "Lido DAO"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "710637",
+        "miner_name": "Sanctions Name Evidence",
+        "result": {
+          "name": "Lido DAO",
+          "matched": false,
+          "matches": null,
+          "lists": [
+            "OFAC SDN",
+            "OFAC Consolidated (non-SDN)",
+            "UK Sanctions List (entities only)",
+            "Canada autonomous sanctions (entities only)",
+            "EU Financial Sanctions (entities only)",
+            "US BIS Entity List (export controls)",
+            "US BIS Military End User List (export controls)",
+            "US BIS Denied Persons List (dated standard export-denial orders)",
+            "UK Sanctions List (ships)",
+            "US BIS Entity List (additional primary-row corroborated records)",
+            "Canada autonomous sanctions (November 5 additional entities)",
+            "Canada autonomous sanctions (corroborated ships)",
+            "Canada autonomous sanctions (November 5 Iranian entity amendment)"
+          ],
+          "match_score": 0
+        },
+        "field_status": {
+          "name": "ok",
+          "matched": "ok",
+          "matches": "missing",
+          "lists": "ok",
+          "match_score": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x0d4965fa6ff399f51097c8e702aec23ea4ad2ddac27ae32ed788028073dec807",
+        "receipt": {
+          "receipt_hash": "0x8cc81d923be8507753ea580082a1d8941c586c62cdae1b0df09a0fd256defcf0",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "4860",
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795280466
+        },
+        "duration_ms": 14710,
+        "error": null
+      }
+    },
+    {
+      "check": "Pool liquidity",
+      "intent": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+      "flag": "ok",
+      "summary": "DEX pool LDO/WETH holds $148,773,260.",
+      "purchase": {
+        "intent": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+        "request": {
+          "intent": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+          "params": {
+            "pool": "LDO/WETH",
+            "chain": "ethereum"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "20260828",
+        "miner_name": "PREFLIGHT Infrastructure Signals",
+        "result": {
+          "liquidity_usd": 148773260.36
+        },
+        "field_status": {
+          "liquidity_usd": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xc3301eb59093655c09a5fb39cac5158c5da271600ac82ba2caebb1dd7421c1d7",
+        "receipt": {
+          "receipt_hash": "0xa918579e680c0541caf0ddd4ff024d37b73a39658fbe14282b0102111581721a",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5311",
+          "intent": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795280458
+        },
+        "duration_ms": 6989,
+        "error": null
+      }
+    },
+    {
+      "check": "Treasury 0x3e40D73E…",
+      "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+      "flag": "ok",
+      "summary": "Treasury 0x3e40D73EB977Dc6a537aF587D48316feE66E9C8c held 9.303 ETH at block 26,464,834.",
+      "purchase": {
+        "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+        "request": {
+          "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+          "params": {
+            "address": "0x3e40D73EB977Dc6a537aF587D48316feE66E9C8c",
+            "block": 26464834
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "4433",
+        "miner_name": "LiveCert — Sourced Answers for Agents",
+        "result": {
+          "balance_gwei": 9302962393,
+          "address": null,
+          "block": null,
+          "chain": null,
+          "tx_count": null
+        },
+        "field_status": {
+          "balance_gwei": "ok",
+          "address": "missing",
+          "block": "missing",
+          "chain": "missing",
+          "tx_count": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x12dc8568158a2363e93b4552ac2953e2707f9dbdf40e7a1f17b54f7004d90f6c",
+        "receipt": {
+          "receipt_hash": "0x44497ffa480bcd17c5aa93a3f69e1e10153ef57bf078a0983d38698c3317e4d2",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6126",
+          "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795280456
+        },
+        "duration_ms": 4480,
+        "error": null
+      }
+    },
+    {
+      "check": "Treasury sanctions 0x3e40D73E…",
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "flag": "ok",
+      "summary": "Treasury address 0x3e40D73EB977Dc6a537aF587D48316feE66E9C8c: no sanctions-list match.",
+      "purchase": {
+        "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+        "request": {
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "params": {
+            "name": "0x3e40D73EB977Dc6a537aF587D48316feE66E9C8c"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "710637",
+        "miner_name": "Sanctions Name Evidence",
+        "result": {
+          "name": "0x3e40D73EB977Dc6a537aF587D48316feE66E9C8c",
+          "matched": false,
+          "matches": null,
+          "lists": [
+            "OFAC SDN",
+            "OFAC Consolidated (non-SDN)",
+            "UK Sanctions List (entities only)",
+            "Canada autonomous sanctions (entities only)",
+            "EU Financial Sanctions (entities only)",
+            "US BIS Entity List (export controls)",
+            "US BIS Military End User List (export controls)",
+            "US BIS Denied Persons List (dated standard export-denial orders)",
+            "UK Sanctions List (ships)",
+            "US BIS Entity List (additional primary-row corroborated records)",
+            "Canada autonomous sanctions (November 5 additional entities)",
+            "Canada autonomous sanctions (corroborated ships)",
+            "Canada autonomous sanctions (November 5 Iranian entity amendment)"
+          ],
+          "match_score": 0
+        },
+        "field_status": {
+          "name": "ok",
+          "matched": "ok",
+          "matches": "missing",
+          "lists": "ok",
+          "match_score": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x436824c45fa4ce46eebeffc06e29b4ae0676962bf5e833f3f5fa5d029da90f50",
+        "receipt": {
+          "receipt_hash": "0xe0ccc68334d93cc384358fa056aac13fcd69fab372ac4639347b533b87d68a78",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "4860",
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795280469
+        },
+        "duration_ms": 17449,
+        "error": null
+      }
+    },
+    {
+      "check": "Social authenticity",
+      "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+      "attempts": 3,
+      "flag": "ok",
+      "summary": "Social account @LidoFinance: assessed.",
+      "purchase": {
+        "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+        "request": {
+          "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+          "params": {
+            "account": "@LidoFinance"
+          }
+        },
+        "direct_miner": "9002",
+        "ok": true,
+        "status": 200,
+        "miner_id": "9002",
+        "miner_name": "TxLens",
+        "result": {
+          "account": "@LidoFinance",
+          "verdict": null,
+          "bot_score": null,
+          "signals": null
+        },
+        "field_status": {
+          "account": "ok",
+          "verdict": "rejected",
+          "bot_score": "missing",
+          "signals": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x5e8a9a42afa1ef39aa15ffb510d0b6e7c0b8cf93f6c80fb1f0e680c5cb359d83",
+        "receipt": {
+          "receipt_hash": "0xa9e43f3e89d66b8f3b0863458fe32fd05e7d6ee6aa7ed9d30ad79968b91c097c",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6121",
+          "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795280469
+        },
+        "duration_ms": 4363,
+        "error": null
+      },
+      "superseded": {
+        "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+        "request": {
+          "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+          "params": {
+            "account": "@LidoFinance"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "302",
+        "miner_name": "ChainSight — Universal Intelligence & Data Oracle",
+        "result": {
+          "account": "@LidoFinance",
+          "verdict": "inconclusive",
+          "bot_score": null,
+          "signals": [
+            "inconclusive - Likely uncertain - a single handle like \"@LidoFinance\" provides no behavioral evidence to determine if it's automated or human‑run."
+          ]
+        },
+        "field_status": {
+          "account": "ok",
+          "verdict": "ok",
+          "bot_score": "missing",
+          "signals": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x90109c830a98d3e55ae9f2021392e51e0115a0dad1dc2158368a18fc76e3b95b",
+        "receipt": {
+          "receipt_hash": "0x6fb51f97d55705803f2d66f8bafd23355054daac2965c5ab2cefcd009a811a06",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6119",
+          "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795280459
+        },
+        "duration_ms": 7095,
+        "error": null
+      },
+      "also_tried": [
+        {
+          "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+          "request": {
+            "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+            "params": {
+              "account": "@LidoFinance"
+            }
+          },
+          "direct_miner": "7457",
+          "ok": true,
+          "status": 200,
+          "miner_id": "7457",
+          "miner_name": "TradeWire Social Bot Detection",
+          "result": {
+            "account": "@LidoFinance",
+            "verdict": "inconclusive",
+            "bot_score": null,
+            "signals": null
+          },
+          "field_status": {
+            "account": "ok",
+            "verdict": "ok",
+            "bot_score": "missing",
+            "signals": "missing"
+          },
+          "cost_usd": 0.01,
+          "signal_hash": "0xc3139d2f25e87210886c7498d0c0f8aec58cb34b935aa9ccf8ff7223b8b8f121",
+          "receipt": {
+            "receipt_hash": "0x4761df4a28d3a3272360bd33bed92210b21ae6b495d89c40e632500cabb0c0be",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "4494",
+            "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 32,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795280465
+          },
+          "duration_ms": 4494,
+          "error": null
+        }
+      ]
+    },
+    {
+      "check": "Website safety",
+      "intent": "URL_SAFE_GENERAL",
+      "attempts": 4,
+      "flag": "ok",
+      "summary": "Project website https://lido.fi: no threat reported.",
+      "purchase": {
+        "intent": "URL_SAFE_GENERAL",
+        "request": {
+          "intent": "URL_SAFE_GENERAL",
+          "params": {
+            "url": "https://lido.fi"
+          }
+        },
+        "direct_miner": "42420",
+        "ok": true,
+        "status": 200,
+        "miner_id": "42420",
+        "miner_name": "FakeWatch Crypto Phishing and Impersonation Check",
+        "result": {
+          "url": "https://lido.fi",
+          "verdict": "Safe",
+          "detections": 0,
+          "summary": "Official domain of Lido, as listed in the FakeWatch directory."
+        },
+        "field_status": {
+          "url": "ok",
+          "verdict": "ok",
+          "detections": "ok",
+          "summary": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xb45f95e4c121a1064ffd0940b36c120c74b39115c6ada25b9a277785703232c0",
+        "receipt": {
+          "receipt_hash": "0x5f156e37f29e20824e9d6375e8163533da8ad96faca877d1e39ce03b79f97029",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5280",
+          "intent": "URL_SAFE_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795280476
+        },
+        "duration_ms": 4664,
+        "error": null
+      },
+      "superseded": {
+        "intent": "URL_SAFE_GENERAL",
+        "request": {
+          "intent": "URL_SAFE_GENERAL",
+          "params": {
+            "url": "https://lido.fi"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "5530",
+        "miner_name": "Telegraph Verity Intelligence",
+        "result": {
+          "url": "https://lido.fi/",
+          "verdict": "Unknown",
+          "detections": 0,
+          "summary": "No match was found in the checked feed(s) (google-safe-browsing+cert-polska). This does not establish that the URL is safe."
+        },
+        "field_status": {
+          "url": "ok",
+          "verdict": "ok",
+          "detections": "ok",
+          "summary": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xd179e1c8599dc514299fbda34f2edee386faf04f546ce6d334189b0df7179266",
+        "receipt": {
+          "receipt_hash": "0xa3d6e8e5febbee01db4efafc5dd5bd4a32b0c074d3fbdd6c52b6cb07ce825d22",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5294",
+          "intent": "URL_SAFE_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 32,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795280457
+        },
+        "duration_ms": 5660,
+        "error": null
+      },
+      "also_tried": [
+        {
+          "intent": "URL_SAFE_GENERAL",
+          "request": {
+            "intent": "URL_SAFE_GENERAL",
+            "params": {
+              "url": "https://lido.fi"
+            }
+          },
+          "direct_miner": "771353",
+          "ok": true,
+          "status": 200,
+          "miner_id": "771353",
+          "miner_name": "GuardWire Source-Backed URL Safety",
+          "result": {
+            "url": "https://lido.fi/",
+            "verdict": "Unknown",
+            "detections": 0,
+            "summary": "Unknown: 0 detections for lido.fi in 4 responding sources (CERT Polska Warning List; Cloudflare security DNS; Quad9 threat-blocking DNS; PhishDestroy curated Primary phishing list); a manual-redirect GET returned HTTP 200 over HTTPS. Hostname checks cannot prove an unlisted page safe or rule out exact-path threats."
+          },
+          "field_status": {
+            "url": "ok",
+            "verdict": "ok",
+            "detections": "ok",
+            "summary": "ok"
+          },
+          "cost_usd": 0.01,
+          "signal_hash": "0xdb85fbf2a59aad8195f33ef97f6dedb626e15078a3e282da9a38d6cd602417c1",
+          "receipt": {
+            "receipt_hash": "0x23b087495c65e35243e44e84ad0384a86352cd9f4213740a66d8e549ab501b2d",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "4900",
+            "intent": "URL_SAFE_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 32,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795280472
+          },
+          "duration_ms": 10823,
+          "error": null
+        }
+      ]
+    }
+  ],
+  "paid_requests": 12,
+  "total_cost_usd": 0.12,
+  "network": "eip155:11155111",
+  "network_label": "Ethereum Sepolia testnet",
+  "boundary": "Testnet: payments are Ethereum Sepolia test USDC with no monetary value. Miner answers are real; settlement is on a test network.",
+  "agent": "0x9B3c9555c28CA6cc1D07085d5fE81D9d229f0975",
+  "memo_hash": "0x65cde98cf0eb50a41e9b1e368508bcc1144a8cfdf488da6557bdc6c5ab53c58f",
+  "signature": "0x5fd92177921039549b088bd35cf649ac4fc31fb803b712d33d3a1aab95d73e2559ee282b20710bbdb369ba27131fc5e0efcb22773d1a68c3e63b74992d12c3fc1c"
+}
