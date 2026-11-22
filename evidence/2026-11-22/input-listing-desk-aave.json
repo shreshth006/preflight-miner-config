@@ -1,0 +1,14 @@
+{
+  "project": "Aave",
+  "symbol": "AAVE",
+  "chain": "ethereum",
+  "contract": "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9",
+  "issuer": "Aave DAO",
+  "treasury": [
+    "0x25F2226B597E8F9514B3F68F00f494cF4f286491",
+    "0x464C71f6c2F760DdA6093dCB91C24c39e5d6e18c"
+  ],
+  "pool": "AAVE/WETH",
+  "social": "@aave",
+  "website": "https://aave.com"
+}

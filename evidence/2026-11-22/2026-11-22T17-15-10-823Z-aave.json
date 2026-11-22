@@ -1,0 +1,768 @@
+{
+  "id": "2026-11-22T17-15-10-823Z-aave",
+  "created_at": "2026-11-22T17:15:10.823Z",
+  "application": {
+    "project": "Aave",
+    "symbol": "AAVE",
+    "chain": "ethereum",
+    "contract": "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9",
+    "issuer": "Aave DAO",
+    "treasury": [
+      "0x25F2226B597E8F9514B3F68F00f494cF4f286491",
+      "0x464C71f6c2F760DdA6093dCB91C24c39e5d6e18c"
+    ],
+    "pool": "AAVE/WETH",
+    "social": "@aave",
+    "website": "https://aave.com"
+  },
+  "decision": "REVIEW",
+  "reasons": [
+    "Contract audit: answered by miner openai, which does not declare SMART_CONTRACT_AUDIT_GENERAL, so the answer is not used."
+  ],
+  "findings": [
+    {
+      "check": "Contract audit",
+      "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+      "attempts": 9,
+      "flag": "unverified",
+      "summary": "Contract audit: answered by miner openai, which does not declare SMART_CONTRACT_AUDIT_GENERAL, so the answer is not used.",
+      "purchase": {
+        "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+        "request": {
+          "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+          "params": {
+            "contract_address": "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9",
+            "address": "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9",
+            "chain": "ethereum"
+          },
+          "query": "Audit the AAVE token contract 0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9 on ethereum for a listing review: owner and admin keys, mint, burn, pause and blacklist powers, upgradeability, reentrancy and known vulnerability classes. Give a verdict (safe, caution or unsafe) and the findings."
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "openai",
+        "miner_name": "openai",
+        "result": "Here's an audit of the AAVE token contract (0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9) on Ethereum for a listing review:\n\n**Findings:**\n\n*   **Owner and Admin Keys:** The contract is owned by a `Timelock` contract (0x4da277f2f3e4c4b45918c10433003407d5755361). The `Timelock` contract itself has a `proposer` and `executor` role, which are controlled by a multisig wallet (0x57f1887a8BFc19A75991eC31Ef44231af324352c). This indicates a decentralized governance model for administrative actions.\n*   **Mint Powers:** The AAVE token contract itself does not have a direct `mint` function accessible to external users. Minting of AAVE tokens is typically managed by the Aave protocol's governance and smart contracts, not directly by the ERC20 token contract itself.\n*   **Burn Powers:** The AAVE token contract has a `burn` function, which allows token holders to burn their own tokens. There is also a `burnFrom` function, which allows an approved spender to burn tokens on behalf of the owner.\n*   **Pause Powers:** The AAVE token contract does not appear to have a direct `pause` function that would halt all token transfers. However, the Aave protocol's governance can implement mechanisms that indirectly affect token utility or transfers within the Aave ecosystem.\n*   **Blacklist Powers:** The AAVE token contract does not have a direct `blacklist` function that would prevent specific addresses from holding or transferring tokens.\n*   **Upgradeability:** The AAVE token contract is **not directly upgradeable** in the traditional sense of proxy patterns. The ERC20 token contract is a standard implementation. However, the Aave protocol's governance can deploy new versions of contracts or introduce new functionalities that interact with the AAVE token.\n*   **Reentrancy:** The `burnFrom` function includes a `transferFrom` call before updating the balance, which is a common pattern to mitigate reentrancy risks in ERC20 `transferFrom` operations. Standard ERC20 `transfer` and `transferFrom` functions are generally considered safe from reentrancy attacks in isolation, as they don't typically involve external calls that could lead to reentrancy.\n*   **Known Vulnerability Classes:**\n    *   **Standard ERC20 Risks:** As an ERC20 token, it inherits the standard risks associated with the ERC20 standard, such as",
+        "field_status": null,
+        "cost_usd": 0,
+        "signal_hash": "0xbc9c9198e6564b04262648d194b97cbc16d606e9f01ef4bfe2b37a2ce16efbe6",
+        "receipt": null,
+        "duration_ms": 5096,
+        "error": null
+      }
+    },
+    {
+      "check": "Total supply",
+      "intent": "TOKEN_TOTAL_SUPPLY_VERIFY_GENERAL",
+      "flag": "ok",
+      "summary": "Total supply on-chain: 15,999,999.687 AAVE.",
+      "purchase": {
+        "intent": "TOKEN_TOTAL_SUPPLY_VERIFY_GENERAL",
+        "request": {
+          "intent": "TOKEN_TOTAL_SUPPLY_VERIFY_GENERAL",
+          "params": {
+            "token": "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9 on ethereum"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "302",
+        "miner_name": "ChainSight — Universal Intelligence & Data Oracle",
+        "result": {
+          "total_supply": 15999999.686598048
+        },
+        "field_status": {
+          "total_supply": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xa614e9c352c3ffcba67cc49c243dffe8dccce7bbe73be5f51f47e29e6a496082",
+        "receipt": {
+          "receipt_hash": "0x469f5a077f8677a1b0ad87ad90fe724ef2234cfd798ff6e135be6e7464f151dc",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6119",
+          "intent": "TOKEN_TOTAL_SUPPLY_VERIFY_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 38,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795367722
+        },
+        "duration_ms": 11799,
+        "error": null
+      }
+    },
+    {
+      "check": "Holder distribution",
+      "intent": "TOKEN_HOLDER_COUNT_GENERAL",
+      "flag": "ok",
+      "summary": "197,254 distinct holders.",
+      "purchase": {
+        "intent": "TOKEN_HOLDER_COUNT_GENERAL",
+        "request": {
+          "intent": "TOKEN_HOLDER_COUNT_GENERAL",
+          "params": {
+            "token": "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9",
+            "chain": "ethereum"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "4433",
+        "miner_name": "LiveCert — Sourced Answers for Agents",
+        "result": {
+          "token": null,
+          "chain": null,
+          "holders_count": 197254,
+          "token_symbol": null
+        },
+        "field_status": {
+          "token": "missing",
+          "chain": "missing",
+          "holders_count": "ok",
+          "token_symbol": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x88525c53f33ff6bfa8e8cece590510848dee280798ea3491d146e6a248650bf7",
+        "receipt": {
+          "receipt_hash": "0xf02c524cb96ae84c78f0c10de039aa31b263f3c523361377239dba65e8aaef22",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6126",
+          "intent": "TOKEN_HOLDER_COUNT_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 38,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795367715
+        },
+        "duration_ms": 4587,
+        "error": null
+      }
+    },
+    {
+      "check": "Issuer sanctions screen",
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "flag": "ok",
+      "summary": "Issuer \"Aave DAO\": no sanctions-list match.",
+      "purchase": {
+        "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+        "request": {
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "params": {
+            "name": "Aave DAO"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "710637",
+        "miner_name": "Sanctions Name Evidence",
+        "result": {
+          "name": "Aave DAO",
+          "matched": false,
+          "matches": null,
+          "lists": [
+            "OFAC SDN",
+            "OFAC Consolidated (non-SDN)",
+            "UK Sanctions List (entities only)",
+            "Canada autonomous sanctions (entities only)",
+            "EU Financial Sanctions (entities only)",
+            "US BIS Entity List (export controls)",
+            "US BIS Military End User List (export controls)",
+            "US BIS Denied Persons List (dated standard export-denial orders)",
+            "UK Sanctions List (ships)",
+            "US BIS Entity List (additional primary-row corroborated records)",
+            "Canada autonomous sanctions (November 5 additional entities)",
+            "Canada autonomous sanctions (corroborated ships)",
+            "Canada autonomous sanctions (November 5 Iranian entity amendment)"
+          ],
+          "match_score": 0
+        },
+        "field_status": {
+          "name": "ok",
+          "matched": "ok",
+          "matches": "missing",
+          "lists": "ok",
+          "match_score": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x3de823b819097b9a7bb470ef26ff98afbe46a58038ec5a62d77a44dc7569ba21",
+        "receipt": {
+          "receipt_hash": "0x8794423c587157351b2fe7f5da9c21339986cfcf10c95e387d36434b0b8955b4",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "4860",
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 38,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795367724
+        },
+        "duration_ms": 13797,
+        "error": null
+      }
+    },
+    {
+      "check": "Pool liquidity",
+      "intent": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+      "flag": "ok",
+      "summary": "DEX pool AAVE/WETH holds $5,244,276.",
+      "purchase": {
+        "intent": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+        "request": {
+          "intent": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+          "params": {
+            "pool": "AAVE/WETH",
+            "chain": "ethereum"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "20260828",
+        "miner_name": "PREFLIGHT Infrastructure Signals",
+        "result": {
+          "liquidity_usd": 5244275.92
+        },
+        "field_status": {
+          "liquidity_usd": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x43d97f0390c17f4fc73da256a5c58a5b4ac398db949596667556db9ac2eed289",
+        "receipt": {
+          "receipt_hash": "0x3a207f40d1461a368c49ea077187568b612b19be56c2c84b4bd1afd622799258",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5311",
+          "intent": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 38,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795367727
+        },
+        "duration_ms": 16733,
+        "error": null
+      }
+    },
+    {
+      "check": "Treasury 0x25F2226B…",
+      "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+      "flag": "ok",
+      "summary": "Treasury 0x25F2226B597E8F9514B3F68F00f494cF4f286491 held 0.0221 ETH at block 26,472,085.",
+      "purchase": {
+        "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+        "request": {
+          "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+          "params": {
+            "address": "0x25F2226B597E8F9514B3F68F00f494cF4f286491",
+            "block": 26472085
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "302",
+        "miner_name": "ChainSight — Universal Intelligence & Data Oracle",
+        "result": {
+          "balance_gwei": 22101000,
+          "address": "0x25F2226B597E8F9514B3F68F00f494cF4f286491",
+          "block": "26472085",
+          "chain": "ethereum",
+          "tx_count": null
+        },
+        "field_status": {
+          "balance_gwei": "ok",
+          "address": "ok",
+          "block": "ok",
+          "chain": "ok",
+          "tx_count": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x4bf04af88393ccbe9b4f95afa072b8d77d6f4ab2c5d8ef641cb471cce98ae4ff",
+        "receipt": {
+          "receipt_hash": "0x7c0b759a486686fca0550b679a4ae48758f3f58cb8495525103e2fcc303a52fc",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6119",
+          "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 38,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795367726
+        },
+        "duration_ms": 15374,
+        "error": null
+      }
+    },
+    {
+      "check": "Treasury 0x464C71f6…",
+      "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+      "flag": "ok",
+      "summary": "Treasury 0x464C71f6c2F760DdA6093dCB91C24c39e5d6e18c held 292.3507 ETH at block 26,472,085.",
+      "purchase": {
+        "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+        "request": {
+          "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+          "params": {
+            "address": "0x464C71f6c2F760DdA6093dCB91C24c39e5d6e18c",
+            "block": 26472085
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "302",
+        "miner_name": "ChainSight — Universal Intelligence & Data Oracle",
+        "result": {
+          "balance_gwei": 292350715606.04193,
+          "address": "0x464C71f6c2F760DdA6093dCB91C24c39e5d6e18c",
+          "block": "26472085",
+          "chain": "ethereum",
+          "tx_count": null
+        },
+        "field_status": {
+          "balance_gwei": "ok",
+          "address": "ok",
+          "block": "ok",
+          "chain": "ok",
+          "tx_count": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x16fd5e161aa588dd1909f08de471553c6c07e8757ee328fe953441c2965606e4",
+        "receipt": {
+          "receipt_hash": "0xbd6f053d3e3f4162e49307933fdc1e51b609fa9a6f43204dedd9b6924aa776dc",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6119",
+          "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 38,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795367726
+        },
+        "duration_ms": 15307,
+        "error": null
+      }
+    },
+    {
+      "check": "Treasury holdings 0x25F2226B…",
+      "intent": "WALLET_BALANCE_CHECK_GENERAL",
+      "flag": "ok",
+      "summary": "Treasury 0x25F2226B597E8F9514B3F68F00f494cF4f286491 holds 558,601.12 AAVE.",
+      "purchase": {
+        "intent": "WALLET_BALANCE_CHECK_GENERAL",
+        "request": {
+          "intent": "WALLET_BALANCE_CHECK_GENERAL",
+          "params": {
+            "address": "0x25F2226B597E8F9514B3F68F00f494cF4f286491",
+            "chain": "ethereum",
+            "token": "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "20260828",
+        "miner_name": "PREFLIGHT Infrastructure Signals",
+        "result": {
+          "address": "0x25F2226B597E8F9514B3F68F00f494cF4f286491",
+          "chain": "ethereum",
+          "balance": 558601.12373664,
+          "token_symbol": "AAVE",
+          "as_of": "2026-11-22T17:15:24.552Z"
+        },
+        "field_status": {
+          "address": "ok",
+          "chain": "ok",
+          "balance": "ok",
+          "token_symbol": "ok",
+          "as_of": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x8332c23dbc4b01085977e9ac5f893d55f517db20d1c7342610ece20959d858db",
+        "receipt": {
+          "receipt_hash": "0xdc52dd1f192e12b3044a49840c39c552ec9e83e6780e04b5af10a30157796d29",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5311",
+          "intent": "WALLET_BALANCE_CHECK_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 38,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795367728
+        },
+        "duration_ms": 17667,
+        "error": null
+      }
+    },
+    {
+      "check": "Treasury holdings 0x464C71f6…",
+      "intent": "WALLET_BALANCE_CHECK_GENERAL",
+      "flag": "ok",
+      "summary": "Treasury 0x464C71f6c2F760DdA6093dCB91C24c39e5d6e18c holds 0 AAVE, none of its own token.",
+      "purchase": {
+        "intent": "WALLET_BALANCE_CHECK_GENERAL",
+        "request": {
+          "intent": "WALLET_BALANCE_CHECK_GENERAL",
+          "params": {
+            "address": "0x464C71f6c2F760DdA6093dCB91C24c39e5d6e18c",
+            "chain": "ethereum",
+            "token": "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "20260828",
+        "miner_name": "PREFLIGHT Infrastructure Signals",
+        "result": {
+          "address": "0x464C71f6c2F760DdA6093dCB91C24c39e5d6e18c",
+          "chain": "ethereum",
+          "balance": 0,
+          "token_symbol": "AAVE",
+          "as_of": "2026-11-22T17:15:17.204Z"
+        },
+        "field_status": {
+          "address": "ok",
+          "chain": "ok",
+          "balance": "ok",
+          "token_symbol": "ok",
+          "as_of": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x90ddd8ace0978946651745e7b93c6366930d7047a1cf08b8a5b3ad288aaca0ea",
+        "receipt": {
+          "receipt_hash": "0x9a05a7c3c4b99b39d65aeb0f75db8f9a773873917900c61a738d1a0632652b47",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5311",
+          "intent": "WALLET_BALANCE_CHECK_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 38,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795367727
+        },
+        "duration_ms": 16802,
+        "error": null
+      }
+    },
+    {
+      "check": "Treasury sanctions 0x25F2226B…",
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "flag": "ok",
+      "summary": "Treasury address 0x25F2226B597E8F9514B3F68F00f494cF4f286491: no sanctions-list match.",
+      "purchase": {
+        "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+        "request": {
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "params": {
+            "name": "0x25F2226B597E8F9514B3F68F00f494cF4f286491"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "710637",
+        "miner_name": "Sanctions Name Evidence",
+        "result": {
+          "name": "0x25F2226B597E8F9514B3F68F00f494cF4f286491",
+          "matched": false,
+          "matches": null,
+          "lists": [
+            "OFAC SDN",
+            "OFAC Consolidated (non-SDN)",
+            "UK Sanctions List (entities only)",
+            "Canada autonomous sanctions (entities only)",
+            "EU Financial Sanctions (entities only)",
+            "US BIS Entity List (export controls)",
+            "US BIS Military End User List (export controls)",
+            "US BIS Denied Persons List (dated standard export-denial orders)",
+            "UK Sanctions List (ships)",
+            "US BIS Entity List (additional primary-row corroborated records)",
+            "Canada autonomous sanctions (November 5 additional entities)",
+            "Canada autonomous sanctions (corroborated ships)",
+            "Canada autonomous sanctions (November 5 Iranian entity amendment)"
+          ],
+          "match_score": 0
+        },
+        "field_status": {
+          "name": "ok",
+          "matched": "ok",
+          "matches": "missing",
+          "lists": "ok",
+          "match_score": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xdf080921af3dc076cfb4833e89f473f649d6ef89bf6146b64a02033cc3f7cad0",
+        "receipt": {
+          "receipt_hash": "0xa6214a4a4c03941b18d6350b231006312fff7532081f4d68a95e2a5a7d5e534f",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "4860",
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 38,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795367727
+        },
+        "duration_ms": 16937,
+        "error": null
+      }
+    },
+    {
+      "check": "Treasury sanctions 0x464C71f6…",
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "flag": "ok",
+      "summary": "Treasury address 0x464C71f6c2F760DdA6093dCB91C24c39e5d6e18c: no sanctions-list match.",
+      "purchase": {
+        "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+        "request": {
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "params": {
+            "name": "0x464C71f6c2F760DdA6093dCB91C24c39e5d6e18c"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "710637",
+        "miner_name": "Sanctions Name Evidence",
+        "result": {
+          "name": "0x464C71f6c2F760DdA6093dCB91C24c39e5d6e18c",
+          "matched": false,
+          "matches": null,
+          "lists": [
+            "OFAC SDN",
+            "OFAC Consolidated (non-SDN)",
+            "UK Sanctions List (entities only)",
+            "Canada autonomous sanctions (entities only)",
+            "EU Financial Sanctions (entities only)",
+            "US BIS Entity List (export controls)",
+            "US BIS Military End User List (export controls)",
+            "US BIS Denied Persons List (dated standard export-denial orders)",
+            "UK Sanctions List (ships)",
+            "US BIS Entity List (additional primary-row corroborated records)",
+            "Canada autonomous sanctions (November 5 additional entities)",
+            "Canada autonomous sanctions (corroborated ships)",
+            "Canada autonomous sanctions (November 5 Iranian entity amendment)"
+          ],
+          "match_score": 0
+        },
+        "field_status": {
+          "name": "ok",
+          "matched": "ok",
+          "matches": "missing",
+          "lists": "ok",
+          "match_score": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x2b964f763740c4b9da640c98bfefc70c8579455ffaae2ae5bb0072a4cbb81368",
+        "receipt": {
+          "receipt_hash": "0xe0a2b6cb60efa12a401cab476a7837e06e2f62bfbab6aba22e4d3e18631f2384",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "4860",
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 38,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795367727
+        },
+        "duration_ms": 16901,
+        "error": null
+      }
+    },
+    {
+      "check": "Social authenticity",
+      "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+      "attempts": 2,
+      "flag": "ok",
+      "summary": "Social account @aave: likely_human.",
+      "purchase": {
+        "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+        "request": {
+          "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+          "params": {
+            "account": "@aave"
+          }
+        },
+        "direct_miner": "20260828",
+        "ok": true,
+        "status": 200,
+        "miner_id": "20260828",
+        "miner_name": "PREFLIGHT Infrastructure Signals",
+        "result": {
+          "account": "@aave",
+          "verdict": "likely_human",
+          "bot_score": null,
+          "signals": [
+            "Wikidata (Q125457725) records @aave as the X account of Aave, decentralized finance protocol"
+          ]
+        },
+        "field_status": {
+          "account": "ok",
+          "verdict": "ok",
+          "bot_score": "missing",
+          "signals": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x00bc481e7176c7bee4b1c4b192aa46f1cad3035d2d95b9e4d22a22b494d01460",
+        "receipt": {
+          "receipt_hash": "0x7a017b0f4d393f4b6b28adb61ecdca69b58ebe4155d454f22972a3c7bd6f1f42",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5311",
+          "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 38,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795367729
+        },
+        "duration_ms": 4485,
+        "error": null
+      },
+      "superseded": {
+        "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+        "request": {
+          "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+          "params": {
+            "account": "@aave"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "302",
+        "miner_name": "ChainSight — Universal Intelligence & Data Oracle",
+        "result": {
+          "account": "@aave",
+          "verdict": "inconclusive",
+          "bot_score": null,
+          "signals": [
+            "inconclusive - Likely uncertain - a single mention of \"@aave\" provides no behavioral evidence to determine whether the account is automated or human."
+          ]
+        },
+        "field_status": {
+          "account": "ok",
+          "verdict": "ok",
+          "bot_score": "missing",
+          "signals": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x8f2afa1bef84e261538d984a8388f423dcc8ca96f4facb5b04cf72c5a8b7927c",
+        "receipt": {
+          "receipt_hash": "0xfca98970440235ad097e60fa57c20a5b3e244a9835e7e8beb11bb8f5b2d4ddb1",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6119",
+          "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 38,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795367722
+        },
+        "duration_ms": 11848,
+        "error": null
+      }
+    },
+    {
+      "check": "Website safety",
+      "intent": "URL_SAFE_GENERAL",
+      "attempts": 2,
+      "flag": "ok",
+      "summary": "Project website https://aave.com: no threat reported.",
+      "purchase": {
+        "intent": "URL_SAFE_GENERAL",
+        "request": {
+          "intent": "URL_SAFE_GENERAL",
+          "params": {
+            "url": "https://aave.com"
+          }
+        },
+        "direct_miner": "20260828",
+        "ok": true,
+        "status": 200,
+        "miner_id": "20260828",
+        "miner_name": "PREFLIGHT Infrastructure Signals",
+        "result": {
+          "url": "https://aave.com",
+          "verdict": "Safe",
+          "detections": 0,
+          "summary": "https://aave.com is not listed as malicious by any of the 2 threat sources checked: OpenPhish (not listed), Cloudflare Security DNS (resolves normally)."
+        },
+        "field_status": {
+          "url": "ok",
+          "verdict": "ok",
+          "detections": "ok",
+          "summary": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x4a7db0734aee0b560959edc63ca673d6670a0392d699913a4ebe55829b06deb4",
+        "receipt": {
+          "receipt_hash": "0x216919a486ffb606c94b998d5590bdf775d2488da4a3e21579447776eb1052d3",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5311",
+          "intent": "URL_SAFE_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 38,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795367730
+        },
+        "duration_ms": 5672,
+        "error": null
+      },
+      "superseded": {
+        "intent": "URL_SAFE_GENERAL",
+        "request": {
+          "intent": "URL_SAFE_GENERAL",
+          "params": {
+            "url": "https://aave.com"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "9002",
+        "miner_name": "TxLens",
+        "result": {
+          "url": "https://aave.com",
+          "verdict": "Unknown",
+          "detections": 0,
+          "summary": "Unknown. URLhaus check unavailable: URLhaus request failed with status 401. Web reputation search found no reports of malicious activity."
+        },
+        "field_status": {
+          "url": "ok",
+          "verdict": "ok",
+          "detections": "ok",
+          "summary": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xee5a7db24088c0561ce0b17fe639490ef73d2ecbca13599720f80ab665bf8b39",
+        "receipt": {
+          "receipt_hash": "0x28bf2b3716eec3a6bf3c2628aed3e6d1efee0cfc0db5b0152979341dd86d7b8b",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6121",
+          "intent": "URL_SAFE_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 38,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795367723
+        },
+        "duration_ms": 12522,
+        "error": null
+      }
+    }
+  ],
+  "paid_requests": 14,
+  "total_cost_usd": 0.14,
+  "network": "eip155:11155111",
+  "network_label": "Ethereum Sepolia testnet",
+  "boundary": "Testnet: payments are Ethereum Sepolia test USDC with no monetary value. Miner answers are real; settlement is on a test network.",
+  "agent": "0x9B3c9555c28CA6cc1D07085d5fE81D9d229f0975",
+  "memo_hash": "0xba280d93fccb7cf09176f2ae2b7460432f3ffc7e6c6be04146a265f1c8488bc6",
+  "signature": "0x2351816ac0d0c136c6cb080a7988c288f066601847fc8c81cd603f6f26f57bfc3f0ad815a1fd5ca1b7520628268ed9f9ed7893dc55433b466ed6161a6ebd4fa11b"
+}
