@@ -1,0 +1,417 @@
+{
+  "id": "2026-11-23T17-00-45-610Z-hangzhou-hikvision-digital-technology",
+  "created_at": "2026-11-23T17:00:45.610Z",
+  "subject": {
+    "name": "Hangzhou Hikvision Digital Technology Co., Ltd.",
+    "jurisdiction": "CN",
+    "claim": "Hikvision is headquartered in Hangzhou, China.",
+    "sample": true
+  },
+  "decision": "REVIEW",
+  "reasons": [
+    "Adverse media: the answer gave no results to read for \"Hangzhou Hikvision Digital Technology\"."
+  ],
+  "findings": [
+    {
+      "check": "Registry record",
+      "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+      "flag": "ok",
+      "summary": "Registry record: \"Hangzhou HIKVISION Digital Technology Co.,Ltd.\", registration 91330000733796106P, CN is active.",
+      "purchase": {
+        "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+        "request": {
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "params": {
+            "company": "Hangzhou Hikvision Digital Technology Co., Ltd.",
+            "jurisdiction": "CN"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "20260828",
+        "miner_name": "PREFLIGHT Infrastructure Signals",
+        "result": {
+          "legal_name": "Hangzhou HIKVISION Digital Technology Co.,Ltd.",
+          "registration_id": "91330000733796106P",
+          "active": true,
+          "jurisdiction": "CN",
+          "registered_address": "滨江区阡陌路555号, 杭州市, CN-ZJ, 310051, CN",
+          "incorporated": "2001-11-29"
+        },
+        "field_status": {
+          "legal_name": "ok",
+          "registration_id": "ok",
+          "active": "ok",
+          "jurisdiction": "ok",
+          "registered_address": "ok",
+          "incorporated": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xb7601d2e9dd407ffe98f0a544134bd4b739a5184a2f64f6e0beb450c86fbabe0",
+        "receipt": {
+          "receipt_hash": "0xa7db67c71cb5ae0bef890bfb6012819945eb7ea05aa58341f53675d98c8974bb",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5311",
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 44,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795453255
+        },
+        "duration_ms": 9918,
+        "error": null
+      }
+    },
+    {
+      "check": "Company sanctions screen",
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "flag": "ok",
+      "summary": "\"Hangzhou Hikvision Digital Technology Co., Ltd.\": no match on OFAC SDN list (treasury.gov).",
+      "purchase": {
+        "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+        "request": {
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "params": {
+            "name": "Hangzhou Hikvision Digital Technology Co., Ltd."
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "9002",
+        "miner_name": "TxLens",
+        "result": {
+          "name": "Hangzhou Hikvision Digital Technology Co., Ltd.",
+          "matched": false,
+          "matches": null,
+          "lists": [
+            "OFAC SDN list (treasury.gov)"
+          ],
+          "match_score": null
+        },
+        "field_status": {
+          "name": "ok",
+          "matched": "ok",
+          "matches": "missing",
+          "lists": "ok",
+          "match_score": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x82a1f341ce5d00ed8787f85ea55d5b8dbc771f230820f05be96dc777d41d12ed",
+        "receipt": {
+          "receipt_hash": "0x73231ffb9636efbefec44d68511d33b27d6c8f580e559e323fb42ab32089d6fd",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6121",
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 44,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795453254
+        },
+        "duration_ms": 8564,
+        "error": null
+      }
+    },
+    {
+      "check": "Regulatory filings",
+      "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+      "flag": "ok",
+      "summary": "Regulatory filings: 5 mentioning \"Hangzhou Hikvision Digital Technology\" in the last 12 months. One of them: \"Federal Acquisition Regulation: Revolutionary Federal Acquisition Regulation Overhaul Parts 1, 2, 4, 33, 39, 40, and 53\". A count of mentions isn't a finding against anyone.",
+      "purchase": {
+        "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+        "request": {
+          "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+          "params": {
+            "entity": "Hangzhou Hikvision Digital Technology",
+            "period": "the last 12 months"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "20260828",
+        "miner_name": "PREFLIGHT Infrastructure Signals",
+        "result": {
+          "entity": "Hangzhou Hikvision Digital Technology",
+          "filing_count": 5,
+          "filings": [
+            "Federal Acquisition Regulation: Revolutionary Federal Acquisition Regulation Overhaul Parts 1, 2, 4, 33, 39, 40, and 53",
+            "Notice of Availability of Designation of Chinese Military Companies",
+            "Regulation for Federal Financial Assistance",
+            "Protecting Against National Security Threats to the Communications Supply Chain Through the Equipment Authorization Program",
+            "Protecting Against National Security Threats to the Communications Supply Chain Through the Equipment Authorization Program"
+          ],
+          "urls": [
+            "https://www.federalregister.gov/documents/2026/06/23/2026-12559/federal-acquisition-regulation-revolutionary-federal-acquisition-regulation-overhaul-parts-1-2-4-33",
+            "https://www.federalregister.gov/documents/2026/06/10/2026-11571/notice-of-availability-of-designation-of-chinese-military-companies",
+            "https://www.federalregister.gov/documents/2026/05/29/2026-10817/regulation-for-federal-financial-assistance",
+            "https://www.federalregister.gov/documents/2025/12/04/2025-21928/protecting-against-national-security-threats-to-the-communications-supply-chain-through-the",
+            "https://www.federalregister.gov/documents/2025/11/25/2025-21001/protecting-against-national-security-threats-to-the-communications-supply-chain-through-the"
+          ]
+        },
+        "field_status": {
+          "entity": "ok",
+          "filing_count": "ok",
+          "filings": "ok",
+          "urls": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xd915399b54d7eaafa380ac5b2304e45dbea6083067ccbc3b706671970e353f09",
+        "receipt": {
+          "receipt_hash": "0x0ffe67b5f1d04761d4dbd1adfc2afcd9f776862b838c72f5c65871be50cc032e",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5311",
+          "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 44,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795453262
+        },
+        "duration_ms": 16453,
+        "error": null
+      }
+    },
+    {
+      "check": "Adverse media",
+      "intent": "WEB_SEARCH_GENERAL",
+      "attempts": 4,
+      "flag": "unverified",
+      "summary": "Adverse media: the answer gave no results to read for \"Hangzhou Hikvision Digital Technology\".",
+      "purchase": {
+        "intent": "WEB_SEARCH_GENERAL",
+        "request": {
+          "intent": "WEB_SEARCH_GENERAL",
+          "params": {
+            "query": "Hangzhou Hikvision Digital Technology lawsuit fraud investigation sanctions"
+          }
+        },
+        "direct_miner": "5530",
+        "ok": true,
+        "status": 200,
+        "miner_id": "5530",
+        "miner_name": "Telegraph Verity Intelligence",
+        "result": {
+          "answer": "",
+          "brief": "",
+          "confidence": 0,
+          "details": {
+            "query": "Hangzhou Hikvision Digital Technology lawsuit fraud investigation sanctions",
+            "results": []
+          },
+          "evidence": [],
+          "intent": "WEB_SEARCH_GENERAL",
+          "retrieved_at": "2026-11-23T17:01:03.277Z",
+          "sources": [],
+          "uncertainty": [
+            {
+              "code": "web_search_source_unconfigured",
+              "message": "A Jina Search API key is required to search the web in this deployment."
+            }
+          ],
+          "verdict": "insufficient_evidence"
+        },
+        "field_status": null,
+        "cost_usd": 0.01,
+        "signal_hash": "0xe589350a0bf73f260e7c598ff1a22929014079df4ced722736dee7e68dd44bad",
+        "receipt": {
+          "receipt_hash": "0x3e2fdd4f287cc5f260336037c74eaa001db02307206ec3b9679438ee0a6db919",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5294",
+          "intent": "WEB_SEARCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 44,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795453264
+        },
+        "duration_ms": 2866,
+        "error": null
+      },
+      "superseded": {
+        "intent": "WEB_SEARCH_GENERAL",
+        "request": {
+          "intent": "WEB_SEARCH_GENERAL",
+          "params": {
+            "query": "Hangzhou Hikvision Digital Technology lawsuit fraud investigation sanctions"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "303",
+        "miner_name": "ChainSight Search Node — Live Web & News Intelligence",
+        "result": {
+          "answer": null,
+          "sources": [
+            "https://en.wikipedia.org/wiki/Huawei"
+          ],
+          "brief": "Huawei"
+        },
+        "field_status": {
+          "answer": "missing",
+          "sources": "ok",
+          "brief": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x4d656b232c95d670c09eb9af69e750148c1bc0786bfaabd176adbe2c4a587f5d",
+        "receipt": {
+          "receipt_hash": "0xc23e492673813b7bfd41829f431bc80e5566e9f982e4337a4066e65e4bb72a2a",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "4970",
+          "intent": "WEB_SEARCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 44,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795453253
+        },
+        "duration_ms": 8128,
+        "error": null
+      },
+      "also_tried": [
+        {
+          "intent": "WEB_SEARCH_GENERAL",
+          "request": {
+            "intent": "WEB_SEARCH_GENERAL",
+            "params": {
+              "query": "Hangzhou Hikvision Digital Technology lawsuit fraud investigation sanctions"
+            }
+          },
+          "direct_miner": "49007",
+          "ok": true,
+          "status": 200,
+          "miner_id": "49007",
+          "miner_name": "Crossref Works Web Search",
+          "result": {
+            "answer": "Hangzhou Hikvision Digital Technology lawsuit fraud investigation sanctions",
+            "sources": [
+              "Crossref"
+            ],
+            "brief": null
+          },
+          "field_status": {
+            "answer": "ok",
+            "sources": "ok",
+            "brief": "missing"
+          },
+          "cost_usd": 0.01,
+          "signal_hash": "0xcca8f51aed6bd3b15be37580be07037d2ba936ef0b4201087b35a50ef651605d",
+          "receipt": {
+            "receipt_hash": "0xb5337aa5318b6296be1f0ea27fdb04b9ef6446deab8339bea1619f177d7c571b",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "4287",
+            "intent": "WEB_SEARCH_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 44,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795453259
+          },
+          "duration_ms": 4075,
+          "error": null
+        },
+        {
+          "intent": "WEB_SEARCH_GENERAL",
+          "request": {
+            "intent": "WEB_SEARCH_GENERAL",
+            "params": {
+              "query": "Hangzhou Hikvision Digital Technology lawsuit fraud investigation sanctions"
+            }
+          },
+          "direct_miner": "4433",
+          "ok": true,
+          "status": 200,
+          "miner_id": "4433",
+          "miner_name": "LiveCert — Sourced Answers for Agents",
+          "result": {
+            "answer": null,
+            "sources": null,
+            "brief": "No information on that lawsuit is available yet."
+          },
+          "field_status": {
+            "answer": "missing",
+            "sources": "missing",
+            "brief": "ok"
+          },
+          "cost_usd": 0.01,
+          "signal_hash": "0xd738d105fc1d4e34c763c937b7e0655c256ebd8381a93c0de50246e6cbfed680",
+          "receipt": {
+            "receipt_hash": "0xe856474d84be3adf27cd990555475d517844f633f434071b63bcbcd0cb6ac521",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "6126",
+            "intent": "WEB_SEARCH_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 44,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795453261
+          },
+          "duration_ms": 2108,
+          "error": null
+        }
+      ]
+    },
+    {
+      "check": "Claim check",
+      "intent": "FACT_CHECK_GENERAL",
+      "flag": "ok",
+      "summary": "Claim \"Hikvision is headquartered in Hangzhou, China.\" came back True. True. Hikvision (Hangzhou Hikvision Digital Technology Co., Ltd.) lists its corporate headquarters in Hangzhou, Zhejiang Province, China on its official website and in its 2023 annual report.",
+      "purchase": {
+        "intent": "FACT_CHECK_GENERAL",
+        "request": {
+          "intent": "FACT_CHECK_GENERAL",
+          "params": {
+            "claim": "Hikvision is headquartered in Hangzhou, China."
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "9002",
+        "miner_name": "TxLens",
+        "result": {
+          "claim": "Hikvision is headquartered in Hangzhou, China.",
+          "verdict": "True",
+          "reasoning": "True. Hikvision (Hangzhou Hikvision Digital Technology Co., Ltd.) lists its corporate headquarters in Hangzhou, Zhejiang Province, China on its official website and in its 2023 annual report.",
+          "sources": null
+        },
+        "field_status": {
+          "claim": "ok",
+          "verdict": "ok",
+          "reasoning": "ok",
+          "sources": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x3d2fa194906710537f569ec309d7cf95d5283a4ae30096af1788072c1a6fe254",
+        "receipt": {
+          "receipt_hash": "0x4e279260a16c92de3ee05445960c98ba5d5687f4f4d7aed40113cd3501cb5eed",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6121",
+          "intent": "FACT_CHECK_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 44,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795453257
+        },
+        "duration_ms": 11793,
+        "error": null
+      }
+    }
+  ],
+  "paid_requests": 8,
+  "total_cost_usd": 0.08,
+  "network": "eip155:11155111",
+  "network_label": "Ethereum Sepolia testnet",
+  "boundary": "Testnet: payments are Ethereum Sepolia test USDC with no monetary value. Miner answers are real; settlement is on a test network.",
+  "agent": "0x9B3c9555c28CA6cc1D07085d5fE81D9d229f0975",
+  "memo_hash": "0x9e2370cdc89025b6e8f3f9527e81c9ba925e63c5071bf7ac1a29b141fcd8a5dd",
+  "signature": "0xb59a1db2952f2688f0004dd022bb150de2a4ce92776b86b95ed50776438b14ae3f9966d989e8c8b68223959ab83a3f418bc0a0b22a42342fa4e58ba13ba0f53c1c"
+}

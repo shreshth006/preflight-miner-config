@@ -1,0 +1,221 @@
+{
+  "id": "2026-11-23T07-11-10-916Z-th_sp15_gen-apnd",
+  "created_at": "2026-11-23T07:11:10.916Z",
+  "site": {
+    "name": "Sample site, SP15 25 MW",
+    "node": "TH_SP15_GEN-APND",
+    "megawatts": 25,
+    "efficiency_j_per_th": 17,
+    "opex_usd_per_mwh": 8,
+    "sample": true
+  },
+  "call": "HASH",
+  "reasons": [
+    "Hashing nets $15.28/MWh: $70.38 of revenue against $47.10 of power and $8.00 of other cost."
+  ],
+  "inputs": {
+    "block_height": 977157,
+    "interval_start": "2026-11-23T07:00:00Z",
+    "hashprice_sats_per_ph_day": 46709.26085,
+    "btc_usd": 61475.493877262095,
+    "lmp_usd_per_mwh": 47.1
+  },
+  "economics": {
+    "revenue_usd_per_mwh": 70.38,
+    "margin_hash_usd_per_mwh": 15.28,
+    "margin_lease_usd_per_mwh": null,
+    "breakeven_power_usd_per_mwh": 62.38,
+    "best_usd_per_hour": 381.98
+  },
+  "findings": [
+    {
+      "check": "Hashprice",
+      "intent": "MINING_HASHPRICE_VERIFY_GENERAL",
+      "attempts": 2,
+      "flag": "ok",
+      "summary": "46,709.261 sats per PH/s per day at block 977157.",
+      "purchase": {
+        "intent": "MINING_HASHPRICE_VERIFY_GENERAL",
+        "request": {
+          "intent": "MINING_HASHPRICE_VERIFY_GENERAL",
+          "params": {
+            "block_height": 977157
+          }
+        },
+        "direct_miner": "71083",
+        "ok": true,
+        "status": 200,
+        "miner_id": "71083",
+        "miner_name": "Bitcoin Block Hashprice",
+        "result": {
+          "hashprice_sats_per_ph_day": 46709.26085,
+          "block_height": 977157,
+          "hashrate_eh_s": 965.10662,
+          "hashprice_usd_per_ph_day": null
+        },
+        "field_status": {
+          "hashprice_sats_per_ph_day": "ok",
+          "block_height": "ok",
+          "hashrate_eh_s": "ok",
+          "hashprice_usd_per_ph_day": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xe4c29c825e729c7a98e7dc8bd1fbc81acd7a6a77344bdb1507ddc9c836ade36a",
+        "receipt": {
+          "receipt_hash": "0x9ba18d7b03818b15a5c35ef6d04c096141c35630788004c5d0ccfe3dd5c161fa",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "4859",
+          "intent": "MINING_HASHPRICE_VERIFY_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 42,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795417879
+        },
+        "duration_ms": 2119,
+        "error": null
+      },
+      "superseded": {
+        "intent": "MINING_HASHPRICE_VERIFY_GENERAL",
+        "request": {
+          "intent": "MINING_HASHPRICE_VERIFY_GENERAL",
+          "params": {
+            "block_height": 977157
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "67010",
+        "miner_name": "Mempool Pools 1m",
+        "result": {
+          "hashprice_sats_per_ph_day": null,
+          "block_height": 977165,
+          "hashrate_eh_s": null,
+          "hashprice_usd_per_ph_day": null
+        },
+        "field_status": {
+          "hashprice_sats_per_ph_day": "missing",
+          "block_height": "ok",
+          "hashrate_eh_s": "rejected",
+          "hashprice_usd_per_ph_day": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x2049d24fbbea376f830aa7c6b46284aaa8068bf006a3a2a41c47a5f2d257e9f7",
+        "receipt": {
+          "receipt_hash": "0xf4fca92ca003d42bbc8ff902cc42bb0f643ea2f0c0a377bc5cb458fb365cde3b",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "3605",
+          "intent": "MINING_HASHPRICE_VERIFY_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 42,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795417876
+        },
+        "duration_ms": 5543,
+        "error": null
+      }
+    },
+    {
+      "check": "BTC price",
+      "intent": "CRYPTO_PRICE_USD",
+      "flag": "ok",
+      "summary": "BTC at $61,475.494.",
+      "purchase": {
+        "intent": "CRYPTO_PRICE_USD",
+        "request": {
+          "intent": "CRYPTO_PRICE_USD",
+          "params": {
+            "symbol": "BTC"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "9002",
+        "miner_name": "TxLens",
+        "result": {
+          "price_usd": 61475.493877262095
+        },
+        "field_status": {
+          "price_usd": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xee48ec9383f273741699f57e476e91a237d69d208feec101b01761538d6f302a",
+        "receipt": {
+          "receipt_hash": "0x6032ea5114e5aed24b41ee9ad38cbf01198b04e92fb0b152e72e83650311125e",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6121",
+          "intent": "CRYPTO_PRICE_USD",
+          "amount_uusdc": "10000",
+          "epoch_id": 42,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795417872
+        },
+        "duration_ms": 2056,
+        "error": null
+      }
+    },
+    {
+      "check": "Power price",
+      "intent": "GRID_POWER_PRICE_GENERAL",
+      "flag": "ok",
+      "summary": "$47.1/MWh at TH_SP15_GEN-APND for the hour starting 2026-11-23T07:00:00Z.",
+      "purchase": {
+        "intent": "GRID_POWER_PRICE_GENERAL",
+        "request": {
+          "intent": "GRID_POWER_PRICE_GENERAL",
+          "params": {
+            "node_or_zone": "TH_SP15_GEN-APND",
+            "interval_start": "2026-11-23T07:00:00Z"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "6164",
+        "miner_name": "Praman Desk Compliance & Procurement Auditor",
+        "result": {
+          "lmp_usd_per_mwh": 47.1,
+          "node_or_zone": "TH_SP15_GEN-APND",
+          "market": "RTM",
+          "interval_start": "2026-11-23T07:00:00Z",
+          "currency": "USD"
+        },
+        "field_status": {
+          "lmp_usd_per_mwh": "ok",
+          "node_or_zone": "ok",
+          "market": "ok",
+          "interval_start": "ok",
+          "currency": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x77c4442fa30ecff500cb4cc86aef3641b95842849c2a95ee13aef8cac85024dc",
+        "receipt": {
+          "receipt_hash": "0x29e306a07e623a00fca1157e2f3be6962defd74eecad977d9434e769a7d519df",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6169",
+          "intent": "GRID_POWER_PRICE_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 42,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795417880
+        },
+        "duration_ms": 9202,
+        "error": null
+      }
+    }
+  ],
+  "paid_requests": 4,
+  "total_cost_usd": 0.04,
+  "network": "eip155:11155111",
+  "network_label": "Ethereum Sepolia testnet",
+  "boundary": "Testnet: payments are Ethereum Sepolia test USDC with no monetary value. Miner answers are real; settlement is on a test network.",
+  "agent": "0x9B3c9555c28CA6cc1D07085d5fE81D9d229f0975",
+  "memo_hash": "0x220402a9669d63e946fed64a10f1e9014307551103931b2e6c72cfa781055037",
+  "signature": "0xcc7cc7db3ffeea9d0caa5b09e1586fb7bd44be6864c8c77f1befa1176953f50f28a88a5b7e98c3612119de3f55b449456e1a5a00c9910da92e278614dfbe05991b"
+}
