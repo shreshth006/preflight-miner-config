@@ -54,10 +54,10 @@ Run records with their settlement transactions are in [`evidence/`](evidence/), 
 
 ## History and known limits
 
-- **Hosting moved on 2026-11-27.** The service ran on Vercel (registrations 377, 5113 and 5218;
-  the manifest's file id `20260828` dates from then) until Vercel suspended the Hobby deployment
+- **Hosting moved on 2026-11-27.** The service ran on Vercel (registrations 377, 5113 and 5218) until Vercel suspended the Hobby deployment
   for usage on 2026-11-26 at 11:20 UTC. Since 2026-11-27 it has served from Netlify as registration
-  6214. Older evidence names the Vercel URLs and miner 20260828; those records are kept as they were.
+  6214. Older evidence names the Vercel URLs; those records are kept as they were. The miner id
+  for direct requests (`/engine/v1/ask/20260828`) is unchanged and now reaches Netlify.
 - **Model-answered Intents** (summaries, captions, Q&A and similar) use free LLM tiers. When the
   daily quota runs out, the answer says so with `found: false`. Repeated questions are cached for
   up to 24 hours.
