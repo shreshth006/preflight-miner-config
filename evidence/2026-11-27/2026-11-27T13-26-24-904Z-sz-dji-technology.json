@@ -1,0 +1,801 @@
+{
+  "id": "2026-11-27T13-26-24-904Z-sz-dji-technology",
+  "created_at": "2026-11-27T13:26:24.904Z",
+  "subject": {
+    "name": "SZ DJI Technology Co., Ltd.",
+    "jurisdiction": "CN",
+    "claim": "DJI is headquartered in Shenzhen, China.",
+    "sample": true
+  },
+  "decision": "STOP",
+  "reasons": [
+    "\"SZ DJI Technology Co., Ltd.\" is a possible match: the answer gave a match score of 1 but left the result empty. A person needs to confirm it."
+  ],
+  "findings": [
+    {
+      "check": "Registry record",
+      "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+      "attempts": 8,
+      "flag": "unverified",
+      "summary": "Registry record: no legal name given.",
+      "purchase": {
+        "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+        "request": {
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "params": {
+            "company": "SZ DJI Technology Co., Ltd.",
+            "jurisdiction": "CN"
+          }
+        },
+        "direct_miner": "98010",
+        "ok": true,
+        "status": 200,
+        "miner_id": "98010",
+        "miner_name": "Brandfetch Corp Search",
+        "result": [
+          {
+            "_score": 89.11348,
+            "brandId": "id3gtgRpwc",
+            "claimed": false,
+            "domain": "gam.com",
+            "icon": "https://cdn.brandfetch.io/id3gtgRpwc/w/128/h/128/fallback/lettermark/icon.webp?c=1ax1795872416897bfumLaCV7mzxKj3OF-",
+            "name": "GAM Technology Co Ltd.",
+            "qualityScore": 0.9382601864881235,
+            "verified": true
+          },
+          {
+            "_score": 88.80865,
+            "brandId": "id14cAS7Zu",
+            "claimed": false,
+            "domain": "dji.com",
+            "icon": "https://cdn.brandfetch.io/id14cAS7Zu/w/128/h/128/fallback/lettermark/icon.webp?c=1ax1795872416897bfumLaCV7mzxKj3OF-",
+            "name": "DJI",
+            "qualityScore": 0.9612667307012981,
+            "verified": true
+          },
+          {
+            "_score": 62.268635,
+            "brandId": "id23F0KsKE",
+            "claimed": false,
+            "domain": "carbonnt.com",
+            "icon": "https://cdn.brandfetch.io/id23F0KsKE/w/128/h/128/fallback/lettermark/icon.webp?c=1ax1795872416897bfumLaCV7mzxKj3OF-",
+            "name": "Shanghai CarbonNewture Technology Co., Ltd.",
+            "qualityScore": 0.7051282051282052,
+            "verified": true
+          },
+          {
+            "_score": 61.575264,
+            "brandId": "idSFp--gr7",
+            "claimed": true,
+            "domain": "zezedata.com",
+            "icon": "https://cdn.brandfetch.io/idSFp--gr7/w/128/h/128/fallback/lettermark/icon.webp?c=1ax1795872416897bfumLaCV7mzxKj3OF-",
+            "name": "Suzhou Zeze Technology Co., Ltd",
+            "qualityScore": 0.6923076923076923,
+            "verified": true
+          },
+          {
+            "_score": 55.884537,
+            "brandId": "iduGcitlU1",
+            "claimed": false,
+            "domain": "pipedetect.com",
+            "icon": "https://cdn.brandfetch.io/iduGcitlU1/w/128/h/128/fallback/lettermark/icon.webp?c=1ax1795872416897bfumLaCV7mzxKj3OF-",
+            "name": "Easysight Technology Co.,Ltd",
+            "qualityScore": 0.6110396335291391,
+            "verified": false
+          }
+        ],
+        "field_status": null,
+        "cost_usd": 0.01,
+        "signal_hash": "0x070ab7b7fdac9103923a851d0cde34d760126660e68177e367a5f61a78be3b4f",
+        "receipt": {
+          "receipt_hash": "0x7c1e4897597dc8071238c361628ca34cda48b4ce57191d78e311cb87bda90280",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5565",
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 66,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795786019
+        },
+        "duration_ms": 6359,
+        "error": null
+      },
+      "superseded": {
+        "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+        "request": {
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "params": {
+            "company": "SZ DJI Technology Co., Ltd.",
+            "jurisdiction": "CN"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "6164",
+        "miner_name": "Praman Desk Compliance & Procurement Auditor",
+        "result": {
+          "legal_name": null,
+          "registration_id": null,
+          "active": false,
+          "jurisdiction": "CN",
+          "registered_address": null,
+          "incorporated": null
+        },
+        "field_status": {
+          "legal_name": "missing",
+          "registration_id": "missing",
+          "active": "ok",
+          "jurisdiction": "ok",
+          "registered_address": "missing",
+          "incorporated": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x471b5e2d2df3b589d6557729af29386c9b9be015281d1940ecae5527e969d9a0",
+        "receipt": {
+          "receipt_hash": "0xe919dccf1ac1ea6406d109d7732e7f0b1f2cba7e6b71d81759512367c364b56e",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6201",
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 66,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795785993
+        },
+        "duration_ms": 8901,
+        "error": null
+      },
+      "also_tried": [
+        {
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "request": {
+            "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+            "params": {
+              "company": "SZ DJI Technology Co., Ltd.",
+              "jurisdiction": "CN"
+            }
+          },
+          "direct_miner": "77393",
+          "ok": true,
+          "status": 200,
+          "miner_id": "77393",
+          "miner_name": "ZK Corporate Registry — Exact Identity and Status",
+          "result": {
+            "active": null,
+            "as_of": "2026-11-27T13:26:36.772Z",
+            "attribution": "GLEIF Global LEI Index: CC0 1.0. Companies House: Crown copyright, Open Government Licence v3.0. Contains data under the Norwegian Licence for Open Government Data (NLOD 2.0) distributed by Brønnøysundregistrene; fields selected and reformatted. French Annuaire des Entreprises: Licence Ouverte 2.0, INSEE/RNE data. SEC EDGAR: US Government public records.",
+            "candidates": [],
+            "confidence": 0,
+            "found": false,
+            "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+            "match_count": 0,
+            "observed_at": "2026-11-27T13:26:36.772Z",
+            "query": "SZ DJI Technology Co., Ltd.",
+            "reason": "no_exact_match",
+            "search_complete": true,
+            "sources": [
+              {
+                "observed_at": "2026-11-27T13:26:36.772Z",
+                "url": "https://api.gleif.org/api/v1/lei-records?filter%5Bentity.legalName%5D=SZ+DJI+TECHNOLOGY+CO+LTD&filter%5Bentity.jurisdiction%5D=CN&page%5Bsize%5D=100"
+              }
+            ],
+            "status_active": null,
+            "summary": "No unique exact legal identity was verified in the requested jurisdiction. Supply the full registered legal name or a registry identifier/LEI; candidate names are not a status verdict."
+          },
+          "field_status": null,
+          "cost_usd": 0.01,
+          "signal_hash": "0x766b956cd6e1cf5fa993ba112f9a75acd0e138582bc056bf248044c5bb83620d",
+          "receipt": {
+            "receipt_hash": "0x6d1aa0995f397b5f45a93fb2796f6fd76e3c543804b50ed1e4679bb218b2c3fb",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "5058",
+            "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 66,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795785997
+          },
+          "duration_ms": 2225,
+          "error": null
+        },
+        {
+          "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+          "request": {
+            "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+            "params": {
+              "company": "SZ DJI Technology Co., Ltd.",
+              "jurisdiction": "CN"
+            }
+          },
+          "direct_miner": "98003",
+          "ok": true,
+          "status": 200,
+          "miner_id": "98003",
+          "miner_name": "OpenSanctions Corp Index",
+          "result": {
+            "children": [
+              "uz_legislative_chamber",
+              "ca_senate",
+              "ext_ror"
+            ],
+            "coverage": {
+              "countries": [],
+              "frequency": "unknown",
+              "schedule": "0 */6 * * *",
+              "start": "2021-09-01"
+            },
+            "datasets": [
+              "mg_assembly",
+              "rs_national_assembly",
+              "us_fincen_enforcement"
+            ],
+            "delta_url": "https://data.opensanctions.org/artifacts/default/20261127065436-ler/delta.json",
+            "deprecated": false,
+            "description": "This list can be used as the broadest available OpenSanctions dataset. It\nincludes any entity that should receive enhanced public scrutiny - either\nbecause they appear on a sanctions list, in a criminal context or as a\npolitical office holder.\n\nBe advised that the data in this collection originates from a variety of\nsources and therefore varies in terms of detail and precision. For example,\nmany listings of political office holders do not include their exact birth\ndates or full given names.\n",
+            "disabled": false,
+            "entity_count": 3937018,
+            "hidden": false,
+            "index_url": "https://data.opensanctions.org/artifacts/default/20261127065436-ler/index.json",
+            "issue_count": 0,
+            "issue_levels": {},
+            "issues_url": "https://data.opensanctions.org/artifacts/default/20261127065436-ler/issues.json",
+            "last_change": "2026-11-27T04:52:05",
+            "last_export": "2026-11-27T06:54:36",
+            "name": "default",
+            "resources": [
+              {
+                "checksum": "5f12e3eb4d46bb482025b2af9437af56cb661a84",
+                "mime_type": "application/json+ftm",
+                "mime_type_label": "FollowTheMoney Entities",
+                "name": "entities.ftm.json",
+                "path": "entities.ftm.json",
+                "size": 2595900611,
+                "title": "FollowTheMoney entities",
+                "url": "https://data.opensanctions.org/artifacts/default/20261127065436-ler/entities.ftm.json"
+              },
+              {
+                "checksum": "75074c3cc193eadc2e5716124cd9343427465cf7",
+                "mime_type": "text/plain",
+                "mime_type_label": "Plain text",
+                "name": "names.txt",
+                "path": "names.txt",
+                "size": 111318237,
+                "title": "Target names text file",
+                "url": "https://data.opensanctions.org/artifacts/default/20261127065436-ler/names.txt"
+              },
+              {
+                "checksum": "0cb4ae28962e99d4e95bacfbcbc46b1502a18d7f",
+                "mime_type": "application/json+senzing",
+                "mime_type_label": "json+senzing",
+                "name": "senzing.json",
+                "path": "senzing.json",
+                "size": 1169278131,
+                "title": "Senzing entity format",
+                "url": "https://data.opensanctions.org/artifacts/default/20261127065436-ler/senzing.json"
+              }
+            ],
+            "result": "success",
+            "statistics_url": "https://data.opensanctions.org/artifacts/default/20261127065436-ler/statistics.json",
+            "summary": "This distribution includes the data collected by OpenSanctions that meets quality standards and would be useful in a screening system or for investigative use.\n",
+            "tags": [],
+            "target_count": 1253236,
+            "thing_count": 1805287,
+            "title": "OpenSanctions Default",
+            "type": "collection",
+            "updated_at": "2026-11-27T06:54:36",
+            "version": "20261127065436-ler",
+            "trimmed_from_bytes": 22173
+          },
+          "field_status": null,
+          "cost_usd": 0.01,
+          "signal_hash": "0x697d9d2c6e6e28adaa4fdf00d540422b79de01f6dd869c06f653f90e5d1460af",
+          "receipt": {
+            "receipt_hash": "0xf149d43657e39158bdcb9b6f885a2ef40bd6532ffa794287ebae796537544a0b",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "3159",
+            "intent": "CORPORATE_REGISTRY_LOOKUP_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 66,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795786010
+          },
+          "duration_ms": 4501,
+          "error": null
+        }
+      ]
+    },
+    {
+      "check": "Company sanctions screen",
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "attempts": 3,
+      "flag": "block",
+      "summary": "\"SZ DJI Technology Co., Ltd.\" is a possible match: the answer gave a match score of 1 but left the result empty. A person needs to confirm it.",
+      "purchase": {
+        "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+        "request": {
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "params": {
+            "name": "SZ DJI Technology Co., Ltd."
+          }
+        },
+        "direct_miner": "710637",
+        "ok": true,
+        "status": 200,
+        "miner_id": "710637",
+        "miner_name": "Sanctions Name Evidence",
+        "result": {
+          "name": null,
+          "matched": null,
+          "matches": null,
+          "lists": null,
+          "match_score": 1
+        },
+        "field_status": {
+          "name": "unavailable",
+          "matched": "unavailable",
+          "matches": "unavailable",
+          "lists": "unavailable",
+          "match_score": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x7f825b9d448ac880c4369cf65c9626c3b4c3fe014bdbfa664fbc4d74fb1de8f2",
+        "receipt": {
+          "receipt_hash": "0x444b8d994b5e5e3da1c084d61313bf4e867f2ade764bb10de14db7b75d9d0bf0",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "4860",
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 66,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795786027
+        },
+        "duration_ms": 26926,
+        "error": null
+      },
+      "superseded": {
+        "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+        "request": {
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "params": {
+            "name": "SZ DJI Technology Co., Ltd."
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "302",
+        "miner_name": "ChainSight — Universal Intelligence & Data Oracle",
+        "result": {
+          "name": "SZ DJI Technology Co Ltd",
+          "matched": false,
+          "matches": null,
+          "lists": [
+            "OFAC SDN"
+          ],
+          "match_score": null
+        },
+        "field_status": {
+          "name": "ok",
+          "matched": "ok",
+          "matches": "missing",
+          "lists": "ok",
+          "match_score": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xb64f6d761bee54a3def7ffd5db0a64fa1e2ee18d11abb2c8c5469478e9c0e1cf",
+        "receipt": {
+          "receipt_hash": "0x64ecc8d08417458dc4d0bf8bdbe4a5d0af881c2fb5a7534bf3858412fc29c6e4",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6204",
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 66,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795785993
+        },
+        "duration_ms": 9018,
+        "error": null
+      },
+      "also_tried": [
+        {
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "request": {
+            "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+            "params": {
+              "name": "SZ DJI Technology Co., Ltd."
+            }
+          },
+          "direct_miner": "9002",
+          "ok": true,
+          "status": 200,
+          "miner_id": "9002",
+          "miner_name": "TxLens",
+          "result": {
+            "name": "SZ DJI Technology Co., Ltd.",
+            "matched": false,
+            "matches": null,
+            "lists": null,
+            "match_score": null
+          },
+          "field_status": {
+            "name": "ok",
+            "matched": "ok",
+            "matches": "missing",
+            "lists": "missing",
+            "match_score": "missing"
+          },
+          "cost_usd": 0.01,
+          "signal_hash": "0xd4eb27c555dae9dc6546fa9a4cc5552edddcd79446adc96b3f8546171854a3e7",
+          "receipt": {
+            "receipt_hash": "0x9d85e541d0246fd87943789c9e5ac764875a55b46b23f1d9e7d5aef13be4f144",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "6121",
+            "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 66,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795786000
+          },
+          "duration_ms": 4563,
+          "error": null
+        }
+      ]
+    },
+    {
+      "check": "Regulatory filings",
+      "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+      "attempts": 2,
+      "flag": "ok",
+      "summary": "Regulatory filings: 3 mentioning \"SZ DJI Technology\" in the last 12 months. One of them: \"Certain Electronic Eyewear Products, Components Thereof, and Related Charging Apparatuses (II); Notice of a Commission Determination To Issue Remedial Orders Against the Defaulting Respondent; Termination of Investigation\". A count of mentions isn't a finding against anyone.",
+      "purchase": {
+        "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+        "request": {
+          "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+          "params": {
+            "entity": "SZ DJI Technology",
+            "period": "the last 12 months"
+          }
+        },
+        "direct_miner": "88715",
+        "ok": true,
+        "status": 200,
+        "miner_id": "88715",
+        "miner_name": "UK-enabled Regulatory Filing Window",
+        "result": {
+          "entity": "SZ DJI Technology",
+          "filing_count": 3,
+          "filings": [
+            "Certain Electronic Eyewear Products, Components Thereof, and Related Charging Apparatuses (II); Notice of a Commission Determination To Issue Remedial Orders Against the Defaulting Respondent; Termination of Investigation",
+            "Certain Electronic Eyewear Products, Components Thereof, and Related Charging Apparatuses (II); Notice of Commission Determination Not To Review an Initial Determination Finding the Remaining Respondent in Default; Request for Written Submissions on Remedy, the Public Interest, and Bonding",
+            "Petition for Reconsideration of Action in Rulemaking Proceeding Application for Review of Action in Rulemaking Proceeding"
+          ],
+          "urls": [
+            "https://www.govinfo.gov/content/pkg/FR-2026-07-13/pdf/2026-14058.pdf",
+            "https://www.govinfo.gov/content/pkg/FR-2026-05-21/pdf/2026-10215.pdf",
+            "https://www.govinfo.gov/content/pkg/FR-2026-02-05/pdf/2026-02285.pdf"
+          ]
+        },
+        "field_status": {
+          "entity": "ok",
+          "filing_count": "ok",
+          "filings": "ok",
+          "urls": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x386ce11d5940036c49ac2e995eb4761bd9db0272410b86d16fd6c210546b67bf",
+        "receipt": {
+          "receipt_hash": "0x522e6a4ac67370ba48838eafa3edbdd68c6d31f0b6ad8002c198efec2d07f57d",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6076",
+          "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 66,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795786018
+        },
+        "duration_ms": 15817,
+        "error": null
+      },
+      "superseded": {
+        "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+        "request": {
+          "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+          "params": {
+            "entity": "SZ DJI Technology",
+            "period": "the last 12 months"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "774921",
+        "miner_name": "VeriReceipt Deterministic Oracle",
+        "result": {
+          "entity": "SZ DJI Technology",
+          "filing_count": null,
+          "filings": null,
+          "urls": null
+        },
+        "field_status": {
+          "entity": "ok",
+          "filing_count": "missing",
+          "filings": "missing",
+          "urls": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x19c1a4b5258b7916f0238fa51999e3e63350c762e0680389732a05f75db0b708",
+        "receipt": {
+          "receipt_hash": "0xde29f4e57c6c4c5db9aae1f8375812f4cef523284fa81f5db249a9f70aff2a47",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6205",
+          "intent": "REGULATORY_FILING_MONITOR_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 66,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795786000
+        },
+        "duration_ms": 15744,
+        "error": null
+      }
+    },
+    {
+      "check": "Adverse media",
+      "intent": "WEB_SEARCH_GENERAL",
+      "flag": "flag",
+      "summary": "Adverse media: a search answer links \"SZ DJI Technology\" to a risk term, so a person should read it: \"1. Court upholds Department of Defense designation of DJI as a “Chinese ...: DJI sued, arguing that the DOD's decision was unlawful and unfair. The company claimed the DOD relied on outdated statutory language, ignored .\".",
+      "purchase": {
+        "intent": "WEB_SEARCH_GENERAL",
+        "request": {
+          "intent": "WEB_SEARCH_GENERAL",
+          "params": {
+            "query": "SZ DJI Technology lawsuit fraud investigation sanctions"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "5530",
+        "miner_name": "Telegraph Verity Intelligence",
+        "result": {
+          "answer": "1. Court upholds Department of Defense designation of DJI as a “Chinese ...: DJI sued, arguing that the DOD's decision was unlawful and unfair. The company claimed the DOD relied on outdated statutory language, ignored ... 2. DJI drone sanctions in 2020 and 2021: A violation of trade sanctions through interacting with SZ DJI Technology Co. could result in penalties. a fine of up to $1,000,000 per ... 3. SZ DJI Technology Co., Ltd. v. DOD (D.C. Cir. 2026): DJI sued, arguing that the Secretary's designation violated its due process rights, lacked evidentiary support, and was inadequately explained.",
+          "sources": [
+            "https://www.whitecase.com/insight-alert/court-upholds-department-defense-designation-dji-chinese-military-company-cautionary",
+            "https://research.osu.edu/dji-drone-sanctions-2020-and-2021",
+            "https://law.justia.com/cases/federal/appellate-courts/cadc/25-5367/25-5367-2026-08-14.html",
+            "https://globalsanctions.com/2025/09/us-court-rejects-drone-manufacturers-application-for-removal-from-chinese-military-companies-list/",
+            "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=33111"
+          ],
+          "brief": null
+        },
+        "field_status": {
+          "answer": "ok",
+          "sources": "ok",
+          "brief": "rejected"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x6a6c4302ba6bc57fd4932380cef6dd9db6ac49a98e964fc953819f4e1890b3fe",
+        "receipt": {
+          "receipt_hash": "0x9154b8c93fdb48b5a79d2b7ebb3937b945f8e9e109f0d734c8f12a68368faf69",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6191",
+          "intent": "WEB_SEARCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 66,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795785998
+        },
+        "duration_ms": 13507,
+        "error": null
+      }
+    },
+    {
+      "check": "Claim check",
+      "intent": "FACT_CHECK_GENERAL",
+      "attempts": 5,
+      "flag": "unverified",
+      "summary": "Claim \"DJI is headquartered in Shenzhen, China.\": no verdict given.",
+      "purchase": {
+        "intent": "FACT_CHECK_GENERAL",
+        "request": {
+          "intent": "FACT_CHECK_GENERAL",
+          "params": {
+            "claim": "DJI is headquartered in Shenzhen, China."
+          }
+        },
+        "direct_miner": "75005",
+        "ok": true,
+        "status": 200,
+        "miner_id": "75005",
+        "miner_name": "Zenodo Records",
+        "result": {
+          "claim": null,
+          "verdict": null,
+          "reasoning": null,
+          "sources": [
+            "Agencia Nacional de Investigación y Desarrollo"
+          ]
+        },
+        "field_status": {
+          "claim": "missing",
+          "verdict": "missing",
+          "reasoning": "missing",
+          "sources": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x68657d3065cac35a2a06f905984a0fd32e0b757c3d27cf883a63a315a08a6db6",
+        "receipt": {
+          "receipt_hash": "0xa77a8dd199d06c3e90d8463a54d785749fa2f7646b364e3ad4cc7dedab933664",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "3311",
+          "intent": "FACT_CHECK_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 66,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795786012
+        },
+        "duration_ms": 5352,
+        "error": null
+      },
+      "superseded": {
+        "intent": "FACT_CHECK_GENERAL",
+        "request": {
+          "intent": "FACT_CHECK_GENERAL",
+          "params": {
+            "claim": "DJI is headquartered in Shenzhen, China."
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "83159274",
+        "miner_name": "TelegraphIntent",
+        "result": {
+          "claim": "DJI is headquartered in Shenzhen, China.",
+          "verdict": "Mostly True",
+          "reasoning": "The claim states that DJI is headquartered in Shenzhen, China. Two passages from en.wikipedia.org explicitly say DJI is a Chinese technology company headquartered in Shenzhen, Guangdong, and that its Sky City office complex in Nanshan, Shenzhen serves as its global corporate headquarters. No sources contradict this, but the support comes from a single domain, making the evidence thin. This leads to a Mostly True verdict with a qualification that the evidence is limited.",
+          "sources": [
+            "https://en.wikipedia.org/wiki/DJI",
+            "https://en.wikipedia.org/wiki/DJI_Sky_City"
+          ]
+        },
+        "field_status": {
+          "claim": "ok",
+          "verdict": "ok",
+          "reasoning": "ok",
+          "sources": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x495a61f8757db27499193e7765dae734ea2f9d32cc9b3262455ed60bebfc91dc",
+        "receipt": {
+          "receipt_hash": "0x351e71e735ddd805649a6e5a1215e82b688c96f3c2ee12526812c0f4af63b8ed",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6183",
+          "intent": "FACT_CHECK_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 66,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795785994
+        },
+        "duration_ms": 9570,
+        "error": null
+      },
+      "also_tried": [
+        {
+          "intent": "FACT_CHECK_GENERAL",
+          "request": {
+            "intent": "FACT_CHECK_GENERAL",
+            "params": {
+              "claim": "DJI is headquartered in Shenzhen, China."
+            }
+          },
+          "direct_miner": "75003",
+          "ok": true,
+          "status": 200,
+          "miner_id": "75003",
+          "miner_name": "Crossref Claim Works",
+          "result": {
+            "claim": "DJI is headquartered in Shenzhen, China.",
+            "verdict": null,
+            "reasoning": null,
+            "sources": [
+              "Crossref"
+            ]
+          },
+          "field_status": {
+            "claim": "ok",
+            "verdict": "missing",
+            "reasoning": "missing",
+            "sources": "ok"
+          },
+          "cost_usd": 0.01,
+          "signal_hash": "0xcb3493266d550a44c50ebbc9214b793c18525623068ef379fe25bc8f39ae5a61",
+          "receipt": {
+            "receipt_hash": "0x8769e8c95a29cd9e3b1d7c242e6a046114883456a94dca1c2e212f16024cbdd4",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "3304",
+            "intent": "FACT_CHECK_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 66,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795786000
+          },
+          "duration_ms": 4290,
+          "error": null
+        },
+        {
+          "intent": "FACT_CHECK_GENERAL",
+          "request": {
+            "intent": "FACT_CHECK_GENERAL",
+            "params": {
+              "claim": "DJI is headquartered in Shenzhen, China."
+            }
+          },
+          "direct_miner": "7420",
+          "ok": true,
+          "status": 200,
+          "miner_id": "7420",
+          "miner_name": "FactWire Fact Check",
+          "result": {
+            "claim": "DJI is headquartered in Shenzhen, China.",
+            "verdict": "Unverified",
+            "reasoning": "The cited sources provide context, but this source reader did not settle the entire claim. Similar wording is not verification.",
+            "sources": [
+              "https://en.wikipedia.org/wiki/DJI"
+            ]
+          },
+          "field_status": {
+            "claim": "ok",
+            "verdict": "ok",
+            "reasoning": "ok",
+            "sources": "ok"
+          },
+          "cost_usd": 0.01,
+          "signal_hash": "0xd9e797115bbedd1c98ed5c1823305c186e1b2ab8a24d3e28a980aa088f7e4c57",
+          "receipt": {
+            "receipt_hash": "0x3f5ff9143ce090f8469cfe392bc66399481c6374f436f726dc67cd7e0217c791",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "4406",
+            "intent": "FACT_CHECK_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 66,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795786005
+          },
+          "duration_ms": 5543,
+          "error": null
+        }
+      ]
+    }
+  ],
+  "paid_requests": 14,
+  "total_cost_usd": 0.14,
+  "network": "eip155:11155111",
+  "network_label": "Ethereum Sepolia testnet",
+  "boundary": "Testnet: payments are Ethereum Sepolia test USDC with no monetary value. Miner answers are real; settlement is on a test network.",
+  "agent": "0x9B3c9555c28CA6cc1D07085d5fE81D9d229f0975",
+  "memo_hash": "0xa11b9099ea260c82eeaed05e43eb610d70e711f4cd03ed26968a1a2367aaff0b",
+  "signature": "0x529a307c032cd991d459cf918617c308f95417adec04db3dc4a52ebc921509f32fc7b4ba3170dc9536dfe943579fbe52a05f3f70b98878720be78f99a5d5bb661b"
+}
