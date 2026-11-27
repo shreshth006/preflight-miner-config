@@ -55,3 +55,11 @@ Both runs go to REVIEW for the same reason as earlier reviews: the only contract
 | `2026-11-27T13-29-27-663Z-th_np15_gen-apnd.json` | 3 | $0.03 | HOLD | The power price paid from TxLens (miner 9002) was $42.95/MWh. CAISO published $35.18/MWh for the first interval of the hour and $32.84/MWh as the hour's average so far. The paid figure is more than 20% above both, so the 23 Nov check held the call. |
 
 Escrow account after all of today's runs: deposited 5,000,000, charged 2,330,000, with 500,000 unbilled, available 2,170,000.
+
+### SP15, 17:00 UTC
+
+| Run record | Paid asks | Cost | Call | Why |
+|---|---|---|---|---|
+| `2026-11-27T17-03-32-644Z-th_sp15_gen-apnd.json` | 3 | $0.03 | HOLD | The power price paid from ChainSight (miner 302) was $45.20/MWh. For that hour, CAISO published $3.16/MWh real-time (first interval; $3.04/MWh average so far) and $0.93/MWh day-ahead. The paid figure matches neither market, so the allocator held. |
+
+This is the first time the CAISO check has stopped the SP15 site. It is a different Provider from both NP15 cases, so three Providers have now been caught answering a power price far from the operator's own figure.

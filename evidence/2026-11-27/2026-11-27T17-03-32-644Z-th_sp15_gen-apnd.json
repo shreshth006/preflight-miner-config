@@ -1,0 +1,173 @@
+{
+  "id": "2026-11-27T17-03-32-644Z-th_sp15_gen-apnd",
+  "created_at": "2026-11-27T17:03:32.644Z",
+  "site": {
+    "name": "Sample site, SP15 25 MW",
+    "node": "TH_SP15_GEN-APND",
+    "megawatts": 25,
+    "efficiency_j_per_th": 17,
+    "opex_usd_per_mwh": 8,
+    "sample": true
+  },
+  "call": "HOLD",
+  "reasons": [
+    "Holding the last setpoint: no call is made on an unverified input.",
+    "Power price: the answer of $45.2/MWh is far from the real-time price the operator published for that hour ($3.16/MWh for the first interval and $3.04/MWh on average so far; CAISO OASIS PRC_INTVL_LMP (real-time market, 5-minute intervals)), so no call is made on it."
+  ],
+  "inputs": {
+    "block_height": 977816,
+    "interval_start": "2026-11-27T17:00:00Z",
+    "hashprice_sats_per_ph_day": 44352,
+    "btc_usd": 59864.4,
+    "lmp_usd_per_mwh": null
+  },
+  "economics": null,
+  "findings": [
+    {
+      "check": "Hashprice",
+      "intent": "MINING_HASHPRICE_VERIFY_GENERAL",
+      "flag": "ok",
+      "summary": "44,352 sats per PH/s per day at block 977816.",
+      "purchase": {
+        "intent": "MINING_HASHPRICE_VERIFY_GENERAL",
+        "request": {
+          "intent": "MINING_HASHPRICE_VERIFY_GENERAL",
+          "params": {
+            "block_height": 977816
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "9002",
+        "miner_name": "TxLens",
+        "result": {
+          "hashprice_sats_per_ph_day": 44352,
+          "block_height": 977816,
+          "hashrate_eh_s": 1038.6,
+          "hashprice_usd_per_ph_day": null
+        },
+        "field_status": {
+          "hashprice_sats_per_ph_day": "ok",
+          "block_height": "ok",
+          "hashrate_eh_s": "ok",
+          "hashprice_usd_per_ph_day": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x84c57a99e67fb985205624ef16a69110c57e1f1e162af18f4116c7fc66880f43",
+        "receipt": {
+          "receipt_hash": "0xbce2dd290237db5926d415d97f3dacab41b52362128878de8cd263f5f4aa7812",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6121",
+          "intent": "MINING_HASHPRICE_VERIFY_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 67,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795799017
+        },
+        "duration_ms": 5181,
+        "error": null
+      }
+    },
+    {
+      "check": "BTC price",
+      "intent": "CRYPTO_PRICE_USD",
+      "flag": "ok",
+      "summary": "BTC at $59,864.4.",
+      "purchase": {
+        "intent": "CRYPTO_PRICE_USD",
+        "request": {
+          "intent": "CRYPTO_PRICE_USD",
+          "params": {
+            "symbol": "BTC"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "83159274",
+        "miner_name": "TelegraphIntent",
+        "result": {
+          "price_usd": 59864.4
+        },
+        "field_status": {
+          "price_usd": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xcd861fd7419b8f3add15f24c522befb7f46284599ee15172ba05ba5a60d5d4b1",
+        "receipt": {
+          "receipt_hash": "0x5a469e781a3dcf950a157249c793af974ec04f82eb26c041b563e38b1a9361b9",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6183",
+          "intent": "CRYPTO_PRICE_USD",
+          "amount_uusdc": "10000",
+          "epoch_id": 67,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795799016
+        },
+        "duration_ms": 4169,
+        "error": null
+      }
+    },
+    {
+      "check": "Power price",
+      "intent": "GRID_POWER_PRICE_GENERAL",
+      "flag": "unverified",
+      "summary": "Power price: the answer of $45.2/MWh is far from the real-time price the operator published for that hour ($3.16/MWh for the first interval and $3.04/MWh on average so far; CAISO OASIS PRC_INTVL_LMP (real-time market, 5-minute intervals)), so no call is made on it.",
+      "purchase": {
+        "intent": "GRID_POWER_PRICE_GENERAL",
+        "request": {
+          "intent": "GRID_POWER_PRICE_GENERAL",
+          "params": {
+            "node_or_zone": "TH_SP15_GEN-APND",
+            "interval_start": "2026-11-27T17:00:00Z"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "302",
+        "miner_name": "ChainSight — Universal Intelligence & Data Oracle",
+        "result": {
+          "lmp_usd_per_mwh": 45.2,
+          "node_or_zone": "TH_SP15_GEN-APND",
+          "market": null,
+          "interval_start": null,
+          "currency": null
+        },
+        "field_status": {
+          "lmp_usd_per_mwh": "ok",
+          "node_or_zone": "ok",
+          "market": "missing",
+          "interval_start": "rejected",
+          "currency": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x529822780a4db46fc3ac028b435d9123482c9a2164b9131571646e5626562760",
+        "receipt": {
+          "receipt_hash": "0x5f56b559b00011117024fbcac8da6a823c5630ef56d16bc653adc58b02055150",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6204",
+          "intent": "GRID_POWER_PRICE_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 67,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795799019
+        },
+        "duration_ms": 6572,
+        "error": null
+      }
+    }
+  ],
+  "paid_requests": 3,
+  "total_cost_usd": 0.03,
+  "network": "eip155:11155111",
+  "network_label": "Ethereum Sepolia testnet",
+  "boundary": "Testnet: payments are Ethereum Sepolia test USDC with no monetary value. Miner answers are real; settlement is on a test network.",
+  "agent": "0x9B3c9555c28CA6cc1D07085d5fE81D9d229f0975",
+  "memo_hash": "0xa2c92c93bb03d0e9b6ade0ddeb67589526b88ce3a1744d796560bf03b025a8a7",
+  "signature": "0xd5ef65abad0ea4cc60467beb1b27a0d95f80f36a5080b4152becaaf4078080c779f594032bb0b27e3146c1a918c2f82a60c8e3aced52cd59128c908132e482901b"
+}
