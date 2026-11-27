@@ -14,7 +14,7 @@ description: >
   from public JSON-RPC on Ethereum, Base, Arbitrum, OP Mainnet, Polygon, BNB Chain, Avalanche, Linea, Scroll, Gnosis, zkSync Era, Blast, Mantle, Celo, Sonic and Unichain.
   Prices, TVL, FX, geolocation, papers and CVEs come from named public
   sources, cited in each answer.
-base_url: https://preflight-ssl-verification.vercel.app
+base_url: https://preflight-miner.netlify.app
 
 docs:
   repository: https://github.com/shreshth006/preflight-miner-config
