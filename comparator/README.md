@@ -14,7 +14,7 @@ network's reference rule:
 For AbsTol and RelTol the score is 10000 × (2·tol − error) / (2·tol), integer division,
 0 once error ≥ 2·tol; a tolerance ≤ 0 allows only an exact match.
 
-Runnable endpoint: `POST https://preflight-ssl-verification.vercel.app/comparator` with
+Runnable endpoint: `POST https://preflight-miner.netlify.app/comparator` with
 `{"batch": [{"ground_truth_value", "miner_value", "spec": [code, tolerance]}]}`.
 
 Per-family builds (`preflight-comparator-<FAMILY>.wasm`) add a `preflight.family` custom section naming the family, because a wasm hash registers only once; scoring is identical. Their runnable endpoints are `/comparator/<FAMILY>`.
