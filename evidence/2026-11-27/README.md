@@ -29,3 +29,29 @@ What the run found:
 - **Claim check** ("DJI is headquartered in Shenzhen"): one Provider (miner 83159274) rated it "Mostly True", but the check only accepted verdicts that begin with "True", so it ended with no verdict. Fixed in commit e72d011.
 
 Escrow account after this run, from the public ledger (`https://devnode.telegraphprotocol.com/v1/ledger/account/0x9B3c9555c28CA6cc1D07085d5fE81D9d229f0975`): deposited 5,000,000, charged 2,330,000, with 140,000 unbilled, available 2,530,000.
+
+## Listing Desk (#189 Exchange): Compound (COMP)
+
+Input: `input-listing-desk-comp.json`. COMP on Ethereum (`0xc00e94Cb662C3520282E6f5717214004A7f26888`, symbol read on-chain), with two treasury addresses: the Compound Timelock (`0x6d903f6003cca6255D85CcA4D3B5E5146dC33925`) and the Comptroller (`0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B`). Before the run, `balanceOf` on a public RPC read 18.26 COMP for the Timelock and about 0 COMP for the Comptroller.
+
+| Run record | Paid asks | Cost | Decision |
+|---|---|---|---|
+| `2026-11-27T13-29-43-427Z-comp.json` | 15 | $0.15 | REVIEW |
+| `2026-11-27T13-31-52-703Z-comp.json` (after the fix) | 18 | $0.18 | REVIEW |
+
+The first run passed two answers about the wrong subject:
+
+- **Holders:** ChainSight (miner 302) returned 9,587,018 holders. The answer itself named the token as `0xA0b86991…` (USDC), not COMP.
+- **Treasury holdings:** TxLens (miner 9002) returned 0 COMP for the Timelock. The answer named the token contract as its address, not the Timelock.
+
+The fix is commit ab3b3bf: an answer about another address than the one asked is not used. The rerun discarded both answers and asked other Providers. They returned **224,622 holders** and **18.26 COMP** in the Timelock, which matches the on-chain reading.
+
+Both runs go to REVIEW for the same reason as earlier reviews: the only contract-audit answer came from a miner that does not declare `SMART_CONTRACT_AUDIT_GENERAL` (#224).
+
+## Allocation Agent (#200 Mining & Power)
+
+| Run record | Paid asks | Cost | Call | Why |
+|---|---|---|---|---|
+| `2026-11-27T13-29-27-663Z-th_np15_gen-apnd.json` | 3 | $0.03 | HOLD | The power price paid from TxLens (miner 9002) was $42.95/MWh. CAISO published $35.18/MWh for the first interval of the hour and $32.84/MWh as the hour's average so far. The paid figure is more than 20% above both, so the 23 Nov check held the call. |
+
+Escrow account after all of today's runs: deposited 5,000,000, charged 2,330,000, with 500,000 unbilled, available 2,170,000.

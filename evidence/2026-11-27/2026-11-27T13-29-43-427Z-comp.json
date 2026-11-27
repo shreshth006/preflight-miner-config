@@ -1,0 +1,793 @@
+{
+  "id": "2026-11-27T13-29-43-427Z-comp",
+  "created_at": "2026-11-27T13:29:43.427Z",
+  "application": {
+    "project": "Compound",
+    "symbol": "COMP",
+    "chain": "ethereum",
+    "contract": "0xc00e94Cb662C3520282E6f5717214004A7f26888",
+    "issuer": "Compound DAO",
+    "treasury": [
+      "0x6d903f6003cca6255D85CcA4D3B5E5146dC33925",
+      "0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B"
+    ],
+    "pool": "COMP/WETH",
+    "social": "@compoundfinance",
+    "website": "https://compound.finance"
+  },
+  "decision": "REVIEW",
+  "reasons": [
+    "Contract audit: answered by miner openai, which does not declare SMART_CONTRACT_AUDIT_GENERAL, so the answer is not used."
+  ],
+  "findings": [
+    {
+      "check": "Contract audit",
+      "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+      "attempts": 9,
+      "flag": "unverified",
+      "summary": "Contract audit: answered by miner openai, which does not declare SMART_CONTRACT_AUDIT_GENERAL, so the answer is not used.",
+      "purchase": {
+        "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+        "request": {
+          "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+          "params": {
+            "contract_address": "0xc00e94Cb662C3520282E6f5717214004A7f26888",
+            "address": "0xc00e94Cb662C3520282E6f5717214004A7f26888",
+            "chain": "ethereum"
+          },
+          "query": "Audit the COMP token contract 0xc00e94Cb662C3520282E6f5717214004A7f26888 on ethereum for a listing review: owner and admin keys, mint, burn, pause and blacklist powers, upgradeability, reentrancy and known vulnerability classes. Give a verdict (safe, caution or unsafe) and the findings."
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "openai",
+        "miner_name": "openai",
+        "result": "Here's an audit of the COMP token contract (0xc00e94Cb662C3520282E6f5717214004A7f26888) on Ethereum for a listing review:\n\n**Findings:**\n\n*   **Owner and Admin Keys:** The contract utilizes an `Ownable` pattern, meaning there is a single `owner`. This owner has significant control over certain functions. There is no explicit \"admin\" role separate from the owner in this contract.\n*   **Mint Powers:** The `mint` function is restricted to the `owner`. This allows the owner to create new COMP tokens.\n*   **Burn Powers:** The `burn` and `burnFrom` functions are standard ERC20 functions and can be called by any token holder to reduce their own balance or by an approved spender to reduce another holder's balance. There is no special \"burn\" power held by an owner or admin beyond this.\n*   **Pause Powers:** The contract implements a `Pausable` mechanism. The `pause` and `unpause` functions are restricted to the `owner`. This allows the owner to temporarily halt all token transfers and other sensitive operations.\n*   **Blacklist Powers:** The contract includes a `_blacklist` mechanism. The `addBlacklist` and `removeBlacklist` functions are restricted to the `owner`. This allows the owner to prevent specific addresses from transferring or receiving COMP tokens.\n*   **Upgradeability:** The COMP token contract is **not** upgradeable. It is a standard ERC20 implementation without any proxy patterns or mechanisms for future code upgrades.\n*   **Reentrancy:** The contract does **not** appear to be vulnerable to reentrancy attacks. Standard checks-effects-interactions pattern is generally followed, and there are no obvious external calls within state-changing functions that could lead to reentrancy.\n*   **Known Vulnerability Classes:**\n    *   **ERC20 Standard Compliance:** The contract adheres to the ERC20 standard.\n    *   **Access Control:** The `owner` has significant control over minting, pausing, and blacklisting. This is a design choice, but it concentrates power.\n    *   **Centralization Risk:** Due to the owner's powers (mint, pause, blacklist), there is a degree of centralization. The owner could theoretically mint an unlimited supply (though this would be highly visible and detrimental to the token's value), pause all activity, or blacklist any address.\n\n**Verdict:**\n\n**Caution**\n\n**Explanation:**\n\nThe COMP token contract is a well-established ERC20 token with standard functionalities. It is not upgradeable, which means its current functionality is fixed. The primary concern for a listing review lies in the significant powers held by the `owner`. While these powers are",
+        "field_status": null,
+        "cost_usd": 0,
+        "signal_hash": "0x6dbc4612803688e38aa0fa036e71c2395b1eb4f676200d55caf78b6fc1d93f62",
+        "receipt": null,
+        "duration_ms": 4571,
+        "error": null
+      }
+    },
+    {
+      "check": "Total supply",
+      "intent": "TOKEN_TOTAL_SUPPLY_VERIFY_GENERAL",
+      "flag": "ok",
+      "summary": "Total supply on-chain: 10,000,000 COMP.",
+      "purchase": {
+        "intent": "TOKEN_TOTAL_SUPPLY_VERIFY_GENERAL",
+        "request": {
+          "intent": "TOKEN_TOTAL_SUPPLY_VERIFY_GENERAL",
+          "params": {
+            "token": "0xc00e94Cb662C3520282E6f5717214004A7f26888 on ethereum"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "4433",
+        "miner_name": "LiveCert — Sourced Answers for Agents",
+        "result": {
+          "total_supply": 10000000
+        },
+        "field_status": {
+          "total_supply": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xb7fd790dbbac002e6b4ce908e658be61b281ee79fdb2d917498ca3021f2c0f86",
+        "receipt": {
+          "receipt_hash": "0x7b9d29347866e7ec61821e0afa25b70805e9f29eea97442381985a443cff5e9f",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6126",
+          "intent": "TOKEN_TOTAL_SUPPLY_VERIFY_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 66,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795786186
+        },
+        "duration_ms": 2690,
+        "error": null
+      }
+    },
+    {
+      "check": "Holder distribution",
+      "intent": "TOKEN_HOLDER_COUNT_GENERAL",
+      "flag": "ok",
+      "summary": "9,587,018 distinct holders.",
+      "purchase": {
+        "intent": "TOKEN_HOLDER_COUNT_GENERAL",
+        "request": {
+          "intent": "TOKEN_HOLDER_COUNT_GENERAL",
+          "params": {
+            "token": "0xc00e94Cb662C3520282E6f5717214004A7f26888",
+            "chain": "ethereum"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "302",
+        "miner_name": "ChainSight — Universal Intelligence & Data Oracle",
+        "result": {
+          "token": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          "chain": "ethereum",
+          "holders_count": 9587018,
+          "token_symbol": "USDC"
+        },
+        "field_status": {
+          "token": "ok",
+          "chain": "ok",
+          "holders_count": "ok",
+          "token_symbol": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x3a734b0c486414a7dfbb66dc215e4722b95fe2133eef5ae446aedd49d28c7e24",
+        "receipt": {
+          "receipt_hash": "0x0118d78df30847cf7659d098f6391b817d82f1d7dc89da9e2775abe534a9da36",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6204",
+          "intent": "TOKEN_HOLDER_COUNT_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 66,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795786194
+        },
+        "duration_ms": 10789,
+        "error": null
+      }
+    },
+    {
+      "check": "Issuer sanctions screen",
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "flag": "ok",
+      "summary": "Issuer \"Compound DAO\": no sanctions-list match.",
+      "purchase": {
+        "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+        "request": {
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "params": {
+            "name": "Compound DAO"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "302",
+        "miner_name": "ChainSight — Universal Intelligence & Data Oracle",
+        "result": {
+          "name": "Compound DAO",
+          "matched": false,
+          "matches": null,
+          "lists": [
+            "OFAC SDN"
+          ],
+          "match_score": null
+        },
+        "field_status": {
+          "name": "ok",
+          "matched": "ok",
+          "matches": "missing",
+          "lists": "ok",
+          "match_score": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x1aa85c05d7df073260404390336682199d331e2a391b8cfa85ca8fd778f1eb84",
+        "receipt": {
+          "receipt_hash": "0x574a87cab3b0d5342466cc80a0133049da9749c522c1673f31fddc2e0c2cec1f",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6204",
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 66,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795786196
+        },
+        "duration_ms": 12492,
+        "error": null
+      }
+    },
+    {
+      "check": "Pool liquidity",
+      "intent": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+      "flag": "ok",
+      "summary": "DEX pool COMP/WETH holds $2,432,020.",
+      "purchase": {
+        "intent": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+        "request": {
+          "intent": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+          "params": {
+            "pool": "COMP/WETH",
+            "chain": "ethereum"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "9002",
+        "miner_name": "TxLens",
+        "result": {
+          "liquidity_usd": 2432020
+        },
+        "field_status": {
+          "liquidity_usd": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x6c62402712b0654e52e4356775666f27a0b386e0d162be48d5f203d1a259a2cf",
+        "receipt": {
+          "receipt_hash": "0x7d8f920cec73ee60fb64549b10d466f18597a1f06324075b25ea8f78380e7a58",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6121",
+          "intent": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 66,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795786198
+        },
+        "duration_ms": 15133,
+        "error": null
+      }
+    },
+    {
+      "check": "Treasury 0x6d903f60…",
+      "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+      "flag": "ok",
+      "summary": "Treasury 0x6d903f6003cca6255D85CcA4D3B5E5146dC33925 held 0 ETH at block 26,506,848.",
+      "purchase": {
+        "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+        "request": {
+          "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+          "params": {
+            "address": "0x6d903f6003cca6255D85CcA4D3B5E5146dC33925",
+            "block": 26506848
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "9002",
+        "miner_name": "TxLens",
+        "result": {
+          "balance_gwei": 2949.2557595991284,
+          "address": "0x6d903f6003cca6255D85CcA4D3B5E5146dC33925",
+          "block": "26506848",
+          "chain": "eth",
+          "tx_count": null
+        },
+        "field_status": {
+          "balance_gwei": "ok",
+          "address": "ok",
+          "block": "ok",
+          "chain": "ok",
+          "tx_count": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xcb59329bea04554c618da5ca61d4b35c186b53d4555ba5eff1f9fc71493ccdf2",
+        "receipt": {
+          "receipt_hash": "0x4e420eef3bdab5ef84fb33b6245c110ef089d06c5c29c0b3c4cae391fa0f972e",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6121",
+          "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 66,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795786194
+        },
+        "duration_ms": 10542,
+        "error": null
+      }
+    },
+    {
+      "check": "Treasury 0x3d981921…",
+      "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+      "flag": "ok",
+      "summary": "Treasury 0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B held 0 ETH at block 26,506,848.",
+      "purchase": {
+        "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+        "request": {
+          "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+          "params": {
+            "address": "0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B",
+            "block": 26506848
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "9002",
+        "miner_name": "TxLens",
+        "result": {
+          "balance_gwei": 0,
+          "address": "0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B",
+          "block": "26506848",
+          "chain": "eth",
+          "tx_count": null
+        },
+        "field_status": {
+          "balance_gwei": "ok",
+          "address": "ok",
+          "block": "ok",
+          "chain": "ok",
+          "tx_count": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x73ccb32ad2c1f0042253ffc2938f517b3dbc6909b0ad171a0dec05ab92f8ef50",
+        "receipt": {
+          "receipt_hash": "0x24fe2487c21870a3510040e8815a9b258a729d358bff2aacd5046b031cd2657a",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6121",
+          "intent": "ONCHAIN_METRIC_VERIFY_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 66,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795786194
+        },
+        "duration_ms": 10714,
+        "error": null
+      }
+    },
+    {
+      "check": "Treasury holdings 0x6d903f60…",
+      "intent": "WALLET_BALANCE_CHECK_GENERAL",
+      "flag": "ok",
+      "summary": "Treasury 0x6d903f6003cca6255D85CcA4D3B5E5146dC33925 holds 0 COMP, none of its own token.",
+      "purchase": {
+        "intent": "WALLET_BALANCE_CHECK_GENERAL",
+        "request": {
+          "intent": "WALLET_BALANCE_CHECK_GENERAL",
+          "params": {
+            "address": "0x6d903f6003cca6255D85CcA4D3B5E5146dC33925",
+            "chain": "ethereum",
+            "token": "0xc00e94Cb662C3520282E6f5717214004A7f26888"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "9002",
+        "miner_name": "TxLens",
+        "result": {
+          "address": "0xc00e94Cb662C3520282E6f5717214004A7f26888",
+          "chain": "eth",
+          "balance": 0,
+          "token_symbol": null,
+          "as_of": "2026-11-27T13:29:52.420Z"
+        },
+        "field_status": {
+          "address": "ok",
+          "chain": "ok",
+          "balance": "ok",
+          "token_symbol": "missing",
+          "as_of": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x95f9cf059214a4859464d902bfb9161098c47a630cd71df49e4f2ee4c974ff66",
+        "receipt": {
+          "receipt_hash": "0x4b3facf5b38cbeafdae14a717aa78fdb75bddfb4ae78afaeec7c5ee4084929b2",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6121",
+          "intent": "WALLET_BALANCE_CHECK_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 66,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795786202
+        },
+        "duration_ms": 18526,
+        "error": null
+      }
+    },
+    {
+      "check": "Treasury holdings 0x3d981921…",
+      "intent": "WALLET_BALANCE_CHECK_GENERAL",
+      "flag": "ok",
+      "summary": "Treasury 0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B holds 0 COMP, none of its own token.",
+      "purchase": {
+        "intent": "WALLET_BALANCE_CHECK_GENERAL",
+        "request": {
+          "intent": "WALLET_BALANCE_CHECK_GENERAL",
+          "params": {
+            "address": "0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B",
+            "chain": "ethereum",
+            "token": "0xc00e94Cb662C3520282E6f5717214004A7f26888"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "9002",
+        "miner_name": "TxLens",
+        "result": {
+          "address": "0xc00e94Cb662C3520282E6f5717214004A7f26888",
+          "chain": "eth",
+          "balance": 0,
+          "token_symbol": null,
+          "as_of": "2026-11-27T13:29:54.514Z"
+        },
+        "field_status": {
+          "address": "ok",
+          "chain": "ok",
+          "balance": "ok",
+          "token_symbol": "missing",
+          "as_of": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x28e525f2991f16ee0f2c1a378b9ad038ac2cb9f6ad246137975e3b0cb1805e54",
+        "receipt": {
+          "receipt_hash": "0x33466b8477af92b6691778082b02427b0a62a34140eb114800fb284289c0c066",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6121",
+          "intent": "WALLET_BALANCE_CHECK_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 66,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795786202
+        },
+        "duration_ms": 19189,
+        "error": null
+      }
+    },
+    {
+      "check": "Treasury sanctions 0x6d903f60…",
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "flag": "ok",
+      "summary": "Treasury address 0x6d903f6003cca6255D85CcA4D3B5E5146dC33925: no sanctions-list match.",
+      "purchase": {
+        "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+        "request": {
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "params": {
+            "name": "0x6d903f6003cca6255D85CcA4D3B5E5146dC33925"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "302",
+        "miner_name": "ChainSight — Universal Intelligence & Data Oracle",
+        "result": {
+          "name": "0x6d903f6003cca6255D85CcA4D3B5E5146dC33925",
+          "matched": false,
+          "matches": null,
+          "lists": null,
+          "match_score": null
+        },
+        "field_status": {
+          "name": "ok",
+          "matched": "ok",
+          "matches": "missing",
+          "lists": "missing",
+          "match_score": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x54063cb0827809094d7fce632ff60f817fe67b2bea3ca37482db7576f5cc2d76",
+        "receipt": {
+          "receipt_hash": "0x64a4d1caa421b2302a1c86b285675d255b9a66cc44ddcd17a1f9d2f9bd28787f",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6204",
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 66,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795786205
+        },
+        "duration_ms": 22198,
+        "error": null
+      }
+    },
+    {
+      "check": "Treasury sanctions 0x3d981921…",
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "flag": "ok",
+      "summary": "Treasury address 0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B: no sanctions-list match.",
+      "purchase": {
+        "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+        "request": {
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "params": {
+            "name": "0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "302",
+        "miner_name": "ChainSight — Universal Intelligence & Data Oracle",
+        "result": {
+          "name": "0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B",
+          "matched": false,
+          "matches": null,
+          "lists": [
+            "OFAC SDN"
+          ],
+          "match_score": null
+        },
+        "field_status": {
+          "name": "ok",
+          "matched": "ok",
+          "matches": "missing",
+          "lists": "ok",
+          "match_score": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x4a690f45adc0778c1d3d0f8231615aa2ff156c4151bf0dc350caf8af34eaf741",
+        "receipt": {
+          "receipt_hash": "0x110139a9051296076939f2c913a054c27b8c0ec61fec2e0fc755d691cb1b1f24",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6204",
+          "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 66,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795786196
+        },
+        "duration_ms": 12489,
+        "error": null
+      }
+    },
+    {
+      "check": "Social authenticity",
+      "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+      "attempts": 3,
+      "flag": "ok",
+      "summary": "Social account @compoundfinance: Likely human.",
+      "purchase": {
+        "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+        "request": {
+          "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+          "params": {
+            "account": "@compoundfinance"
+          }
+        },
+        "direct_miner": "9002",
+        "ok": true,
+        "status": 200,
+        "miner_id": "9002",
+        "miner_name": "TxLens",
+        "result": {
+          "answer": "Likely human. The handle corresponds to Compound Finance, a well-known decentralized finance protocol, which implies the account is operated by a legitimate organization rather than an automated script. The provided public record only notes a lack of explicit ownership documentation on Wikidata, which is a metadata gap rather than evidence of bot activity. Live posting and follower data were not read.",
+          "canonical": "social-bot-detection:public_record: Wikidata lists no person or organisation as the owner of @compoun",
+          "checked_at": "2026-11-27T13:30:03.607Z",
+          "confidence": 0.8,
+          "cost_usd": 0,
+          "status": "ok",
+          "summary": "Likely human. The handle corresponds to Compound Finance, a well-known decentralized finance protocol, which implies the account is operated by a legitimate organization rather than an automated script. The provided public record only notes a lack of explicit ownership documentation on Wikidata, which is a metadata gap rather than evidence of bot activity. Live posting and follower data were not read.",
+          "verdict": "Likely human"
+        },
+        "field_status": null,
+        "cost_usd": 0.01,
+        "signal_hash": "0x0c99224b3d51c9f5ba6c0bb351d2ebaa6f882017a7a95b1cc0a542ab60d5c284",
+        "receipt": {
+          "receipt_hash": "0xd6cc03852a6e4648ee33a6d8f7410ae39ac57c0710d20e60ca729916aff76a79",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6121",
+          "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 66,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795786205
+        },
+        "duration_ms": 3818,
+        "error": null
+      },
+      "superseded": {
+        "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+        "request": {
+          "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+          "params": {
+            "account": "@compoundfinance"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "7457",
+        "miner_name": "TradeWire Social Bot Detection",
+        "result": {
+          "account": "@compoundfinance",
+          "verdict": "inconclusive",
+          "bot_score": null,
+          "signals": null
+        },
+        "field_status": {
+          "account": "ok",
+          "verdict": "ok",
+          "bot_score": "missing",
+          "signals": "missing"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0x0ed808b6c2c1e7fea4e23cdbfc69d0afef58307cb26b14cae5b6b7be827e1a3a",
+        "receipt": {
+          "receipt_hash": "0x9a6b7e4a2249f01548aebe02dd2787679f6f60772ca59a9c71a7fd54390534a5",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "4494",
+          "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 66,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795786196
+        },
+        "duration_ms": 12423,
+        "error": null
+      },
+      "also_tried": [
+        {
+          "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+          "request": {
+            "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+            "params": {
+              "account": "@compoundfinance"
+            }
+          },
+          "direct_miner": "108004",
+          "ok": true,
+          "status": 200,
+          "miner_id": "108004",
+          "miner_name": "HN Ask Stories",
+          "result": [
+            50655664,
+            50630809,
+            50649864,
+            50656763,
+            50658963,
+            50663566,
+            50663306,
+            50643767,
+            50645915,
+            50600771,
+            50657957,
+            50653499,
+            50660522,
+            50622809,
+            50633601,
+            50650947,
+            50643310,
+            50650310,
+            50630985,
+            50653391,
+            50626772,
+            50625996,
+            50647440,
+            50646423,
+            50645784,
+            50625683,
+            50620169,
+            50633280,
+            50621878,
+            50609394,
+            50601706,
+            50635183,
+            50617796
+          ],
+          "field_status": null,
+          "cost_usd": 0.01,
+          "signal_hash": "0x50d47de9afd6b9272207145414d0126b38d808c0bb356e14575fd264572fbfd2",
+          "receipt": {
+            "receipt_hash": "0x12cbec027533c2700b9f83d6cb6295814690426c97d87d1d062001b70bced340",
+            "rail": "escrow",
+            "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+            "miner": "3042",
+            "intent": "SOCIAL_BOT_DETECTION_GENERAL",
+            "amount_uusdc": "10000",
+            "epoch_id": 66,
+            "settlement": "epoch",
+            "chain": "telegraph",
+            "timestamp": 1795786201
+          },
+          "duration_ms": 5071,
+          "error": null
+        }
+      ]
+    },
+    {
+      "check": "Website safety",
+      "intent": "URL_SAFE_GENERAL",
+      "attempts": 2,
+      "flag": "ok",
+      "summary": "Project website https://compound.finance: no threat reported.",
+      "purchase": {
+        "intent": "URL_SAFE_GENERAL",
+        "request": {
+          "intent": "URL_SAFE_GENERAL",
+          "params": {
+            "url": "https://compound.finance"
+          }
+        },
+        "direct_miner": "42420",
+        "ok": true,
+        "status": 200,
+        "miner_id": "42420",
+        "miner_name": "FakeWatch Crypto Phishing and Impersonation Check",
+        "result": {
+          "url": "https://compound.finance",
+          "verdict": "Safe",
+          "detections": 0,
+          "summary": "Long-standing popular site (Majestic top list) with no phishing list entries."
+        },
+        "field_status": {
+          "url": "ok",
+          "verdict": "ok",
+          "detections": "ok",
+          "summary": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xd122f6e13b9f4482dd98cc12999d1873278fb90cbf896227636458f91ae82881",
+        "receipt": {
+          "receipt_hash": "0xc3278dc195b1feb858d3ecee17b6d1191461f25fa9592c07b3c8f7e048425321",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "5280",
+          "intent": "URL_SAFE_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 66,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795786202
+        },
+        "duration_ms": 8311,
+        "error": null
+      },
+      "superseded": {
+        "intent": "URL_SAFE_GENERAL",
+        "request": {
+          "intent": "URL_SAFE_GENERAL",
+          "params": {
+            "url": "https://compound.finance"
+          }
+        },
+        "ok": true,
+        "status": 200,
+        "miner_id": "5530",
+        "miner_name": "Telegraph Verity Intelligence",
+        "result": {
+          "url": "https://compound.finance/",
+          "verdict": "Unknown",
+          "detections": 0,
+          "summary": "No match was found in the checked feed(s) (google-safe-browsing+cert-polska). This does not establish that the URL is safe."
+        },
+        "field_status": {
+          "url": "ok",
+          "verdict": "ok",
+          "detections": "ok",
+          "summary": "ok"
+        },
+        "cost_usd": 0.01,
+        "signal_hash": "0xd25254277bc8288da33d5363451f6d2fbb198e5c0c86fbef4bfcca20003355c6",
+        "receipt": {
+          "receipt_hash": "0x195e7c5fce1d42485020ac0dd117a7c75f25301a976b7cfdf7b34ae95c7f0b35",
+          "rail": "escrow",
+          "payer": "0x9b3c9555c28ca6cc1d07085d5fe81d9d229f0975",
+          "miner": "6191",
+          "intent": "URL_SAFE_GENERAL",
+          "amount_uusdc": "10000",
+          "epoch_id": 66,
+          "settlement": "epoch",
+          "chain": "telegraph",
+          "timestamp": 1795786193
+        },
+        "duration_ms": 9767,
+        "error": null
+      }
+    }
+  ],
+  "paid_requests": 15,
+  "total_cost_usd": 0.15,
+  "network": "eip155:11155111",
+  "network_label": "Ethereum Sepolia testnet",
+  "boundary": "Testnet: payments are Ethereum Sepolia test USDC with no monetary value. Miner answers are real; settlement is on a test network.",
+  "agent": "0x9B3c9555c28CA6cc1D07085d5fE81D9d229f0975",
+  "memo_hash": "0x8de0c80bb8c5f6b99d42adf1420296bc2bde00d4af41044adb617991f3106ad9",
+  "signature": "0xe372cd98d10c3e670663e1bac351538a9cb6070e74eff9a572e227da5d429e0b44bd3133aa469c8e292a082b79b5771f4ec3f301ffa983e935d7f5c8ce9ee8211b"
+}
