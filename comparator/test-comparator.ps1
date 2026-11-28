@@ -13,7 +13,7 @@
 #   1 = one or more test vectors failed
 
 param(
-    [string]$BaseUrl = "https://preflight-ssl-verification.vercel.app"
+    [string]$BaseUrl = "https://telegraph-topaz.vercel.app"
 )
 
 $script:passedCount = 0
