@@ -7,7 +7,7 @@ resolvers, uptime probes, JSON-RPC on 16 chains, ECB FX, SEC filings, NVD CVEs a
 | | |
 |---|---|
 | Registration | **6214** on the Telegraph devnode, slug `a1-preflight` ([status](https://devnode.telegraphprotocol.com/api/miners/6214)) |
-| Service | **https://preflight-miner.netlify.app** ([health](https://preflight-miner.netlify.app/health)) |
+| Service | **https://telegraph-topaz.vercel.app** ([health](https://telegraph-topaz.vercel.app/health)) |
 | Manifest | [`telegraph/miner.yaml`](telegraph/miner.yaml), pinned by commit; the node fetches it from an immutable `raw.githubusercontent.com/.../<commit>/telegraph/miner.yaml` URL and checks its SHA-256 against the registered hash |
 | Network | Telegraph devnode, payments in Sepolia test USDC. This is testnet, not production demand. |
 | Price | $0.01 per request |
@@ -18,13 +18,13 @@ No key is needed to call the service directly:
 
 ```sh
 # TLS certificate check: real handshake, chain and expiry
-curl -s "https://preflight-miner.netlify.app/ssl-check?domain=github.com"
+curl -s "https://telegraph-topaz.vercel.app/ssl-check?domain=github.com"
 
 # Gas price on Base, from public JSON-RPC
-curl -s "https://preflight-miner.netlify.app/gas-price?chain=base"
+curl -s "https://telegraph-topaz.vercel.app/gas-price?chain=base"
 
 # Deterministic comparator (the network's reference scoring rule)
-curl -s -X POST https://preflight-miner.netlify.app/comparator \
+curl -s -X POST https://telegraph-topaz.vercel.app/comparator \
   -H 'content-type: application/json' \
   -d '{"batch":[{"ground_truth_value":100,"miner_value":101,"spec":[2,200]}]}'
 ```
@@ -46,9 +46,9 @@ check the answer, ask for a second opinion, or hold. It runs on Sepolia test USD
 These three apps are operated by the same team as this miner. Their use is labelled related party
 and is not presented as outside demand.
 
-- Listing Desk: https://preflight-miner.netlify.app/desk
-- Allocation Agent: https://preflight-miner.netlify.app/allocator
-- Counterparty Check: https://preflight-miner.netlify.app/diligence
+- Listing Desk: https://telegraph-topaz.vercel.app/desk
+- Allocation Agent: https://telegraph-topaz.vercel.app/allocator
+- Counterparty Check: https://telegraph-topaz.vercel.app/diligence
 
 Run records with their settlement transactions are in [`evidence/`](evidence/), one folder per date.
 
