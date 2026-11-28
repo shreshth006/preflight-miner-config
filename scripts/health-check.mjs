@@ -13,7 +13,7 @@
 // Requires: Node >= 18 (uses native fetch)
 // Exit codes: 0 = all healthy, 1 = failures detected
 
-const BASE_URL = getArg('--base-url') || 'https://preflight-ssl-verification.vercel.app';
+const BASE_URL = getArg('--base-url') || 'https://telegraph-topaz.vercel.app';
 const TIMEOUT  = Number(getArg('--timeout') || 10000);
 const RUN_ALL  = process.argv.includes('--all');
 

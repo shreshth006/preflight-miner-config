@@ -16,7 +16,7 @@
 #   1 = one or more endpoints failed
 
 param(
-    [string]$BaseUrl = "https://preflight-ssl-verification.vercel.app",
+    [string]$BaseUrl = "https://telegraph-topaz.vercel.app",
     [switch]$All,
     [int]$Timeout = 10
 )
