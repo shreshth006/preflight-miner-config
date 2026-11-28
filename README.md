@@ -68,7 +68,10 @@ Run records with their settlement transactions are in [`evidence/`](evidence/), 
 
 ## Architecture & System Overview
 
-PREFLIGHT serves as a high-integrity oracle and deterministic signal provider for autonomous systems across web infrastructure, decentralized finance (DeFi), and cross-chain networks.
+PREFLIGHT is a live-data oracle miner registered on the Telegraph Protocol network. Every intent is
+answered by querying a named, verifiable public source at request time — there is no caching of
+answers, no model hallucination, and no guessing. The scoring of answers is performed by a
+deterministic WebAssembly module so any party can reproduce the score from the raw values.
 
 ### High-Level Data & Settlement Flow
 
@@ -77,23 +80,30 @@ sequenceDiagram
     autonumber
     actor Buyer as Client / Autonomous Agent
     participant Node as Telegraph Router Node
-    participant Chain as EVM Chain (Sepolia / Mainnet)
-    participant Miner as PREFLIGHT Miner (Vercel)
+    participant Chain as EVM Chain (Sepolia devnet)
+    participant Miner as PREFLIGHT Miner (telegraph-topaz.vercel.app)
     participant Wasm as IMW Comparator (WASM)
 
     Buyer->>Node: POST /engine/v1/ask (Intent + Parameters)
-    Node-->>Buyer: 402 Payment Required (Price quote + settlement terms)
-    Buyer->>Buyer: Sign ERC-20 payment authorization via @x402/fetch
+    Node-->>Buyer: 402 Payment Required (price quote in Sepolia USDC)
+    Buyer->>Buyer: Sign ERC-20 payment via @x402/fetch (no ETH needed)
     Buyer->>Node: Resend request with signed payment
-    Node->>Miner: Route request to endpoint (telegraph/miner.yaml)
-    Miner->>Miner: Fetch live signal (TLS, DoH, EVM RPC, Market feeds)
-    Miner-->>Node: Return signed data payload + signal_hash
-    Node->>Chain: Settle micropayment transaction
-    Node-->>Buyer: Deliver response (receipt in x-telegraph-receipt)
-    Note over Node,Wasm: Ground Truth & Consensus Verification
-    Node->>Wasm: Execute imw_score_deterministic(truth, miner, spec)
-    Wasm-->>Node: Deterministic score (0 - 10000)
+    Node->>Miner: Route to endpoint declared in telegraph/miner.yaml
+    Miner->>Miner: Fetch live signal from named public source
+    Miner-->>Node: Return answer + signal_hash + source citation
+    Node->>Chain: Settle micropayment on Sepolia
+    Node-->>Buyer: Deliver answer (receipt in x-telegraph-receipt header)
+    Note over Node,Wasm: Consensus verification round
+    Node->>Wasm: imw_score_deterministic(truth, miner, spec)
+    Wasm-->>Node: Score 0–10000 (deterministic, reproducible)
 ```
+
+### How registration #6214 differs from earlier registrations
+
+The service previously ran under registrations 377, 5113, and 5218 on Vercel. After Vercel
+suspended the Hobby deployment on 2026-11-26, the service moved to Netlify under registration 6214.
+The miner ID (`20260828`) and all intent mappings are unchanged — only the `base_url` changed.
+Older evidence records in `evidence/` reference the Vercel URLs and are kept as-is.
 
 ---
 
@@ -101,15 +111,23 @@ sequenceDiagram
 
 | Component | Path | Description |
 |---|---|---|
-| **Miner Manifest** | [`telegraph/miner.yaml`](telegraph/miner.yaml) | Declarative mapping of ~3,300 lines defining supported intents, REST endpoints, parameter schemas, circuit breakers, and rate limits. |
-| **Scoring Modules** | [`comparator/`](comparator/) | Compiled WebAssembly modules (`wasm32-unknown-unknown`) implementing zero-import deterministic scoring rules for consensus rounds. |
-| **Agent Example** | [`examples/first-paid-agent/`](examples/first-paid-agent/) | Minimal 90-line autonomous buyer agent using `@x402/fetch` on Sepolia test USDC to purchase and cross-verify infrastructure signals. |
+| **Miner Manifest** | [`telegraph/miner.yaml`](telegraph/miner.yaml) | 136 intents mapped to REST endpoints on `telegraph-topaz.vercel.app`. Commit-pinned and SHA-256 verified on-chain by the Telegraph node before routing. |
+| **Comparator WASM** | [`comparator/`](comparator/) | Zero-import `wasm32-unknown-unknown` scoring modules. The reference module scores Exact, AbsTol, and RelTol; per-family builds add a named `preflight.family` custom section. |
+| **Agent Example** | [`examples/first-paid-agent/`](examples/first-paid-agent/) | 90-line buyer agent using `@x402/fetch` on Sepolia USDC — demonstrates payment, response verification, second-opinion routing, and HOLD fallback. |
+| **Evidence** | [`evidence/`](evidence/) | Timestamped JSON run records with on-chain settlement transaction hashes, one folder per date. |
 
 ---
 
 ## Supported Signal Families
 
-* **TLS / Infrastructure Health:** Real-time TLS certificate handshake verification (chain trust, hostname matching, expiry dates) and multi-phase latency probing.
-* **DNS Verification:** Independent Dual-resolver DNS-over-HTTPS (DoH) lookups.
-* **On-Chain Reads:** State reads, gas prices, token total supplies, and account balances across 16+ EVM chains (Ethereum, Base, Arbitrum, Optimism, Polygon, BNB Chain, Avalanche, Linea, Scroll, Gnosis, zkSync, Blast, Mantle, Celo, Sonic, Unichain).
-* **Deterministic Scoring (IMW):** Embedded WASM evaluators supporting Exact (Code 0), Absolute Tolerance (Code 1), Relative Tolerance (Code 2), and Pass/Fail (Code 3).
+| Family | Endpoints | Sources |
+|---|---|---|
+| **TLS / Web Safety** | `/ssl-check`, `/url-scan`, `/url-safe`, `/malware-check` | Live TLS handshake, redirect chain, security headers, threat feeds |
+| **DNS** | `/dns` | Cloudflare DoH + Google DoH (dual-resolver) |
+| **On-Chain / EVM** | `/gas-price`, `/wallet-balance`, `/tx-lookup`, `/token-supply`, `/onchain-metric`, `/cross-chain` | Public JSON-RPC across 16 chains (Ethereum, Base, Arbitrum, Optimism, Polygon, BNB, Avalanche, Linea, Scroll, Gnosis, zkSync, Blast, Mantle, Celo, Sonic, Unichain) |
+| **DeFi / Markets** | `/crypto-price`, `/tvl`, `/liquidity`, `/yield`, `/holders`, `/market-cap` | DefiLlama, public aggregators |
+| **Infrastructure** | `/uptime`, `/api-health` | Live probes with per-phase latency |
+| **Finance / Macro** | `/fx-rate`, `/stock-price`, `/macro`, `/loan-rate`, `/hashprice` | Named public data sources cited in each answer |
+| **Compliance / Risk** | `/sanctions`, `/threat-intel`, `/fraud-risk`, `/transaction-risk`, `/kyc` | Public threat and sanctions feeds |
+| **AI / NLP** | `/summarize`, `/translate`, `/fact-check`, `/sentiment`, `/classify`, `/extract`, `/chat` | Free LLM tiers (quota-limited; `found: false` when exhausted) |
+| **Deterministic Scoring** | `/comparator`, `/comparator/<FAMILY>` | WASM module — Exact (0), AbsTol (1), RelTol (2), PassFail (3) |
