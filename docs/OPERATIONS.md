@@ -1,6 +1,6 @@
 # PREFLIGHT Miner — Operations Runbook
 
-This document is the single source of truth for operating, updating, and monitoring the PREFLIGHT miner (`id: 20260828`, `slug: a1-preflight`) on the Telegraph Protocol network.
+This document is the single source of truth for operating, updating, and monitoring the PREFLIGHT miner (`id: 20260828`, `slug: a1-preflight`, registration `6214`) on the Telegraph Protocol network.
 
 ---
 
@@ -38,6 +38,7 @@ preflight-miner-config/
 │   └── health-check.mjs      ← Node.js version for CI
 ├── examples/
 │   └── first-paid-agent/     ← Example buyer agent (Sepolia test USDC)
+├── evidence/                 ← Timestamped run records & settlement txs
 ├── docs/
 │   └── OPERATIONS.md         ← This file
 ├── .github/
@@ -137,8 +138,8 @@ After merging a manifest change, you must submit a transaction to the Telegraph 
 | Item | Value |
 |---|---|
 | **Registry contract** | Obtain from [Telegraph Protocol documentation](https://docs.telegraphprotocol.com) |
-| **Your miner ID** | `20260828` |
-| **New manifest URL** | `https://raw.githubusercontent.com/Manan0708/preflight-miner-config/<MERGE_COMMIT>/telegraph/miner.yaml` |
+| **Your miner ID** | `20260828` (Registration `6214`) |
+| **New manifest URL** | `https://raw.githubusercontent.com/shreshth006/preflight-miner-config/<MERGE_COMMIT>/telegraph/miner.yaml` |
 | **New SHA-256 hash** | Output of `validate-manifest.ps1` or `sha256sum` |
 | **Signing key** | Your miner operator wallet private key |
 | **Network** | Wherever your miner registration lives (Sepolia for testnet, mainnet for production) |
@@ -152,7 +153,7 @@ After merging a manifest change, you must submit a transaction to the Telegraph 
 
 2. **Construct the raw manifest URL:**
    ```
-   https://raw.githubusercontent.com/Manan0708/preflight-miner-config/<COMMIT>/telegraph/miner.yaml
+   https://raw.githubusercontent.com/shreshth006/preflight-miner-config/<COMMIT>/telegraph/miner.yaml
    ```
    Verify it loads correctly in your browser or with curl before submitting on-chain.
 
@@ -224,7 +225,7 @@ Set up a cron job or uptime monitor (e.g. UptimeRobot, Grafana, or a GitHub Acti
 ```bash
 # Simple curl-based health probe for external monitoring
 curl -s -o /dev/null -w "%{http_code}" \
-  "https://preflight-ssl-verification.vercel.app/ssl-check?query=Is+github.com+TLS+valid"
+  "https://telegraph-topaz.vercel.app/ssl-check?query=Is+github.com+TLS+valid"
 ```
 
 A response of `200` means the miner is live. Anything else should trigger an alert.
@@ -263,7 +264,7 @@ This means: if the Telegraph node sees 8 consecutive errors from this miner, it 
 1. Check the on-chain registration — confirm the commit URL and SHA-256 are current.
 2. Confirm the GitHub raw URL resolves and returns the manifest:
    ```
-   https://raw.githubusercontent.com/Manan0708/preflight-miner-config/<COMMIT>/telegraph/miner.yaml
+   https://raw.githubusercontent.com/shreshth006/preflight-miner-config/<COMMIT>/telegraph/miner.yaml
    ```
 3. Run the health check to ensure the backend is live.
 4. Check circuit breaker state via the Telegraph network dashboard.
