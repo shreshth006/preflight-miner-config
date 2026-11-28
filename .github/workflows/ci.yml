@@ -1,0 +1,137 @@
+# CI pipeline for PREFLIGHT miner configuration.
+# Runs on every push and pull request to validate the manifest and comparator modules.
+
+name: Validate Manifest
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate-manifest:
+    name: Validate miner.yaml
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Run manifest validator
+        run: node scripts/validate-manifest.mjs
+
+      - name: Compute & display SHA-256
+        run: |
+          HASH=$(sha256sum telegraph/miner.yaml | awk '{print $1}')
+          echo "## Manifest SHA-256" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "$HASH" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "::notice title=Manifest SHA-256::$HASH"
+
+      - name: Verify YAML is parseable
+        run: |
+          # Quick sanity: ensure the file is valid YAML with node
+          node -e "
+            import { readFileSync } from 'fs';
+            const text = readFileSync('telegraph/miner.yaml', 'utf8');
+            // Basic smoke: file is non-empty and starts with version key
+            if (!text.startsWith('version:')) {
+              console.error('Manifest does not start with version key');
+              process.exit(1);
+            }
+            console.log('YAML smoke check passed (' + text.length + ' chars)');
+          "
+
+  check-comparator-wasm:
+    name: Verify comparator WASM modules
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate WASM files exist and are valid
+        run: |
+          echo "## Comparator WASM Modules" >> $GITHUB_STEP_SUMMARY
+          
+          WASM_COUNT=0
+          ERRORS=0
+          
+          for wasm in comparator/*.wasm; do
+            if [ ! -f "$wasm" ]; then
+              echo "::error::No WASM files found in comparator/"
+              exit 1
+            fi
+            
+            WASM_COUNT=$((WASM_COUNT + 1))
+            SIZE=$(stat -c%s "$wasm")
+            HASH=$(sha256sum "$wasm" | awk '{print $1}')
+            
+            # Check magic number (first 4 bytes should be \0asm)
+            MAGIC=$(xxd -l 4 -p "$wasm")
+            if [ "$MAGIC" != "0061736d" ]; then
+              echo "::error::$wasm is not a valid WASM file (bad magic: $MAGIC)"
+              ERRORS=$((ERRORS + 1))
+            fi
+            
+            echo "| \`$(basename $wasm)\` | ${SIZE} bytes | \`${HASH:0:16}…\` | $([ "$MAGIC" = "0061736d" ] && echo '✅' || echo '❌') |" >> $GITHUB_STEP_SUMMARY
+            echo "  ✓ $(basename $wasm): ${SIZE} bytes, SHA-256 ${HASH:0:16}…"
+          done
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**${WASM_COUNT} module(s) checked.**" >> $GITHUB_STEP_SUMMARY
+          
+          if [ $ERRORS -gt 0 ]; then
+            echo "::error::$ERRORS WASM file(s) failed validation"
+            exit 1
+          fi
+          
+          echo "All $WASM_COUNT WASM modules validated."
+
+  manifest-diff:
+    name: Report manifest changes
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Show manifest diff stats
+        run: |
+          BASE=${{ github.event.pull_request.base.sha }}
+          
+          if git diff --name-only "$BASE" HEAD | grep -q 'telegraph/miner.yaml'; then
+            echo "## Manifest Changes" >> $GITHUB_STEP_SUMMARY
+            
+            # Count intent/endpoint changes
+            ADDED=$(git diff "$BASE" HEAD -- telegraph/miner.yaml | grep -c '^+' || true)
+            REMOVED=$(git diff "$BASE" HEAD -- telegraph/miner.yaml | grep -c '^-' || true)
+            
+            echo "- **Lines added:** $ADDED" >> $GITHUB_STEP_SUMMARY
+            echo "- **Lines removed:** $REMOVED" >> $GITHUB_STEP_SUMMARY
+            
+            OLD_HASH=$(git show "$BASE:telegraph/miner.yaml" 2>/dev/null | sha256sum | awk '{print $1}' || echo "N/A")
+            NEW_HASH=$(sha256sum telegraph/miner.yaml | awk '{print $1}')
+            
+            echo "- **Old SHA-256:** \`$OLD_HASH\`" >> $GITHUB_STEP_SUMMARY
+            echo "- **New SHA-256:** \`$NEW_HASH\`" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "> [!WARNING]" >> $GITHUB_STEP_SUMMARY
+            echo "> Remember to update the on-chain registration hash after merging." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "## Manifest Changes" >> $GITHUB_STEP_SUMMARY
+            echo "No changes to \`telegraph/miner.yaml\` in this PR." >> $GITHUB_STEP_SUMMARY
+          fi
